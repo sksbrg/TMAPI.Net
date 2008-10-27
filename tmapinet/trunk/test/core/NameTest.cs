@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using org.tmapi.core;
 using Xunit;
-using TopicMapSystemFactory=org.tmapi.core.TopicMapSystemFactory;
 
-namespace net.nexxor.kalanchoe.test.tmapi.core
+namespace org.tmapi.test
 {
     public class NameTest
     {
