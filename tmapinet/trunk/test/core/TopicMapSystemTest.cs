@@ -2,7 +2,7 @@
 using org.tmapi.core;
 using XunitExt;
 
-namespace net.nexxor.kalanchoe.test.tmapi.core
+namespace org.tmapi.test
 {
     public class TopicMapSystemTest
     {

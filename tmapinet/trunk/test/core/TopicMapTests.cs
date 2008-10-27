@@ -3,9 +3,8 @@ using System.Collections.ObjectModel;
 using org.tmapi.core;
 using org.tmapi.index;
 using Xunit;
-using TopicMapSystemFactory=org.tmapi.core.TopicMapSystemFactory;
 
-namespace net.nexxor.kalanchoe.test.tmapi.core
+namespace org.tmapi.test
 {
     public class TopicMapTests
     {
