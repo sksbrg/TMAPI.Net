@@ -9,10 +9,10 @@ namespace org.tmapi.core
 	{
 		#region Properties
 		/// <summary>
-		///     Gets the <see cref="T:org.tmapi.core.ILocator"/> identifying the datatype of the value. 
+		///     Gets the <see cref="T:org.tmapi.core.ILocator"/> identifying the data type of the value. 
 		/// </summary>
 		/// <returns>
-		///     The datatype of this construct (never <c>null</c>).
+		///     The data type of this construct (never <c>null</c>).
 		/// </returns>
 		ILocator Datatype
 		{
@@ -21,7 +21,7 @@ namespace org.tmapi.core
 
 		/// <summary>
 		///     Gets or sets the <c>decimal</c> representation of the value.
-		///     This method sets the datatype implicitly to 
+		///     This method sets the data type implicitly to 
 		///     <a href="http://www.w3.org/TR/xmlschema-2/#decimal">xsd:decimal</a>.
 		/// </summary>
 		/// <exception cref="System.FormatException">
@@ -35,7 +35,7 @@ namespace org.tmapi.core
 
 		/// <summary>
 		///     Gets or sets the <c>float</c> representation of the value.
-		///     This method sets the datatype implicitly to 
+		///     This method sets the data type implicitly to 
 		///     <a href="http://www.w3.org/TR/xmlschema-2/#float">xsd:float</a>.
 		/// </summary>
 		/// <exception cref="System.FormatException">
@@ -49,7 +49,7 @@ namespace org.tmapi.core
 
 		/// <summary>
 		///     Gets or sets the <c>int</c> representation of the value.
-		///     This method sets the datatype implicitly to 
+		///     This method sets the data type implicitly to 
 		///     <a href="http://www.w3.org/TR/xmlschema-2/#int">xsd:int</a>.
 		/// </summary>
 		/// <exception cref="System.FormatException">
@@ -78,7 +78,7 @@ namespace org.tmapi.core
 
 		/// <summary>
 		///     Gets or sets the <c>long</c> representation of the value.
-		///     This method sets the datatype implicitly to 
+		///     This method sets the data type implicitly to 
 		///     <a href="http://www.w3.org/TR/xmlschema-2/#long">xsd:long</a>.
 		/// </summary>
 		/// <exception cref="System.FormatException">
@@ -92,11 +92,11 @@ namespace org.tmapi.core
 
 		/// <summary>
 		///     Gets or sets the lexical representation of the value.
-		///     For the datatype <a href="http://www.w3.org/TR/xmlschema-2/#string">xsd:string</a> 
+		///     For the data type <a href="http://www.w3.org/TR/xmlschema-2/#string">xsd:string</a> 
 		///     the string itself is returned.
-		///     For the datatype <a href="http://www.w3.org/TR/xmlschema-2/#anyURI">xsd:anyURI</a> 
+		///     For the data type <a href="http://www.w3.org/TR/xmlschema-2/#anyURI">xsd:anyURI</a> 
 		///     the <see cref="P:org.tmapi.core.ILocator.Reference"/> is returned.
-		///     This method sets the datatype implicitly to
+		///     This method sets the data type implicitly to
 		///     <a href="http://www.w3.org/TR/xmlschema-2/#string">xsd:string</a>.
 		/// </summary>
 		/// <exception cref="ModelConstraintException">
@@ -111,13 +111,13 @@ namespace org.tmapi.core
 
 		#region Methods
 		/// <summary>
-		///     Sets the string value and the datatype.
+		///     Sets the string value and the data type.
 		/// </summary>
 		/// <param name="value">
 		///     The string value.
 		/// </param>
 		/// <param name="datatype">
-		///     The value's datatype.
+		///     The value's data type.
 		/// </param>
 		/// <exception cref="T:org.tmapi.core.ModelConstraintException">
 		///     In case the <paramref name="value"/> or <paramref name="datatype"/> is <c>null</c>.
