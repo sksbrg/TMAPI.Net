@@ -173,7 +173,7 @@ namespace org.tmapi.index
 		ReadOnlyCollection<IOccurrence> GetOccurrences(ITopic[] themes, bool matchAll);
 
 		/// <summary>
-		///     Returns the <see cref="T:org.tmapi.core.IVariants"/>s in the topic map whose 
+		///     Returns the <see cref="T:org.tmapi.core.IVariant"/>s in the topic map whose 
 		///     scope property contains the specified <paramref name="theme"/>. 
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
@@ -190,7 +190,7 @@ namespace org.tmapi.index
 		ReadOnlyCollection<IVariant> GetVariants(ITopic theme);
 
 		/// <summary>
-		///     Returns the <see cref="T:org.tmapi.core.IVariants"/>s in the topic map whose 
+		///     Returns the <see cref="T:org.tmapi.core.IVariant"/>s in the topic map whose 
 		///     scope property equals one of those <paramref name="themes"/> at least. 
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
