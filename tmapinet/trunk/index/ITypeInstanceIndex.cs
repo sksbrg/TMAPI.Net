@@ -9,7 +9,7 @@ namespace org.tmapi.index
 	///     This index provides access to <see cref="T:org.tmapi.core.ITopic"/>s used in
 	///     <a href="http://www.isotopicmaps.org/sam/sam-model/#sect-types">type-
 	///     instance</a> relationships or as type of a <see cref="T:org.tmapi.core.ITyped"/>
-	///     construct. Futher, the retrieval of <see cref="T:org.tmapi.core.IAssociation"/>s, 
+	///     construct. Further, the retrieval of <see cref="T:org.tmapi.core.IAssociation"/>s, 
 	///     <see cref="T:org.tmapi.core.IRole"/>s, <see cref="T:org.tmapi.core.IOccurrence"/>s, 
 	///     and <see cref="T:org.tmapi.core.IName"/>s by their <c>type</c> property is supported.
 	/// </summary>
@@ -79,9 +79,9 @@ namespace org.tmapi.index
 		/// <remarks>
 		///     Implementations may return only those topics which are member of the <c>types</c> 
 		///     property of other topics and may ignore <a href="http://www.isotopicmaps.org/sam/sam-model/#sect-types">
-		///     type-instance</a> relationships which are modelled as association. 
-		///     Further, <a href="http://www.isotopicmaps.org/sam/sam-model/#sect-subtypes">supertype-
-		///     subtype</a> relationships may also be ignored.
+		///     type-instance</a> relationships which are modeled as association. 
+		///     Further, <a href="http://www.isotopicmaps.org/sam/sam-model/#sect-subtypes">supertype-subtype</a>
+		///     relationships may also be ignored.
 		/// </remarks>
 		ReadOnlyCollection<ITopic> TopicTypes
 		{
@@ -156,7 +156,7 @@ namespace org.tmapi.index
 		/// <remarks>
 		///     Implementations may return only those topics whose <tt>types</tt> property
 		///     contains the type and may ignore <a href="http://www.isotopicmaps.org/sam/sam-model/#sect-types">
-		///     type-instance</a> relationships which are modelled as association. Further, 
+		///     type-instance</a> relationships which are modeled as association. Further, 
 		///     <a href="http://www.isotopicmaps.org/sam/sam-model/#sect-subtypes">supertype-
 		///     subtype</a> relationships may also be ignored. 
 		/// </remarks>
@@ -180,7 +180,7 @@ namespace org.tmapi.index
 		/// <remarks>
 		///     Implementations may return only those topics whose <tt>types</tt> property
 		///     contains the type and may ignore <a href="http://www.isotopicmaps.org/sam/sam-model/#sect-types">
-		///     type-instance</a> relationships which are modelled as association. Further, 
+		///     type-instance</a> relationships which are modeled as association. Further, 
 		///     <a href="http://www.isotopicmaps.org/sam/sam-model/#sect-subtypes">supertype-
 		///     subtype</a> relationships may also be ignored. 
 		/// </remarks>
