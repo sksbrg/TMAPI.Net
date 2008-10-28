@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using org.tmapi.index;
@@ -200,15 +201,18 @@ namespace org.tmapi.core
 		IConstruct GetConstructByItemIdentifier(ILocator iid);
 
 		/// <summary>
-		///     Returns the specified index.
+		///     Returns an index instance for this topic map using the specified generic type.
 		/// </summary>
 		/// <typeparam name="T">
-		///     The index to return.
+		///     The data type of the index for this topic map.
 		/// </typeparam>
 		/// <returns>
-		///     An index.
+		///     The index instance for this topic map.
 		/// </returns>
-		IIndex GetIndex<T>() where T : IIndex;
+		/// <exception cref="NotSupportedException">
+		///     If the implementation does not support indices or if the specified index is unsupported.
+		/// </exception>
+		T GetIndex<T>() where T : IIndex;
 
 		/// <summary>
 		///     Returns a topic by its subject identifier.
