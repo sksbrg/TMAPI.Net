@@ -4,7 +4,7 @@ namespace org.tmapi.core
 {
 	/// <summary>
 	///     Exception thrown when the underlying implementation cannot support enabling or 
-	///     disabling a recognised feature. If the feature name is not recognised, implementations 
+	///     disabling a recognized feature. If the feature name is not recognized, implementations 
 	///     <strong>MUST</strong> throw a <c>FeatureNotRecognizedException</c> rather than a <c>FeatureNotSupportedException</c>.
 	/// </summary>
 	[Serializable]
