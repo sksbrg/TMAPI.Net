@@ -127,20 +127,20 @@ namespace org.tmapi.core
 		///     is added to that topic and the topic is returned. If neither a topic with the specified item identifier 
 		///     nor with a subject identifier equals to the item identifier exists, a topic with the item identifier is created.
 		/// </summary>
-		/// <param name="iid">
+		/// <param name="itemIdentifier">
 		///     The item identifier the topic should contain.
 		/// </param>
 		/// <returns>
 		///     A <see cref="T:org.tmapi.core.ITopic"/> instance with the specified item identifier.
 		/// </returns>
 		/// <exception cref="ModelConstraintException">
-		///     If the item identifier <paramref name="iid"/> is <c>null</c>.
+		///     If the item identifier <paramref name="itemIdentifier"/> is <c>null</c>.
 		/// </exception>
 		/// <exception cref="IdentityConstraintException">
 		///     If an other <see cref="T:org.tmapi.core.IConstruct"/> with the specified item identifier exists which is 
 		///     not a <see cref="T:org.tmapi.core.ITopic"/>. 
 		/// </exception>
-		ITopic CreateTopicByItemIdentifier(ILocator iid);
+		ITopic CreateTopicByItemIdentifier(ILocator itemIdentifier);
 
 		/// <summary>
 		///     Returns a <see cref="T:org.tmapi.core.ITopic"/> instance with the specified subject identifier.
@@ -151,32 +151,32 @@ namespace org.tmapi.core
 		///     is added to that topic and the topic is returned. If neither a topic with the specified subject identifier 
 		///     nor with an item identifier equals to the subject identifier exists, a topic with the subject identifier is created.
 		/// </summary>
-		/// <param name="sid">
+		/// <param name="subjectIdentifier">
 		///     The subject identifier the topic should contain.
 		/// </param>
 		///  <returns>
 		///     A <see cref="T:org.tmapi.core.ITopic"/> instance with the specified subject identifier.
 		/// </returns>
 		/// <exception cref="ModelConstraintException">
-		///     If the subject identifier <paramref name="sid"/> is <c>null</c>.
+		///     If the subject identifier <paramref name="subjectIdentifier"/> is <c>null</c>.
 		/// </exception>
-		ITopic CreateTopicBySubjectIdentifier(ILocator sid);
+		ITopic CreateTopicBySubjectIdentifier(ILocator subjectIdentifier);
 
 		/// <summary>
 		///     Returns a <see cref="T:org.tmapi.core.ITopic"/> instance with the specified subject locator.
 		///     This method returns either an existing <see cref="T:org.tmapi.core.ITopic"/> or creates a new 
 		///     <see cref="T:org.tmapi.core.ITopic"/> instance with the specified subject locator.
 		/// </summary>
-		/// <param name="slo">
+		/// <param name="subjectLocator">
 		///     The subject locator the topic should contain.
 		/// </param>
 		/// <returns>
 		///     A <see cref="T:org.tmapi.core.ITopic"/> instance with the specified subject locator.
 		/// </returns>
 		///  <exception cref="ModelConstraintException">
-		///     If the subject locator <paramref name="slo"/> is <c>null</c>.
+		///     If the subject locator <paramref name="subjectLocator"/> is <c>null</c>.
 		/// </exception>
-		ITopic CreateTopicBySubjectLocator(ILocator slo);
+		ITopic CreateTopicBySubjectLocator(ILocator subjectLocator);
 
 		/// <summary>
 		///     Returns a <see cref="T:org.tmapi.core.IConstruct"/> by its (system specific) identifier.
@@ -192,13 +192,13 @@ namespace org.tmapi.core
 		/// <summary>
 		///     Returns a <see cref="T:org.tmapi.core.IConstruct"/> by its item identifier.
 		/// </summary>
-		/// <param name="iid">
+		/// <param name="itemIdentifier">
 		///     The item identifier of the construct to be returned.
 		/// </param>
 		/// <returns>
 		///     A construct with the specified item identifier or <c>null</c> if no such construct exists in the topic map.
 		/// </returns>
-		IConstruct GetConstructByItemIdentifier(ILocator iid);
+		IConstruct GetConstructByItemIdentifier(ILocator itemIdentifier);
 
 		/// <summary>
 		///     Returns an index instance for this topic map using the specified generic type.
@@ -217,24 +217,24 @@ namespace org.tmapi.core
 		/// <summary>
 		///     Returns a topic by its subject identifier.
 		/// </summary>
-		/// <param name="sid">
+		/// <param name="subjectIdentifier">
 		///     The subject identifier of the topic to be returned.
 		/// </param>
 		/// <returns>
 		///     A topic with the specified subject identifier or <c>null</c> if no such topic exists in the topic map.
 		/// </returns>
-		ITopic GetTopicBySubjectIdentifier(ILocator sid);
+		ITopic GetTopicBySubjectIdentifier(ILocator subjectIdentifier);
 
 		/// <summary>
 		///     Returns a topic by its subject locator.
 		/// </summary>
-		/// <param name="slo">
+		/// <param name="subjectLocator">
 		///     The subject locator of the topic to be returned.
 		/// </param>
 		/// <returns>
 		///     A topic with the specified subject locator or <c>null</c> if no such topic exists in the topic map.
 		/// </returns>
-		ITopic GetTopicBySubjectLocator(ILocator slo);
+		ITopic GetTopicBySubjectLocator(ILocator subjectLocator);
 
 		/// <summary>
 		///     Merges the topic map <paramref name="other"/> into this topic map.
