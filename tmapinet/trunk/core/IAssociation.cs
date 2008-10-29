@@ -78,7 +78,7 @@ namespace org.tmapi.core
 		/// <exception cref="T:System.ArgumentNullException">
 		///     If the <paramref name="type"/> is <c>null</c>.
 		/// </exception>
-		ReadOnlyCollection<IRole> GetRoles(ITopic type);
+		ReadOnlyCollection<IRole> GetRolesByTopicType(ITopic type);
 		#endregion
 	}
 }
