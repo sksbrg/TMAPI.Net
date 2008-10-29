@@ -62,22 +62,22 @@ namespace org.tmapi.core
 		#region Methods
 		/// <summary>
 		///     Adds an item identifier.
-		///     It is not allowed to have two <see cref="T:org.tmapi.core.IConstruct"/>s in the same 
+		///     It is not allowed to have two <see cref="T:org.tmapi.core.IConstruct">constructs</see> in the same 
 		///     <see cref="T:org.tmapi.core.ITopicMap"/> with the same item identifier.
-		///     If the two objects are <see cref="T:org.tmapi.core.ITopic"/>s, then they must be merged.
+		///     If the two objects are <see cref="T:org.tmapi.core.ITopic"/>topics</see>, then they must be merged.
 		///     If at least one of the two objects is not a <see cref="T:org.tmapi.core.ITopic"/>, 
 		///     an <see cref="T:org.tmapi.core.IdentityConstraintException"/> must be reported.
 		/// </summary>
-		/// <param name="iid">
+		/// <param name="itemIdentifier">
 		///     The item identifier to be added; must not be <c>null</c>.
 		/// </param>
 		/// <exception cref="ModelConstraintException">
-		///     If the <paramref name="iid"/> is <c>null</c>. 
+		///     If the <paramref name="itemIdentifier"/> is <c>null</c>. 
 		/// </exception>
 		/// <exception cref="IdentityConstraintException">
-		///     If another construct has an item identifier which is equal to <paramref name="iid"/>.
+		///     If another construct has an item identifier which is equal to <paramref name="itemIdentifier"/>.
 		/// </exception>
-		void AddItemIdentifier(ILocator iid);
+		void AddItemIdentifier(ILocator itemIdentifier);
 
 		/// <summary>
 		///     Returns <c>true</c> if the <paramref name="other"/> object is equal to this one.
@@ -115,10 +115,10 @@ namespace org.tmapi.core
 		/// <summary>
 		///     Removes an item identifier.
 		/// </summary>
-		/// <param name="iid">
+		/// <param name="itemIdentifier">
 		///     The item identifier to be removed.
 		/// </param>
-		void RemoveItemIdentifier(ILocator iid);
+		void RemoveItemIdentifier(ILocator itemIdentifier);
 		#endregion
 	}
 }
