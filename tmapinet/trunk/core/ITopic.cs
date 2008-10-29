@@ -119,14 +119,14 @@ namespace org.tmapi.core
 		///     as another topic and the feature "automerge" (http://tmapi.org/features/automerge) is disabled, 
 		///     an <see cref="IdentityConstraintException"/> is thrown.
 		/// </summary>
-		/// <param name="iid">
+		/// <param name="itemIdentifier">
 		///     The item identifier to be added; must not be <c>null</c>.
 		/// </param>
 		/// <exception cref="IdentityConstraintException">
-		///     If adding <paramref name="iid"/> would make this topic represent the same subject 
+		///     If adding <paramref name="itemIdentifier"/> would make this topic represent the same subject 
 		///     as another topic and the feature "automerge" (http://tmapi.org/features/automerge) is disabled.
 		/// </exception>
-		new void AddItemIdentifier(ILocator iid);
+		new void AddItemIdentifier(ILocator itemIdentifier);
 
 		/// <summary>
 		///     Adds a subject identifier to this topic.
@@ -134,14 +134,14 @@ namespace org.tmapi.core
 		///     as another topic and the feature "automerge" (http://tmapi.org/features/automerge) is disabled, 
 		///     an <see cref="IdentityConstraintException"/> is thrown.
 		/// </summary>
-		/// <param name="sid">
+		/// <param name="subjectIdentifier">
 		///     The subject identifier to be added; must not be <c>null</c>.
 		/// </param>
 		/// <exception cref="IdentityConstraintException">
-		///     If adding <paramref name="sid"/> would make this topic represent the same subject 
+		///     If adding <paramref name="subjectIdentifier"/> would make this topic represent the same subject 
 		///     as another topic and the feature "automerge" (http://tmapi.org/features/automerge) is disabled.
 		/// </exception>
-		void AddSubjectIdentifier(ILocator sid);
+		void AddSubjectIdentifier(ILocator subjectIdentifier);
 
 		/// <summary>
 		///     Adds a subject locator to this topic.
@@ -149,14 +149,14 @@ namespace org.tmapi.core
 		///     as another topic and the feature "automerge" (http://tmapi.org/features/automerge) is disabled, 
 		///     an <see cref="IdentityConstraintException"/> is thrown.
 		/// </summary>
-		/// <param name="slo">
+		/// <param name="subjectLocator">
 		///     The subject locator to be added; must not be <c>null</c>.
 		/// </param>
 		/// <exception cref="IdentityConstraintException">
-		///     If adding <paramref name="slo"/> would make this topic represent the same subject 
+		///     If adding <paramref name="subjectLocator"/> would make this topic represent the same subject 
 		///     as another topic and the feature "automerge" (http://tmapi.org/features/automerge) is disabled.
 		/// </exception>
-		void AddSubjectLocator(ILocator slo);
+		void AddSubjectLocator(ILocator subjectLocator);
 
 		/// <summary>
 		///     Adds a type to this topic.
@@ -411,70 +411,70 @@ namespace org.tmapi.core
 		IOccurrence CreateOccurrence(ITopic type, string value, ILocator datatype, IList<ITopic> scope);
 
 		/// <summary>
-		///     Returns the <see cref="T:org.tmapi.core.IName"/>s of this topic where the name type is <paramref name="type"/>.
+		///     Returns the <see cref="T:org.tmapi.core.IName">names</see> of this topic where the name type is <paramref name="type"/>.
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
 		/// <param name="type">
-		///     The type of the <see cref="T:org.tmapi.core.IName"/>s to be returned; must not be <c>null</c>.
+		///     The type of the <see cref="T:org.tmapi.core.IName">names</see> to be returned; must not be <c>null</c>.
 		/// </param>
 		/// <returns>
-		///     An unmodifiable set of <see cref="T:org.tmapi.core.IName"/>s with the specified <paramref name="type"/>.
+		///     An unmodifiable set of <see cref="T:org.tmapi.core.IName">names</see> with the specified <paramref name="type"/>.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">
 		///     If the <paramref name="type"/> is <c>null</c>.
 		/// </exception>
-		ReadOnlyCollection<IName> GetNames(ITopic type);
+		ReadOnlyCollection<IName> GetNamesByTopicType(ITopic type);
 
 		/// <summary>
-		///     Returns the <see cref="T:org.tmapi.core.IOccurrence"/>s of this topic where the occurrence type is <paramref name="type"/>.
+		///     Returns the <see cref="T:org.tmapi.core.IOccurrence">occurrences</see> of this topic where the occurrence type is <paramref name="type"/>.
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
 		/// <param name="type">
-		///     The type of the <see cref="T:org.tmapi.core.IOccurrence"/>s to be returned; must not be <c>null</c>.
+		///     The type of the <see cref="T:org.tmapi.core.IOccurrence">occurrences</see> to be returned; must not be <c>null</c>.
 		/// </param>
 		/// <returns>
-		///     An unmodifiable set of <see cref="T:org.tmapi.core.IOccurrence"/>s with the specified <paramref name="type"/>.
+		///     An unmodifiable set of <see cref="T:org.tmapi.core.IOccurrence">occurrences</see> with the specified <paramref name="type"/>.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">
 		///     If the <paramref name="type"/> is <c>null</c>.
 		/// </exception>
-		ReadOnlyCollection<IOccurrence> GetOccurrences(ITopic type);
+		ReadOnlyCollection<IOccurrence> GetOccurrencesByTopicType(ITopic type);
 
 		/// <summary>
-		///     Returns the <see cref="T:org.tmapi.core.IRole"/>s played by this topic where the role type is <paramref name="type"/>.
+		///     Returns the <see cref="T:org.tmapi.core.IRole">roles</see> played by this topic where the role type is <paramref name="type"/>.
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
 		/// <param name="type">
-		///     The type of the <see cref="T:org.tmapi.core.IRole"/>s to be returned; must not be <c>null</c>.
+		///     The type of the <see cref="T:org.tmapi.core.IRole">roles</see> to be returned; must not be <c>null</c>.
 		/// </param>
 		/// <returns>
-		///     An unmodifiable set of <see cref="T:org.tmapi.core.IRole"/>s with the specified <paramref name="type"/>.
+		///     An unmodifiable set of <see cref="T:org.tmapi.core.IRole">roles</see> with the specified <paramref name="type"/>.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">
 		///     If the <paramref name="type"/> is <c>null</c>.
 		/// </exception>
-		ReadOnlyCollection<IRole> GetRolesPlayed(ITopic type);
+		ReadOnlyCollection<IRole> GetRolesPlayedByTopicType(ITopic type);
 
 		/// <summary>
-		///     Returns the <see cref="T:org.tmapi.core.IRole"/>s played by this topic where the role type is <paramref name="type"/> 
+		///     Returns the <see cref="T:org.tmapi.core.IRole">roles</see> played by this topic where the role type is <paramref name="type"/> 
 		///     and the <see cref="T:org.tmapi.core.IAssociation"/> type is <paramref name="assocType"/>.
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
 		/// <param name="type">
-		///     The type of the <see cref="T:org.tmapi.core.IRole"/>s to be returned; must not be <c>null</c>.
+		///     The type of the <see cref="T:org.tmapi.core.IRole">roles</see> to be returned; must not be <c>null</c>.
 		/// </param>
 		/// <param name="assocType">
 		///     The type of the <see cref="T:org.tmapi.core.IAssociation"/> from which the returned roles must be part of; 
 		///     must not be <c>null</c>.
 		/// </param>
 		/// <returns>
-		///     An unmodifiable set of <see cref="T:org.tmapi.core.IRole"/>s with the specified <paramref name="type"/> 
-		///     which are part of <see cref="T:org.tmapi.core.IAssociation"/>s with the specified <paramref name="assocType"/>.
+		///     An unmodifiable set of <see cref="T:org.tmapi.core.IRole">roles</see> with the specified <paramref name="type"/> 
+		///     which are part of <see cref="T:org.tmapi.core.IAssociation">associations</see> with the specified <paramref name="assocType"/>.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">
 		///     If the <paramref name="type"/> or <paramref name="assocType"/> is <c>null</c>.
 		/// </exception>
-		ReadOnlyCollection<IRole> GetRolesPlayed(ITopic type, ITopic assocType);
+		ReadOnlyCollection<IRole> GetRolesPlayedByTopicTypeAndAssociationType(ITopic type, ITopic assocType);
 
 		/// <summary>
 		///     Merges another topic into this topic.
@@ -503,18 +503,18 @@ namespace org.tmapi.core
 		/// <summary>
 		///     Removes a subject identifier from this topic.
 		/// </summary>
-		/// <param name="sid">
+		/// <param name="subjectIdentifier">
 		///     The subject identifier t be removed.
 		/// </param>
-		void RemoveSubjectIdentifier(ILocator sid);
+		void RemoveSubjectIdentifier(ILocator subjectIdentifier);
 
 		/// <summary>
 		///     Removes a subject locator from this topic.
 		/// </summary>
-		/// <param name="slo">
+		/// <param name="subjectLocator">
 		///     The subject locator to be removed.
 		/// </param>
-		void RemoveSubjectLocator(ILocator slo);
+		void RemoveSubjectLocator(ILocator subjectLocator);
 
 		/// <summary>
 		///     Removes a type from this topic.
