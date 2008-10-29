@@ -54,10 +54,12 @@ namespace org.tmapi.core
 		/// </summary>
 		/// <param name="iri">
 		///     The address which should be used to store the <see cref="T:org.tmapi.core.ITopicMap"/>.
+		///		<seealso href="http://www.ietf.org/rfc/rfc3987.txt">RFC: Internationalized Resource Identifiers (IRIs)</seealso>
 		/// </param>
 		/// <returns>
 		///     The newly created <see cref="T:org.tmapi.core.ITopicMap"/> instance.
 		/// </returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "iri", Justification = "Means the Internationalized Resource Identifier (IRI)")]
 		ITopicMap CreateTopicMap(ILocator iri);
 
 		/// <summary>
@@ -66,10 +68,12 @@ namespace org.tmapi.core
 		/// </summary>
 		/// <param name="iri">
 		///     The address which should be used to store the <see cref="T:org.tmapi.core.ITopicMap"/>.
+		///		<seealso href="http://www.ietf.org/rfc/rfc3987.txt">RFC: Internationalized Resource Identifiers (IRIs)</seealso>
 		/// </param>
 		/// <returns>
 		///     The newly created <see cref="T:org.tmapi.core.ITopicMap"/> instance.
 		/// </returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "iri", Justification = "Means the Internationalized Resource Identifier (IRI)")]
 		ITopicMap CreateTopicMap(string iri);
 
 		/// <summary>
@@ -95,11 +99,13 @@ namespace org.tmapi.core
 		/// </summary>
 		/// <param name="iri">
 		///     The storage address to retrieve the <see cref="T:org.tmapi.core.ITopicMap"/> from.
+		///		<seealso href="http://www.ietf.org/rfc/rfc3987.txt">RFC: Internationalized Resource Identifiers (IRIs)</seealso>
 		/// </param>
 		/// <returns>
 		///     The <see cref="T:org.tmapi.core.ITopicMap"/> instance managed by this system which is stored at the 
 		///     specified <paramref name="iri"/>, or <c>null</c> if no such <see cref="T:org.tmapi.core.ITopicMap"/> is found.
 		/// </returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "iri", Justification = "Means the Internationalized Resource Identifier (IRI)")]
 		ITopicMap GetTopicMap(string iri);
 
 		/// <summary>
@@ -108,11 +114,13 @@ namespace org.tmapi.core
 		/// </summary>
 		/// <param name="iri">
 		///     The storage address to retrieve the <see cref="T:org.tmapi.core.ITopicMap"/> from.
+		///		<seealso href="http://www.ietf.org/rfc/rfc3987.txt">RFC: Internationalized Resource Identifiers (IRIs)</seealso>
 		/// </param>
 		/// <returns>
 		///     The <see cref="T:org.tmapi.core.ITopicMap"/> instance managed by this system which is stored at the 
 		///     specified <paramref name="iri"/>, or <c>null</c> if no such <see cref="T:org.tmapi.core.ITopicMap"/> is found.
 		/// </returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "iri", Justification = "Means the Internationalized Resource Identifier (IRI)")]
 		ITopicMap GetTopicMap(ILocator iri);
 
 		/// <summary>
