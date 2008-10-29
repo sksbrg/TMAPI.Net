@@ -212,6 +212,7 @@ namespace org.tmapi.core
 		/// <exception cref="NotSupportedException">
 		///     If the implementation does not support indices or if the specified index is unsupported.
 		/// </exception>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter", Justification = "As discussed in http://social.msdn.microsoft.com/Forums/en-US/vstscode/thread/81f356fd-3821-47bd-ad30-c0a6b70aade5/ there is no better solution.")]
 		T GetIndex<T>() where T : IIndex;
 
 		/// <summary>
