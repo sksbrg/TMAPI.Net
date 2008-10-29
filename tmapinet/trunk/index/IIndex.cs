@@ -52,6 +52,7 @@ namespace org.tmapi.index
 		/// <summary>
 		///     Synchronize the index with data in the topic map.
 		/// </summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Reindex", Justification = "Its the naming convention of TMAPI.")]
 		void Reindex();
 		#endregion
 	}
