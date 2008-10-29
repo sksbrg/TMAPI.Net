@@ -4,6 +4,7 @@ namespace org.tmapi.core
 	///     Indicates that a <see cref="T:org.tmapi.core.IConstruct"/> is reifiable.
 	///     Every Topic Maps construct that is not a <see cref="T:org.tmapi.core.ITopic"/> is reifiable.
 	/// </summary>
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Reifiable", Justification = "Its the naming convention of TMAPI.")]
 	public interface IReifiable : IConstruct
 	{
 		#region Properties
@@ -17,6 +18,7 @@ namespace org.tmapi.core
 		///         <item>The reifier of this construct MUST NOT reify another information item.</item>
 		///     </list>
 		/// </remarks>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Reifier", Justification = "Its the naming convention of TMAPI.")]
 		ITopic Reifier
 		{
 			get;
