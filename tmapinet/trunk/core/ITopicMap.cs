@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using org.tmapi.index;
+using TMAPI.Net.Index;
 
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
 	///     Represents a 
@@ -13,11 +13,11 @@ namespace org.tmapi.core
 	{
 		#region Properties
 		/// <summary>
-		///     Gets all <see cref="T:org.tmapi.core.IAssociation"/>s contained in this topic map.
+		///     Gets all <see cref="T:TMAPI.Net.Core.IAssociation"/>s contained in this topic map.
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
 		/// <returns>
-		///     An unmodifiable set of <see cref="T:org.tmapi.core.IAssociation"/>s.
+		///     An unmodifiable set of <see cref="T:TMAPI.Net.Core.IAssociation"/>s.
 		/// </returns>
 		ReadOnlyCollection<IAssociation> Associations
 		{
@@ -36,11 +36,11 @@ namespace org.tmapi.core
 		}
 
 		/// <summary>
-		///     Gets all <see cref="T:org.tmapi.core.ITopic"/>s contained in this topic map.
+		///     Gets all <see cref="T:TMAPI.Net.Core.ITopic"/>s contained in this topic map.
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
 		/// <returns>
-		///     An unmodifiable set of <see cref="T:org.tmapi.core.ITopic"/>s.
+		///     An unmodifiable set of <see cref="T:TMAPI.Net.Core.ITopic"/>s.
 		/// </returns>
 		ReadOnlyCollection<ITopic> Topics
 		{
@@ -53,12 +53,12 @@ namespace org.tmapi.core
 		///     Closes use of this topic map instance.
 		///     This method should be invoked by the application once it is finished using this topic map instance.
 		///     Implementations may release any resources required for the <c>TopicMap</c> instance or any of 
-		///     the <see cref="T:org.tmapi.core.IConstruct"/> instances contained by this instance.
+		///     the <see cref="T:TMAPI.Net.Core.IConstruct"/> instances contained by this instance.
 		/// </summary>
 		void Close();
 
 		/// <summary>
-		///     Creates an <see cref="T:org.tmapi.core.IAssociation"/> in this topic map with the specified 
+		///     Creates an <see cref="T:TMAPI.Net.Core.IAssociation"/> in this topic map with the specified 
 		///     <paramref name="type"/> and <paramref name="scope"/>.
 		/// </summary>
 		/// <param name="type">
@@ -69,7 +69,7 @@ namespace org.tmapi.core
 		///     If the array's length is <c>0</c>, the association will be in the unconstrained scope.
 		/// </param>
 		/// <returns>
-		///     The newly created <see cref="T:org.tmapi.core.IAssociation"/>.
+		///     The newly created <see cref="T:TMAPI.Net.Core.IAssociation"/>.
 		/// </returns>
 		/// <exception cref="ModelConstraintException">
 		///     If either the <paramref name="type"/> or <paramref name="scope"/> is <c>null</c>.
@@ -77,7 +77,7 @@ namespace org.tmapi.core
 		IAssociation CreateAssociation(ITopic type, params ITopic[] scope);
 
 		/// <summary>
-		///     Creates an <see cref="T:org.tmapi.core.IAssociation"/> in this topic map with the specified 
+		///     Creates an <see cref="T:TMAPI.Net.Core.IAssociation"/> in this topic map with the specified 
 		///     <paramref name="type"/> and <paramref name="scope"/>.
 		/// </summary>
 		/// <param name="type">
@@ -87,7 +87,7 @@ namespace org.tmapi.core
 		///     A collection of themes or <c>null</c> if the association should be in the unconstrained scope.
 		/// </param>
 		/// <returns>
-		///     The newly created <see cref="T:org.tmapi.core.IAssociation"/>.
+		///     The newly created <see cref="T:TMAPI.Net.Core.IAssociation"/>.
 		/// </returns>
 		/// <exception cref="ModelConstraintException">
 		///     If the <paramref name="type"/> is <c>null</c>.
@@ -95,7 +95,7 @@ namespace org.tmapi.core
 		IAssociation CreateAssociation(ITopic type, IList<ITopic> scope);
 
 		/// <summary>
-		///     Returns a <see cref="T:org.tmapi.core.ILocator"/> instance representing the specified IRI 
+		///     Returns a <see cref="T:TMAPI.Net.Core.ILocator"/> instance representing the specified IRI 
 		///     <paramref name="reference"/>.  
 		///     The specified IRI <paramref name="reference"/> is assumed to be absolute.
 		/// </summary>
@@ -103,25 +103,25 @@ namespace org.tmapi.core
 		///     A string which uses the IRI notation.
 		/// </param>
 		/// <returns>
-		///     A <see cref="T:org.tmapi.core.ILocator"/> representing the IRI <paramref name="reference"/>.
+		///     A <see cref="T:TMAPI.Net.Core.ILocator"/> representing the IRI <paramref name="reference"/>.
 		/// </returns>
 		ILocator CreateLocator(string reference);
 
 		/// <summary>
-		///     Returns a <see cref="T:org.tmapi.core.ITopic"/> instance with an automatically generated item identifier.
-		///     This method returns never an existing <see cref="T:org.tmapi.core.ITopic"/> but creates a new one 
+		///     Returns a <see cref="T:TMAPI.Net.Core.ITopic"/> instance with an automatically generated item identifier.
+		///     This method returns never an existing <see cref="T:TMAPI.Net.Core.ITopic"/> but creates a new one 
 		///     with an automatically generated item identifier.
 		///     How that item identifier is generated depends on the implementation.
 		/// </summary>
 		/// <returns>
-		///     The newly created <see cref="T:org.tmapi.core.ITopic"/> instance with an automatically generated item identifier.
+		///     The newly created <see cref="T:TMAPI.Net.Core.ITopic"/> instance with an automatically generated item identifier.
 		/// </returns>
 		ITopic CreateTopic();
 
 		/// <summary>
-		///     Returns a <see cref="T:org.tmapi.core.ITopic"/> instance with the specified item identifier.
-		///     This method returns either an existing <see cref="T:org.tmapi.core.ITopic"/> or creates a new 
-		///     <see cref="T:org.tmapi.core.ITopic"/> instance with the specified item identifier.
+		///     Returns a <see cref="T:TMAPI.Net.Core.ITopic"/> instance with the specified item identifier.
+		///     This method returns either an existing <see cref="T:TMAPI.Net.Core.ITopic"/> or creates a new 
+		///     <see cref="T:TMAPI.Net.Core.ITopic"/> instance with the specified item identifier.
 		///     If a topic with the specified item identifier exists in the topic map, that topic is returned. If a topic 
 		///     with a subject identifier equals to the specified item identifier exists, the specified item identifier 
 		///     is added to that topic and the topic is returned. If neither a topic with the specified item identifier 
@@ -131,21 +131,21 @@ namespace org.tmapi.core
 		///     The item identifier the topic should contain.
 		/// </param>
 		/// <returns>
-		///     A <see cref="T:org.tmapi.core.ITopic"/> instance with the specified item identifier.
+		///     A <see cref="T:TMAPI.Net.Core.ITopic"/> instance with the specified item identifier.
 		/// </returns>
 		/// <exception cref="ModelConstraintException">
 		///     If the item identifier <paramref name="itemIdentifier"/> is <c>null</c>.
 		/// </exception>
 		/// <exception cref="IdentityConstraintException">
-		///     If an other <see cref="T:org.tmapi.core.IConstruct"/> with the specified item identifier exists which is 
-		///     not a <see cref="T:org.tmapi.core.ITopic"/>. 
+		///     If an other <see cref="T:TMAPI.Net.Core.IConstruct"/> with the specified item identifier exists which is 
+		///     not a <see cref="T:TMAPI.Net.Core.ITopic"/>. 
 		/// </exception>
 		ITopic CreateTopicByItemIdentifier(ILocator itemIdentifier);
 
 		/// <summary>
-		///     Returns a <see cref="T:org.tmapi.core.ITopic"/> instance with the specified subject identifier.
-		///     This method returns either an existing <see cref="T:org.tmapi.core.ITopic"/> or creates a new 
-		///     <see cref="T:org.tmapi.core.ITopic"/> instance with the specified subject identifier.
+		///     Returns a <see cref="T:TMAPI.Net.Core.ITopic"/> instance with the specified subject identifier.
+		///     This method returns either an existing <see cref="T:TMAPI.Net.Core.ITopic"/> or creates a new 
+		///     <see cref="T:TMAPI.Net.Core.ITopic"/> instance with the specified subject identifier.
 		///     If a topic with the specified subject identifier exists in the topic map, that topic is returned. If a topic 
 		///     with an item identifier equals to the specified subject identifier exists, the specified subject identifier 
 		///     is added to that topic and the topic is returned. If neither a topic with the specified subject identifier 
@@ -155,7 +155,7 @@ namespace org.tmapi.core
 		///     The subject identifier the topic should contain.
 		/// </param>
 		///  <returns>
-		///     A <see cref="T:org.tmapi.core.ITopic"/> instance with the specified subject identifier.
+		///     A <see cref="T:TMAPI.Net.Core.ITopic"/> instance with the specified subject identifier.
 		/// </returns>
 		/// <exception cref="ModelConstraintException">
 		///     If the subject identifier <paramref name="subjectIdentifier"/> is <c>null</c>.
@@ -163,15 +163,15 @@ namespace org.tmapi.core
 		ITopic CreateTopicBySubjectIdentifier(ILocator subjectIdentifier);
 
 		/// <summary>
-		///     Returns a <see cref="T:org.tmapi.core.ITopic"/> instance with the specified subject locator.
-		///     This method returns either an existing <see cref="T:org.tmapi.core.ITopic"/> or creates a new 
-		///     <see cref="T:org.tmapi.core.ITopic"/> instance with the specified subject locator.
+		///     Returns a <see cref="T:TMAPI.Net.Core.ITopic"/> instance with the specified subject locator.
+		///     This method returns either an existing <see cref="T:TMAPI.Net.Core.ITopic"/> or creates a new 
+		///     <see cref="T:TMAPI.Net.Core.ITopic"/> instance with the specified subject locator.
 		/// </summary>
 		/// <param name="subjectLocator">
 		///     The subject locator the topic should contain.
 		/// </param>
 		/// <returns>
-		///     A <see cref="T:org.tmapi.core.ITopic"/> instance with the specified subject locator.
+		///     A <see cref="T:TMAPI.Net.Core.ITopic"/> instance with the specified subject locator.
 		/// </returns>
 		///  <exception cref="ModelConstraintException">
 		///     If the subject locator <paramref name="subjectLocator"/> is <c>null</c>.
@@ -179,7 +179,7 @@ namespace org.tmapi.core
 		ITopic CreateTopicBySubjectLocator(ILocator subjectLocator);
 
 		/// <summary>
-		///     Returns a <see cref="T:org.tmapi.core.IConstruct"/> by its (system specific) identifier.
+		///     Returns a <see cref="T:TMAPI.Net.Core.IConstruct"/> by its (system specific) identifier.
 		/// </summary>
 		/// <param name="id">
 		///     The identifier of the construct to be returned.
@@ -190,7 +190,7 @@ namespace org.tmapi.core
 		IConstruct GetConstructById(string id);
 
 		/// <summary>
-		///     Returns a <see cref="T:org.tmapi.core.IConstruct"/> by its item identifier.
+		///     Returns a <see cref="T:TMAPI.Net.Core.IConstruct"/> by its item identifier.
 		/// </summary>
 		/// <param name="itemIdentifier">
 		///     The item identifier of the construct to be returned.
@@ -239,7 +239,7 @@ namespace org.tmapi.core
 
 		/// <summary>
 		///     Merges the topic map <paramref name="other"/> into this topic map.
-		///     All <see cref="T:org.tmapi.core.ITopic"/>s and <see cref="T:org.tmapi.core.IAssociation"/>s and all of 
+		///     All <see cref="T:TMAPI.Net.Core.ITopic"/>s and <see cref="T:TMAPI.Net.Core.IAssociation"/>s and all of 
 		///     their contents in <paramref name="other"/> will be added to this topic map.
 		///     All information items in <paramref name="other"/> will be merged into this topic map as defined by the 
 		///     <a href="http://www.isotopicmaps.org/sam/sam-model/#d0e1862">Topic Maps - Data Model (TMDM) merging rules</a>.

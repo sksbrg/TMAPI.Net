@@ -1,6 +1,6 @@
 using System;
 
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
 	///     The base class for all standard (non run-time) exceptions thrown by a TMAPI system.

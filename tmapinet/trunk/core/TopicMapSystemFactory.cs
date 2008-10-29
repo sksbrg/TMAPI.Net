@@ -1,28 +1,28 @@
-﻿namespace org.tmapi.core
+﻿namespace TMAPI.Net.Core
 {
 	/// <summary>
-	///     This factory class provides access to a <see cref="T:org.tmapi.core.ITopicMapSystem"/>.
-	///     A new <see cref="T:org.tmapi.core.ITopicMapSystem"/>. instance is created by invoking 
-	///     the <see cref="M:org.tmapi.core.TopicMapSystemFactory.NewTopicMapSystem"/> method.
-	///     Configuration properties for the new <see cref="T:org.tmapi.core.ITopicMapSystem"/>. instance 
+	///     This factory class provides access to a <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/>.
+	///     A new <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/>. instance is created by invoking 
+	///     the <see cref="M:TMAPI.Net.Core.TopicMapSystemFactory.NewTopicMapSystem"/> method.
+	///     Configuration properties for the new <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/>. instance 
 	///     can be set by calling the <see cref="SetFeature"/> and 
 	///     / or <see cref="SetProperty"/> methods prior to
-	///     invoking <see cref="M:org.tmapi.core.TopicMapSystemFactory.NewTopicMapSystem"/>. 
+	///     invoking <see cref="M:TMAPI.Net.Core.TopicMapSystemFactory.NewTopicMapSystem"/>. 
 	/// </summary>
 	public abstract class TopicMapSystemFactory
 	{
 		#region methods
 		/// <summary>
 		///     Returns the particular feature requested for in the underlying implementation of 
-		///     <see cref="T:org.tmapi.core.ITopicMapSystem"/>.
+		///     <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/>.
 		/// </summary>
 		/// <param name="featureName">
 		///     The name of the feature to check.
 		/// </param>
 		/// <returns>
-		///     <c>true</c> if the named feature is enabled for <see cref="T:org.tmapi.core.ITopicMapSystem"/> 
+		///     <c>true</c> if the named feature is enabled for <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/> 
 		///     instances created by this factory; <c>false</c> if the named feature is disabled for 
-		///     <see cref="T:org.tmapi.core.ITopicMapSystem"/> instances created by this factory. 
+		///     <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/> instances created by this factory. 
 		/// </returns>
 		/// <exception cref="FeatureNotRecognizedException">
 		///     If the underlying implementation does not recognize the named feature.
@@ -30,7 +30,7 @@
 		public abstract bool GetFeature(string featureName);
 
 		/// <summary>
-		///     Gets the value of a property in the underlying implementation of <see cref="T:org.tmapi.core.ITopicMapSystem"/>.
+		///     Gets the value of a property in the underlying implementation of <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/>.
 		///     A list of the core properties defined by TMAPI can be found at http://tmapi.org/properties/.
 		///     An implementation is free to support properties other than the core ones. 
 		/// </summary>
@@ -43,9 +43,9 @@
 		public abstract object GetProperty(string propertyName);
 
 		/// <summary>
-		///     Returns if the particular feature is supported by the <see cref="T:org.tmapi.core.ITopicMapSystem"/>.
-		///     Opposite to <see cref="org.tmapi.core.TopicMapSystemFactory.GetFeature"/> this method returns if 
-		///     the requested feature is generally available / supported by the underlying <see cref="T:org.tmapi.core.ITopicMapSystem"/> 
+		///     Returns if the particular feature is supported by the <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/>.
+		///     Opposite to <see cref="TMAPI.Net.Core.TopicMapSystemFactory.GetFeature"/> this method returns if 
+		///     the requested feature is generally available / supported by the underlying <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/> 
 		///     and does not return the state (enabled/disabled) of the feature. 
 		/// </summary>
 		/// <param name="featureName">
@@ -68,19 +68,19 @@
 		public abstract TopicMapSystemFactory NewInstance();
 
 		/// <summary>
-		///     Creates a new <see cref="T:org.tmapi.core.ITopicMapSystem"/> instance using the currently 
+		///     Creates a new <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/> instance using the currently 
 		///     configured factory parameters.
 		/// </summary>
 		/// <returns>
-		///     A new instance of a <see cref="T:org.tmapi.core.ITopicMapSystem"/>.
+		///     A new instance of a <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/>.
 		/// </returns>
 		/// <exception cref="TMAPIException">
-		///     If a <see cref="T:org.tmapi.core.ITopicMapSystem"/> cannot be created which satisfies the requested configuration.
+		///     If a <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/> cannot be created which satisfies the requested configuration.
 		/// </exception>
 		public abstract ITopicMapSystem NewTopicMapSystem();
 
 		/// <summary>
-		///     Sets a particular feature in the underlying implementation of <see cref="T:org.tmapi.core.ITopicMapSystem"/>.
+		///     Sets a particular feature in the underlying implementation of <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/>.
 		///     A list of the core features can be found at http://tmapi.org/features/. 
 		/// </summary>
 		/// <param name="featureName">
@@ -99,7 +99,7 @@
 		public abstract void SetFeature(string featureName, bool enable);
 
 		/// <summary>
-		///     Sets a property in the underlying implementation of <see cref="T:org.tmapi.core.ITopicMapSystem"/>.
+		///     Sets a property in the underlying implementation of <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/>.
 		///     A list of the core properties defined by TMAPI can be found at http://tmapi.org/properties/.
 		///     An implementation is free to support properties other than the core ones. 
 		/// </summary>

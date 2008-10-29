@@ -1,6 +1,6 @@
 using System;
 
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
 	///     This exception is used to report 

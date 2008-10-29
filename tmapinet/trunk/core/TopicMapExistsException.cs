@@ -1,11 +1,11 @@
 using System;
 
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
-	///     Exception thrown when an attempt is made to create a new <see cref="T:org.tmapi.core.ITopicMap"/> under 
-	///     a storage address (an IRI) that is already assigned to another <see cref="T:org.tmapi.core.ITopicMap"/> 
-	///     in the same <see cref="T:org.tmapi.core.ITopicMapSystem"/>.
+	///     Exception thrown when an attempt is made to create a new <see cref="T:TMAPI.Net.Core.ITopicMap"/> under 
+	///     a storage address (an IRI) that is already assigned to another <see cref="T:TMAPI.Net.Core.ITopicMap"/> 
+	///     in the same <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/>.
 	/// </summary>
 	[Serializable]
 	public class TopicMapExistsException : TMAPIException

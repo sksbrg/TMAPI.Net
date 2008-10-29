@@ -1,4 +1,4 @@
-namespace org.tmapi.index
+namespace TMAPI.Net.Index
 {
 	/// <summary>
 	///     Base interface for all indices.
@@ -13,7 +13,7 @@ namespace org.tmapi.index
 		///	    If the value of this is
 		///     <c>true</c>, then the index is automatically kept synchronized with the topic
 		///     map as values are changed. If the value is <c>false</c>, then the 
-		///     <see cref="M:org.tmapi.index.IIndex.Reindex"/> method must be called to 
+		///     <see cref="M:TMAPI.Net.Index.IIndex.Reindex"/> method must be called to 
 		///     resynchronize the index with the topic map after values are changed.
 		/// </remarks>
 		/// <returns>

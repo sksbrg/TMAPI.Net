@@ -1,4 +1,4 @@
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
 	///     Represents an 
@@ -8,10 +8,10 @@ namespace org.tmapi.core
 	{
 		#region Properties
 		/// <summary>
-		///     Gets the <see cref="T:org.tmapi.core.IAssociation"/> to which this role belongs.
+		///     Gets the <see cref="T:TMAPI.Net.Core.IAssociation"/> to which this role belongs.
 		/// </summary>
 		/// <returns>
-		///     The <see cref="T:org.tmapi.core.IAssociation"/> to which this role belongs.
+		///     The <see cref="T:TMAPI.Net.Core.IAssociation"/> to which this role belongs.
 		/// </returns>
 		new IAssociation Parent
 		{
@@ -19,7 +19,7 @@ namespace org.tmapi.core
 		}
 
 		/// <summary>
-		///     Gets or sets the <see cref="T:org.tmapi.core.ITopic"/> playing this role.
+		///     Gets or sets the <see cref="T:TMAPI.Net.Core.ITopic"/> playing this role.
 		/// </summary>
 		/// <exception cref="ModelConstraintException">
 		///     If trying to set the role player to <c>null</c>.

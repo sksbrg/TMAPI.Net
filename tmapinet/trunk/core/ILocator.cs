@@ -1,4 +1,4 @@
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
 	///     Immutable representation of an IRI.
@@ -30,7 +30,7 @@ namespace org.tmapi.core
 		#region Methods
 		/// <summary>
 		///     Returns <c>true</c> if the <paramref name="other"/> object is equal to this one.
-		///     To be equal the <see cref="P:org.tmapi.core.ILocator.Reference"/> property of both objects must be identical. 
+		///     To be equal the <see cref="P:TMAPI.Net.Core.ILocator.Reference"/> property of both objects must be identical. 
 		/// </summary>
 		/// <param name="other">
 		///     The object to compare this object against.
@@ -42,10 +42,10 @@ namespace org.tmapi.core
 
 		/// <summary>
 		///     Returns a hash code value.
-		///     The returned hash code is equal to the hash code of the <see cref="P:org.tmapi.core.ILocator.Reference"/> property.
+		///     The returned hash code is equal to the hash code of the <see cref="P:TMAPI.Net.Core.ILocator.Reference"/> property.
 		/// </summary>
 		/// <returns>
-		///     Hash code of the <see cref="P:org.tmapi.core.ILocator.Reference"/> property.
+		///     Hash code of the <see cref="P:TMAPI.Net.Core.ILocator.Reference"/> property.
 		/// </returns>
 		int GetHashCode();
 

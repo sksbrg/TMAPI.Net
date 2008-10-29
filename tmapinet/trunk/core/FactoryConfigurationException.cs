@@ -1,10 +1,10 @@
 using System;
 
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
-	/// Exception thrown when a <see cref="T:org.tmapi.core.TopicMapSystemFactory"/> instance cannot be 
-	/// instantiated through the method <see cref="M:org.tmapi.core.TopicMapSystemFactory.NewInstance"/>.
+	/// Exception thrown when a <see cref="T:TMAPI.Net.Core.TopicMapSystemFactory"/> instance cannot be 
+	/// instantiated through the method <see cref="M:TMAPI.Net.Core.TopicMapSystemFactory.NewInstance"/>.
 	/// </summary>
 	[Serializable]
 	public class FactoryConfigurationException : TMAPIException

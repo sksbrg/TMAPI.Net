@@ -1,6 +1,6 @@
 using System;
 
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
 	///     Instances of this exception class should be thrown in cases where there is an 

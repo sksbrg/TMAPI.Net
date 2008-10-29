@@ -1,9 +1,9 @@
 using System;
 
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
-	///     Thrown when an attempt is made to remove a <see cref="T:org.tmapi.core.ITopic"/> which is being used as 
+	///     Thrown when an attempt is made to remove a <see cref="T:TMAPI.Net.Core.ITopic"/> which is being used as 
 	///     a type, as a reifier, or as a role player in an association, or in a scope.
 	/// </summary>
 	[Serializable]
