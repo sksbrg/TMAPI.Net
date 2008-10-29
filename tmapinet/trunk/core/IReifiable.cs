@@ -1,8 +1,8 @@
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
-	///     Indicates that a <see cref="T:org.tmapi.core.IConstruct"/> is reifiable.
-	///     Every Topic Maps construct that is not a <see cref="T:org.tmapi.core.ITopic"/> is reifiable.
+	///     Indicates that a <see cref="T:TMAPI.Net.Core.IConstruct"/> is reifiable.
+	///     Every Topic Maps construct that is not a <see cref="T:TMAPI.Net.Core.ITopic"/> is reifiable.
 	/// </summary>
 	[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Reifiable", Justification = "Its the naming convention of TMAPI.")]
 	public interface IReifiable : IConstruct

@@ -1,6 +1,6 @@
 using System;
 
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
 	///     Exception thrown when the underlying implementation cannot support enabling or 

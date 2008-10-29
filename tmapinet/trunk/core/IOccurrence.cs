@@ -1,4 +1,4 @@
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
 	///     Represents an 
@@ -8,10 +8,10 @@ namespace org.tmapi.core
 	{
 		#region Properties
 		/// <summary>
-		///     Gets the <see cref="T:org.tmapi.core.ITopic"/> to which this occurrence belongs.
+		///     Gets the <see cref="T:TMAPI.Net.Core.ITopic"/> to which this occurrence belongs.
 		/// </summary>
 		/// <returns>
-		///     The <see cref="T:org.tmapi.core.ITopic"/> to which this occurrence belongs.
+		///     The <see cref="T:TMAPI.Net.Core.ITopic"/> to which this occurrence belongs.
 		/// </returns>
 		new ITopic Parent
 		{

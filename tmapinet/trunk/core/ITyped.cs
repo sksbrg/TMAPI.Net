@@ -1,9 +1,9 @@
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
 	///     Indicates that a Topic Maps construct is typed.
-	///     <see cref="T:org.tmapi.core.IAssociation"/>s, <see cref="T:org.tmapi.core.IRole"/>s, 
-	///     <see cref="T:org.tmapi.core.IOccurrence"/>s, and <see cref="T:org.tmapi.core.IName"/>s are typed.
+	///     <see cref="T:TMAPI.Net.Core.IAssociation"/>s, <see cref="T:TMAPI.Net.Core.IRole"/>s, 
+	///     <see cref="T:TMAPI.Net.Core.IOccurrence"/>s, and <see cref="T:TMAPI.Net.Core.IName"/>s are typed.
 	/// </summary>
 	public interface ITyped : IConstruct
 	{

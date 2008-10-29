@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
 	///     Represents an <a href="http://www.isotopicmaps.org/sam/sam-model/#sect-association">
@@ -10,10 +10,10 @@ namespace org.tmapi.core
 	{
 		#region Properties
 		/// <summary>
-		///    Gets the <see cref="T:org.tmapi.core.ITopicMap"/> this association belongs to.
+		///    Gets the <see cref="T:TMAPI.Net.Core.ITopicMap"/> this association belongs to.
 		/// </summary>
 		/// <returns>
-		///     The <see cref="T:org.tmapi.core.ITopicMap"/> this association belongs to.
+		///     The <see cref="T:TMAPI.Net.Core.ITopicMap"/> this association belongs to.
 		/// </returns>
 		new ITopicMap Parent
 		{
@@ -27,7 +27,7 @@ namespace org.tmapi.core
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </remarks>
 		/// <returns>
-		///     An unmodifiable set of <see cref="T:org.tmapi.core.IRole">IRoles</see>.
+		///     An unmodifiable set of <see cref="T:TMAPI.Net.Core.IRole">IRoles</see>.
 		/// </returns>
 		ReadOnlyCollection<IRole> Roles
 		{
@@ -49,7 +49,7 @@ namespace org.tmapi.core
 
 		#region Methods
 		/// <summary>
-		///     Creates a new <see cref="T:org.tmapi.core.IRole"/> representing a role in this association.
+		///     Creates a new <see cref="T:TMAPI.Net.Core.IRole"/> representing a role in this association.
 		/// </summary>
 		/// <param name="type">
 		///     The role type; must not be <c>null</c>.
@@ -60,7 +60,7 @@ namespace org.tmapi.core
 		/// <returns>
 		///     A newly created association role.
 		/// </returns>
-		/// <exception cref="T:org.tmapi.core.ModelConstraintException">
+		/// <exception cref="T:TMAPI.Net.Core.ModelConstraintException">
 		///     If the <paramref name="type"/> or <paramref name="player"/> is <c>null</c>.
 		/// </exception>
 		IRole CreateRole(ITopic type, ITopic player);
@@ -70,7 +70,7 @@ namespace org.tmapi.core
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
 		/// <param name="type">
-		///     The type of the <see cref="T:org.tmapi.core.IRole"/> instances to be returned, must not be <c>null</c>.
+		///     The type of the <see cref="T:TMAPI.Net.Core.IRole"/> instances to be returned, must not be <c>null</c>.
 		/// </param>
 		/// <returns>
 		///     An unmodifiable (maybe empty) set of roles with the specified <c>type</c> property.

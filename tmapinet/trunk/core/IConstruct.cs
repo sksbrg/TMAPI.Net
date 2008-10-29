@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
 	///     Base interface for all Topic Maps constructs.
@@ -25,7 +25,7 @@ namespace org.tmapi.core
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
 		/// <returns>
-		///     An unmodifiable set of <see cref="T:org.tmapi.core.ILocator"/>s representing the item identifiers.
+		///     An unmodifiable set of <see cref="T:TMAPI.Net.Core.ILocator"/>s representing the item identifiers.
 		/// </returns>
 		ReadOnlyCollection<ILocator> ItemIdentifiers
 		{
@@ -34,11 +34,11 @@ namespace org.tmapi.core
 
 		/// <summary>
 		///     Gets the parent of this construct.
-		///     This method returns <c>null</c> if this construct is a <see cref="T:org.tmapi.core.ITopicMap"/> instance.
+		///     This method returns <c>null</c> if this construct is a <see cref="T:TMAPI.Net.Core.ITopicMap"/> instance.
 		/// </summary>
 		/// <returns>
 		///     The parent of this construct or <c>null</c> if the construct is an instance 
-		///     of <see cref="T:org.tmapi.core.ITopicMap"/>.
+		///     of <see cref="T:TMAPI.Net.Core.ITopicMap"/>.
 		/// </returns>
 		IConstruct Parent
 		{
@@ -46,12 +46,12 @@ namespace org.tmapi.core
 		}
 
 		/// <summary>
-		///     Gets the <see cref="T:org.tmapi.core.ITopicMap"/> instance to which this Topic Maps construct
+		///     Gets the <see cref="T:TMAPI.Net.Core.ITopicMap"/> instance to which this Topic Maps construct
 		///     belongs.
-		///     A <see cref="T:org.tmapi.core.ITopicMap"/> instance returns itself. 
+		///     A <see cref="T:TMAPI.Net.Core.ITopicMap"/> instance returns itself. 
 		/// </summary>
 		/// <returns>
-		///     The <see cref="T:org.tmapi.core.ITopicMap"/> instance to which this constructs belongs.
+		///     The <see cref="T:TMAPI.Net.Core.ITopicMap"/> instance to which this constructs belongs.
 		/// </returns>
 		ITopicMap TopicMap
 		{
@@ -62,11 +62,11 @@ namespace org.tmapi.core
 		#region Methods
 		/// <summary>
 		///     Adds an item identifier.
-		///     It is not allowed to have two <see cref="T:org.tmapi.core.IConstruct">constructs</see> in the same 
-		///     <see cref="T:org.tmapi.core.ITopicMap"/> with the same item identifier.
-		///     If the two objects are <see cref="T:org.tmapi.core.ITopic">topics</see>, then they must be merged.
-		///     If at least one of the two objects is not a <see cref="T:org.tmapi.core.ITopic"/>, 
-		///     an <see cref="T:org.tmapi.core.IdentityConstraintException"/> must be reported.
+		///     It is not allowed to have two <see cref="T:TMAPI.Net.Core.IConstruct">constructs</see> in the same 
+		///     <see cref="T:TMAPI.Net.Core.ITopicMap"/> with the same item identifier.
+		///     If the two objects are <see cref="T:TMAPI.Net.Core.ITopic">topics</see>, then they must be merged.
+		///     If at least one of the two objects is not a <see cref="T:TMAPI.Net.Core.ITopic"/>, 
+		///     an <see cref="T:TMAPI.Net.Core.IdentityConstraintException"/> must be reported.
 		/// </summary>
 		/// <param name="itemIdentifier">
 		///     The item identifier to be added; must not be <c>null</c>.
@@ -82,7 +82,7 @@ namespace org.tmapi.core
 		/// <summary>
 		///     Returns <c>true</c> if the <paramref name="other"/> object is equal to this one.
 		///     Equality must be the result of comparing the ids of the two objects. If
-		///     <paramref name="other"/> is not an instance of <see cref="T:org.tmapi.core.IConstruct"/>, 
+		///     <paramref name="other"/> is not an instance of <see cref="T:TMAPI.Net.Core.IConstruct"/>, 
 		///     the return value is <c>false</c>.
 		/// </summary>
 		/// <param name="other">
@@ -100,10 +100,10 @@ namespace org.tmapi.core
 
 		/// <summary>
 		///     Returns a hash code value.
-		///     The returned hash code is equal to the hash code of the <see cref="P:org.tmapi.core.IConstruct.Id"/> property.
+		///     The returned hash code is equal to the hash code of the <see cref="P:TMAPI.Net.Core.IConstruct.Id"/> property.
 		/// </summary>
 		/// <returns>
-		///     Hash code of the <see cref="P:org.tmapi.core.IConstruct.Id"/> property.
+		///     Hash code of the <see cref="P:TMAPI.Net.Core.IConstruct.Id"/> property.
 		/// </returns>
 		int GetHashCode();
 

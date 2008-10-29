@@ -1,7 +1,7 @@
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
-	///     Common base interface for <see cref="T:org.tmapi.core.IOccurrence"/>s and <see cref="T:org.tmapi.core.IVariant"/>s.
+	///     Common base interface for <see cref="T:TMAPI.Net.Core.IOccurrence"/>s and <see cref="T:TMAPI.Net.Core.IVariant"/>s.
 	///     Some convenience methods for a subset of <a href="http://www.w3.org/TR/xmlschema-2/">XML Schema Part 2: Datatypes</a>
 	///     are supported.
 	/// </summary>
@@ -9,7 +9,7 @@ namespace org.tmapi.core
 	{
 		#region Properties
 		/// <summary>
-		///     Gets the <see cref="T:org.tmapi.core.ILocator"/> identifying the data type of the value. 
+		///     Gets the <see cref="T:TMAPI.Net.Core.ILocator"/> identifying the data type of the value. 
 		/// </summary>
 		/// <returns>
 		///     The data type of this construct (never <c>null</c>).
@@ -62,9 +62,9 @@ namespace org.tmapi.core
 		}
 
 		/// <summary>
-		///     Gets or sets the <see cref="T:org.tmapi.core.ILocator"/> representation of the value.
+		///     Gets or sets the <see cref="T:TMAPI.Net.Core.ILocator"/> representation of the value.
 		/// </summary>
-		/// <exception cref="T:org.tmapi.core.ModelConstraintException">
+		/// <exception cref="T:TMAPI.Net.Core.ModelConstraintException">
 		///     In case the <paramref name="value"/> is <c>null</c>.
 		/// </exception>
 		/// <exception cref="System.InvalidOperationException">
@@ -95,7 +95,7 @@ namespace org.tmapi.core
 		///     For the data type <a href="http://www.w3.org/TR/xmlschema-2/#string">xsd:string</a> 
 		///     the string itself is returned.
 		///     For the data type <a href="http://www.w3.org/TR/xmlschema-2/#anyURI">xsd:anyURI</a> 
-		///     the <see cref="P:org.tmapi.core.ILocator.Reference"/> is returned.
+		///     the <see cref="P:TMAPI.Net.Core.ILocator.Reference"/> is returned.
 		///     This method sets the data type implicitly to
 		///     <a href="http://www.w3.org/TR/xmlschema-2/#string">xsd:string</a>.
 		/// </summary>
@@ -119,7 +119,7 @@ namespace org.tmapi.core
 		/// <param name="datatype">
 		///     The value's data type.
 		/// </param>
-		/// <exception cref="T:org.tmapi.core.ModelConstraintException">
+		/// <exception cref="T:TMAPI.Net.Core.ModelConstraintException">
 		///     In case the <paramref name="value"/> or <paramref name="datatype"/> is <c>null</c>.
 		/// </exception>
 		/// <exception cref="System.FormatException">

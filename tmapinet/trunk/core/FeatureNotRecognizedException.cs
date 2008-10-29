@@ -1,9 +1,9 @@
 using System;
 
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
-	///     Exception thrown when the <see cref="T:org.tmapi.core.TopicMapSystemFactory"/> does not 
+	///     Exception thrown when the <see cref="T:TMAPI.Net.Core.TopicMapSystemFactory"/> does not 
 	///     recognize the name of a feature that the application is trying to enable or disable.
 	/// </summary>
 	[Serializable]

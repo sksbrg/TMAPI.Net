@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace org.tmapi.core
+namespace TMAPI.Net.Core
 {
 	/// <summary>
 	///     Represents a 
@@ -10,10 +10,10 @@ namespace org.tmapi.core
 	{
 		#region Properties
 		/// <summary>
-		///     Gets the <see cref="T:org.tmapi.core.IName"/> to which this variant belongs.
+		///     Gets the <see cref="T:TMAPI.Net.Core.IName"/> to which this variant belongs.
 		/// </summary>
 		/// <returns>
-		///     The <see cref="T:org.tmapi.core.IName"/> to which this variant belongs.
+		///     The <see cref="T:TMAPI.Net.Core.IName"/> to which this variant belongs.
 		/// </returns>
 		new IName Parent
 		{
@@ -27,7 +27,7 @@ namespace org.tmapi.core
 		///     The returned scope is a true superset of the parent's scope.
 		/// </remarks>
 		/// <returns>
-		///     An unmodifiable set of <see cref="T:org.tmapi.core.ITopic"/>s which define the scope.
+		///     An unmodifiable set of <see cref="T:TMAPI.Net.Core.ITopic"/>s which define the scope.
 		/// </returns>
 		new ReadOnlyCollection<ITopic> Scope
 		{
