@@ -64,7 +64,7 @@ namespace org.tmapi.core
 		///     Adds an item identifier.
 		///     It is not allowed to have two <see cref="T:org.tmapi.core.IConstruct">constructs</see> in the same 
 		///     <see cref="T:org.tmapi.core.ITopicMap"/> with the same item identifier.
-		///     If the two objects are <see cref="T:org.tmapi.core.ITopic"/>topics</see>, then they must be merged.
+		///     If the two objects are <see cref="T:org.tmapi.core.ITopic">topics</see>, then they must be merged.
 		///     If at least one of the two objects is not a <see cref="T:org.tmapi.core.ITopic"/>, 
 		///     an <see cref="T:org.tmapi.core.IdentityConstraintException"/> must be reported.
 		/// </summary>
