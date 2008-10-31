@@ -1,17 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using org.tmapi.core;
-using org.tmapi.index;
+using TMAPI.Net.Core;
+using TMAPI.Net.Index;
 using Xunit;
 
-namespace org.tmapi.test
+namespace TMAPI.Net.Tests.Core
 {
-    public class TopicMapTests
+    public class TopicMapTests : TMAPITestCase
     {
-        #region Fields
-        private readonly ITopicMapSystem _system;
-        #endregion
-
         #region Static Constants
         public static readonly string TestTM1 = "mem://localhost/testm1";
         public static readonly string TestTM2 = "mem://localhost/testm2";
@@ -20,14 +16,6 @@ namespace org.tmapi.test
         public static readonly string TestTopic3 = "mem://localhost/testm1/topic3";
         public static readonly string TestSubjectIdentifier = "mem://localhost/testm1/identifier";
         public static readonly string TestSubjectLocator = "mem://localhost/testm1/locator";
-        #endregion
-
-        #region Constructor
-        public TopicMapTests()
-        {
-            var tmf = TopicMapSystemFactory.NewInstance();
-            _system = tmf.NewTopicMapSystem();
-        }
         #endregion
 
         #region Tests

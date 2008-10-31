@@ -1,28 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using Xunit;
-using org.tmapi.core;
+using TMAPI.Net.Core;
 
-namespace org.tmapi.test
+namespace TMAPI.Net.Tests.Core
 {
-    public class TopicTest
+    public class TopicTest : TMAPITestCase
     {
-        #region Fields
-        private readonly ITopicMapSystem _system; 
-        #endregion
-
         #region Static Constants
         public static readonly string TestTM1 = "mem://localhost/testm1";
         public static readonly string TestLocator1 = TestTM1 + "/locator1";
         public static readonly string TestLocator2 = TestTM1 + "/locator2";
-        #endregion
-
-        #region Constructors
-        public TopicTest()
-        {
-            var tmf = TopicMapSystemFactory.NewInstance();
-            _system = tmf.NewTopicMapSystem();
-        }
         #endregion
 
         #region Tests
@@ -154,31 +142,31 @@ namespace org.tmapi.test
             var unusedType = topicMap.CreateTopic();
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
-            Assert.Empty(player.GetRolesPlayed(type1));
-            Assert.Empty(player.GetRolesPlayed(type2));
-            Assert.Empty(player.GetRolesPlayed(unusedType));
+            Assert.Empty(player.GetRolesPlayedByTopicType(type1));
+            Assert.Empty(player.GetRolesPlayedByTopicType(type2));
+            Assert.Empty(player.GetRolesPlayedByTopicType(unusedType));
 
             var role = association.CreateRole(type1, player);
 
-            Assert.Equal(1, player.GetRolesPlayed(type1).Count);
-            Assert.True(player.GetRolesPlayed(type1).Contains(role));
-            Assert.Empty(player.GetRolesPlayed(type2));
-            Assert.Empty(player.GetRolesPlayed(unusedType));
+			Assert.Equal(1, player.GetRolesPlayedByTopicType(type1).Count);
+			Assert.True(player.GetRolesPlayedByTopicType(type1).Contains(role));
+			Assert.Empty(player.GetRolesPlayedByTopicType(type2));
+			Assert.Empty(player.GetRolesPlayedByTopicType(unusedType));
 
             role.Type = type2;
 
-            Assert.Equal(1, player.GetRolesPlayed(type2).Count);
-            Assert.True(player.GetRolesPlayed(type2).Contains(role));
-            Assert.Empty(player.GetRolesPlayed(type1));
-            Assert.Empty(player.GetRolesPlayed(unusedType));
+			Assert.Equal(1, player.GetRolesPlayedByTopicType(type2).Count);
+			Assert.True(player.GetRolesPlayedByTopicType(type2).Contains(role));
+			Assert.Empty(player.GetRolesPlayedByTopicType(type1));
+			Assert.Empty(player.GetRolesPlayedByTopicType(unusedType));
 
             role.Remove();
 
-            Assert.Empty(player.GetRolesPlayed(type1));
-            Assert.Empty(player.GetRolesPlayed(type2));
-            Assert.Empty(player.GetRolesPlayed(unusedType));
+			Assert.Empty(player.GetRolesPlayedByTopicType(type1));
+			Assert.Empty(player.GetRolesPlayedByTopicType(type2));
+			Assert.Empty(player.GetRolesPlayedByTopicType(unusedType));
 
-            Assert.Throws<ArgumentNullException>("Using null for filtering roles is not allowed.", () => player.GetRolesPlayed(null));
+			Assert.Throws<ArgumentNullException>("Using null for filtering roles is not allowed.", () => player.GetRolesPlayedByTopicType(null));
         }
 
         [Fact]
@@ -192,27 +180,27 @@ namespace org.tmapi.test
             var roleType2 = topicMap.CreateTopic();
             var association = topicMap.CreateAssociation(assocType1);
 
-            Assert.Empty(player.GetRolesPlayed(roleType1, assocType1));
-            Assert.Empty(player.GetRolesPlayed(roleType1, assocType2));
-            Assert.Empty(player.GetRolesPlayed(roleType2, assocType1));
-            Assert.Empty(player.GetRolesPlayed(roleType2, assocType2));
+			Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType1, assocType1));
+			Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType1, assocType2));
+			Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType2, assocType1));
+			Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType2, assocType2));
 
             var role1 = association.CreateRole(roleType1, player);
 
-            Assert.Equal(1, player.GetRolesPlayed(roleType1, assocType1).Count);
-            Assert.True(player.GetRolesPlayed(roleType1, assocType1).Contains(role1));
-            Assert.Empty(player.GetRolesPlayed(roleType1, assocType2));
-            Assert.Empty(player.GetRolesPlayed(roleType2, assocType1));
-            Assert.Empty(player.GetRolesPlayed(roleType2, assocType2));
+            Assert.Equal(1, player.GetRolesPlayedByTopicTypeAndAssociationType(roleType1, assocType1).Count);
+            Assert.True(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType1, assocType1).Contains(role1));
+            Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType1, assocType2));
+            Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType2, assocType1));
+            Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType2, assocType2));
 
             var role2 = association.CreateRole(roleType2, player);
 
-            Assert.Equal(1, player.GetRolesPlayed(roleType1, assocType1).Count);
-            Assert.True(player.GetRolesPlayed(roleType1, assocType1).Contains(role1));
-            Assert.Empty(player.GetRolesPlayed(roleType1, assocType2));
-            Assert.Equal(1, player.GetRolesPlayed(roleType2, assocType1).Count);
-            Assert.True(player.GetRolesPlayed(roleType2, assocType1).Contains(role2));
-            Assert.Empty(player.GetRolesPlayed(roleType2, assocType2));
+            Assert.Equal(1, player.GetRolesPlayedByTopicTypeAndAssociationType(roleType1, assocType1).Count);
+			Assert.True(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType1, assocType1).Contains(role1));
+			Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType1, assocType2));
+			Assert.Equal(1, player.GetRolesPlayedByTopicTypeAndAssociationType(roleType2, assocType1).Count);
+			Assert.True(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType2, assocType1).Contains(role2));
+			Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType2, assocType2));
 
             //role2.Type = roleType1;
 
@@ -226,21 +214,21 @@ namespace org.tmapi.test
 
             role2.Remove();
 
-            Assert.Equal(1, player.GetRolesPlayed(roleType1, assocType1).Count);
-            Assert.True(player.GetRolesPlayed(roleType1, assocType1).Contains(role1));
-            Assert.Empty(player.GetRolesPlayed(roleType1, assocType2));
-            Assert.Empty(player.GetRolesPlayed(roleType2, assocType1));
-            Assert.Empty(player.GetRolesPlayed(roleType2, assocType2));
+			Assert.Equal(1, player.GetRolesPlayedByTopicTypeAndAssociationType(roleType1, assocType1).Count);
+			Assert.True(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType1, assocType1).Contains(role1));
+			Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType1, assocType2));
+			Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType2, assocType1));
+			Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType2, assocType2));
 
             association.Remove();
 
-            Assert.Empty(player.GetRolesPlayed(roleType1, assocType1));
-            Assert.Empty(player.GetRolesPlayed(roleType1, assocType2));
-            Assert.Empty(player.GetRolesPlayed(roleType2, assocType1));
-            Assert.Empty(player.GetRolesPlayed(roleType2, assocType2));
+			Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType1, assocType1));
+			Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType1, assocType2));
+			Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType2, assocType1));
+			Assert.Empty(player.GetRolesPlayedByTopicTypeAndAssociationType(roleType2, assocType2));
 
-            Assert.Throws<ArgumentNullException>("Using null for filtering roles is not allowed.", () => player.GetRolesPlayed(roleType1, null));
-            Assert.Throws<ArgumentNullException>("Using null for filtering roles is not allowed.", () => player.GetRolesPlayed(null, assocType1));
+			Assert.Throws<ArgumentNullException>("Using null for filtering roles is not allowed.", () => player.GetRolesPlayedByTopicTypeAndAssociationType(roleType1, null));
+			Assert.Throws<ArgumentNullException>("Using null for filtering roles is not allowed.", () => player.GetRolesPlayedByTopicTypeAndAssociationType(null, assocType1));
         }
 
         [Fact]
@@ -252,31 +240,31 @@ namespace org.tmapi.test
             var type2 = topicMap.CreateTopic();
             var unusedType = topicMap.CreateTopic();
 
-            Assert.Empty(topic.GetOccurrences(type1));
-            Assert.Empty(topic.GetOccurrences(type2));
-            Assert.Empty(topic.GetOccurrences(unusedType));
+            Assert.Empty(topic.GetOccurrencesByTopicType(type1));
+			Assert.Empty(topic.GetOccurrencesByTopicType(type2));
+			Assert.Empty(topic.GetOccurrencesByTopicType(unusedType));
 
             var occurrence = topic.CreateOccurrence(type1, "Occurrence");
 
-            Assert.Equal(1, topic.GetOccurrences(type1).Count);
-            Assert.True(topic.GetOccurrences(type1).Contains(occurrence));
-            Assert.Empty(topic.GetOccurrences(type2));
-            Assert.Empty(topic.GetOccurrences(unusedType));
+			Assert.Equal(1, topic.GetOccurrencesByTopicType(type1).Count);
+			Assert.True(topic.GetOccurrencesByTopicType(type1).Contains(occurrence));
+			Assert.Empty(topic.GetOccurrencesByTopicType(type2));
+			Assert.Empty(topic.GetOccurrencesByTopicType(unusedType));
 
             occurrence.Type = type2;
 
-            Assert.Equal(1, topic.GetOccurrences(type2).Count);
-            Assert.True(topic.GetOccurrences(type2).Contains(occurrence));
-            Assert.Empty(topic.GetOccurrences(type1));
-            Assert.Empty(topic.GetOccurrences(unusedType));
+			Assert.Equal(1, topic.GetOccurrencesByTopicType(type2).Count);
+			Assert.True(topic.GetOccurrencesByTopicType(type2).Contains(occurrence));
+			Assert.Empty(topic.GetOccurrencesByTopicType(type1));
+			Assert.Empty(topic.GetOccurrencesByTopicType(unusedType));
 
             occurrence.Remove();
 
-            Assert.Empty(topic.GetOccurrences(type1));
-            Assert.Empty(topic.GetOccurrences(type2));
-            Assert.Empty(topic.GetOccurrences(unusedType));
+			Assert.Empty(topic.GetOccurrencesByTopicType(type1));
+			Assert.Empty(topic.GetOccurrencesByTopicType(type2));
+			Assert.Empty(topic.GetOccurrencesByTopicType(unusedType));
 
-            Assert.Throws<ArgumentNullException>("Using null for filtering occurrences is not allowed.", () => topic.GetOccurrences(null));
+			Assert.Throws<ArgumentNullException>("Using null for filtering occurrences is not allowed.", () => topic.GetOccurrencesByTopicType(null));
         }
 
         [Fact]
@@ -288,31 +276,31 @@ namespace org.tmapi.test
             var type2 = topicMap.CreateTopic();
             var unusedType = topicMap.CreateTopic();
 
-            Assert.Empty(topic.GetNames(type1));
-            Assert.Empty(topic.GetNames(type2));
-            Assert.Empty(topic.GetNames(unusedType));
+			Assert.Empty(topic.GetNamesByTopicType(type1));
+			Assert.Empty(topic.GetNamesByTopicType(type2));
+			Assert.Empty(topic.GetNamesByTopicType(unusedType));
 
             var name = topic.CreateName(type1, "Name");
 
-            Assert.Equal(1, topic.GetNames(type1).Count);
-            Assert.True(topic.GetNames(type1).Contains(name));
-            Assert.Empty(topic.GetNames(type2));
-            Assert.Empty(topic.GetNames(unusedType));
+			Assert.Equal(1, topic.GetNamesByTopicType(type1).Count);
+			Assert.True(topic.GetNamesByTopicType(type1).Contains(name));
+			Assert.Empty(topic.GetNamesByTopicType(type2));
+			Assert.Empty(topic.GetNamesByTopicType(unusedType));
 
             name.Type = type2;
 
-            Assert.Equal(1, topic.GetNames(type2).Count);
-            Assert.True(topic.GetNames(type2).Contains(name));
-            Assert.Empty(topic.GetNames(type1));
-            Assert.Empty(topic.GetNames(unusedType));
+			Assert.Equal(1, topic.GetNamesByTopicType(type2).Count);
+			Assert.True(topic.GetNamesByTopicType(type2).Contains(name));
+			Assert.Empty(topic.GetNamesByTopicType(type1));
+			Assert.Empty(topic.GetNamesByTopicType(unusedType));
 
             name.Remove();
 
-            Assert.Empty(topic.GetNames(type1));
-            Assert.Empty(topic.GetNames(type2));
-            Assert.Empty(topic.GetNames(unusedType));
+			Assert.Empty(topic.GetNamesByTopicType(type1));
+			Assert.Empty(topic.GetNamesByTopicType(type2));
+			Assert.Empty(topic.GetNamesByTopicType(unusedType));
 
-            Assert.Throws<ArgumentNullException>("Using null for filtering names is not allowed.", () => topic.GetNames(null));
+			Assert.Throws<ArgumentNullException>("Using null for filtering names is not allowed.", () => topic.GetNamesByTopicType(null));
         }
 
         [Fact]

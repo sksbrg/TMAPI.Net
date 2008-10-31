@@ -1,8 +1,8 @@
 ﻿using Xunit;
-using org.tmapi.core;
+using TMAPI.Net.Core;
 using XunitExt;
 
-namespace org.tmapi.test
+namespace TMAPI.Net.Tests.Core
 {
     public class TopicMapSystemTest
     {
@@ -21,7 +21,7 @@ namespace org.tmapi.test
         [Fact]
         public void Locators_GetEmptyListOfLocatorsAtBeginning()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
             
             Assert.Equal(0, system.Locators.Count);
@@ -30,7 +30,7 @@ namespace org.tmapi.test
         [Fact]
         public void CreateLocator_TestAnything()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             var locator = system.CreateLocator(TestTM1);
@@ -41,7 +41,7 @@ namespace org.tmapi.test
         [Fact]
         public void CreateTopicMap_OneTMByString()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             ITopicMap map1 = system.CreateTopicMap(TestTM1);
@@ -51,7 +51,7 @@ namespace org.tmapi.test
         [Fact]
         public void CreateTopicMap_OneAndCheckLocatorsCount()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             ITopicMap map1 = system.CreateTopicMap(TestTM1);
@@ -62,7 +62,7 @@ namespace org.tmapi.test
         [Fact]
         public void CreateTopicMap_TwoAndCheckLocatorsCount()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             ITopicMap map1 = system.CreateTopicMap(TestTM1);
@@ -76,7 +76,7 @@ namespace org.tmapi.test
         [Fact]
         public void CreateTopicMap_OneAndCheckLocatorsEquality()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             ITopicMap map1 = system.CreateTopicMap(TestTM1);
@@ -87,7 +87,7 @@ namespace org.tmapi.test
         [Fact]
         public void CreateTopicMap_TwoBySameIri()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             system.CreateTopicMap(TestTM1);
@@ -100,7 +100,7 @@ namespace org.tmapi.test
         [Fact]
         public void CreateTopicMap_TwoBySameLocator()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             var locator = system.CreateLocator(TestTM1);
@@ -113,7 +113,7 @@ namespace org.tmapi.test
         [Fact]
         public void CreateTopicMap_TwoIdenticalByIriAndLocator()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             var locator = system.CreateLocator(TestTM1);
@@ -127,7 +127,7 @@ namespace org.tmapi.test
         [Fact]
         public void CreateTopicMap_TwoByTwoInstancesOfSameLocator()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             var locator1 = system.CreateLocator(TestTM1);
@@ -141,7 +141,7 @@ namespace org.tmapi.test
         [Fact]
         public void CreateTopicMap_ByILocator()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             var locator = system.CreateLocator(TestTM1);
@@ -157,7 +157,7 @@ namespace org.tmapi.test
         [Fact]
         public void GetTopicMapByIri()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             var tm1 = system.CreateTopicMap(TestTM1);
@@ -168,7 +168,7 @@ namespace org.tmapi.test
         [Fact]
         public void GetTopicMapByILocator()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             var locator = system.CreateLocator(TestTM1);
@@ -181,7 +181,7 @@ namespace org.tmapi.test
         [Fact]
         public void GetTopicMap()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             var locator = system.CreateLocator(TestTM1);
@@ -195,7 +195,7 @@ namespace org.tmapi.test
         [Fact]
         public void CreateTopicMap_UsingExistingLocatorThrowsException()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             var locator = system.CreateLocator(TestTM1);
@@ -210,7 +210,7 @@ namespace org.tmapi.test
         [InlineData("test3")]
         public void CreateTopicMapSet(string tmURI)
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             var topicMap = system.CreateTopicMap("http://www.example.org/" + tmURI);
@@ -221,7 +221,7 @@ namespace org.tmapi.test
         [Fact]
         public void RemoveTopicMap()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
+            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
             var system = tmf.NewTopicMapSystem();
 
             var topicMap1 = system.CreateTopicMap("http://www.example.org/test1");

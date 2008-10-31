@@ -1,27 +1,15 @@
 ﻿using System.Collections.Generic;
-using org.tmapi.core;
+using TMAPI.Net.Core;
 using Xunit;
 
-namespace org.tmapi.test
+namespace TMAPI.Net.Tests.Core
 {
-    public class NameTest
+    public class NameTest : TMAPITestCase
     {
-        #region Fields
-        private readonly ITopicMapSystem _system; 
-        #endregion
-
         #region Static Constants
         public static readonly string TestTM1 = "mem://localhost/testm1";
         public static readonly string TestLocator1 = TestTM1 + "/locator1";
         public static readonly string TestLocator2 = TestTM1 + "/locator2";
-        #endregion
-
-        #region Constructors
-        public NameTest()
-        {
-            var tmf = TopicMapSystemFactory.NewInstance();
-            _system = tmf.NewTopicMapSystem();
-        }
         #endregion
 
         #region Tests
