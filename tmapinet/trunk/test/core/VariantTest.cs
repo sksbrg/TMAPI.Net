@@ -1,24 +1,11 @@
-﻿using org.tmapi.core;
-using Xunit;
+﻿using Xunit;
 
-namespace org.tmapi.test
+namespace TMAPI.Net.Tests.Core
 {
-    public class VariantTest
+    public class VariantTest : TMAPITestCase
     {
-        #region Fields
-        private readonly ITopicMapSystem _system; 
-        #endregion
-
         #region Static Constants
         public static readonly string TestTM1 = "mem://localhost/testm1";
-        #endregion
-
-        #region Constructors
-        public VariantTest()
-        {
-            var tmf = TopicMapSystemFactory.NewInstance();
-            _system = tmf.NewTopicMapSystem();
-        }
         #endregion
 
         #region Tests

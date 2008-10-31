@@ -1,26 +1,13 @@
-﻿using org.tmapi.core;
-using Xunit;
+﻿using Xunit;
 
-namespace org.tmapi.test
+namespace TMAPI.Net.Tests.Core
 {
-    public class OccurrenceTest
+    public class OccurrenceTest : TMAPITestCase
     {
-        #region Fields
-        private readonly ITopicMapSystem _system; 
-        #endregion
-
         #region Static Constants
         public static readonly string TestTM1 = "mem://localhost/testm1";
         public static readonly string TestLocator1 = TestTM1 + "/locator1";
         public static readonly string TestLocator2 = TestTM1 + "/locator2";
-        #endregion
-
-        #region Constructors
-        public OccurrenceTest()
-        {
-            var tmf = TopicMapSystemFactory.NewInstance();
-            _system = tmf.NewTopicMapSystem();
-        }
         #endregion
 
         #region Tests

@@ -1,16 +1,12 @@
 ﻿using System;
-using org.tmapi.core;
-using org.tmapi.index;
+using TMAPI.Net.Core;
+using TMAPI.Net.Index;
 using Xunit;
 
-namespace org.tmapi.test
+namespace TMAPI.Net.Tests.Index
 {
-    public class LiteralIndexTest
+    public class LiteralIndexTest : TMAPITestCase
     {
-        #region Fields
-        private readonly ITopicMapSystem _system;
-        #endregion
-
         #region Static Constants
         public static readonly string TestTM1 = "mem://localhost/testm1";
         public static ILocator _xsdString;
@@ -20,9 +16,6 @@ namespace org.tmapi.test
         #region Constructor
         public LiteralIndexTest()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
-            _system = tmf.NewTopicMapSystem();
-
             _xsdString = _system.CreateLocator("http://www.w3.org/2001/XMLSchema#string");
             _xsdAnyURI = _system.CreateLocator("http://www.w3.org/2001/XMLSchema#anyURI");
         }

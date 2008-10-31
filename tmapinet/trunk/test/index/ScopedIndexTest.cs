@@ -1,26 +1,14 @@
 ﻿using System.Collections.Generic;
-using org.tmapi.core;
-using org.tmapi.index;
+using TMAPI.Net.Core;
+using TMAPI.Net.Index;
 using Xunit;
 
-namespace org.tmapi.test
+namespace TMAPI.Net.Tests.Index
 {
-    public class ScopedIndexTest
+    public class ScopedIndexTest : TMAPITestCase
     {
-        #region Fields
-        private readonly ITopicMapSystem _system;
-        #endregion
-
         #region Static Constants
         public static readonly string TestTM1 = "mem://localhost/testm1";
-        #endregion
-
-        #region Constructor
-        public ScopedIndexTest()
-        {
-            var tmf = TopicMapSystemFactory.NewInstance();
-            _system = tmf.NewTopicMapSystem();
-        }
         #endregion
 
         #region Tests

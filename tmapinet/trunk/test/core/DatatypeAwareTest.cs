@@ -1,16 +1,12 @@
 ﻿using System;
-using org.tmapi.core;
+using TMAPI.Net.Core;
 using Xunit;
 
-namespace org.tmapi.test
+namespace TMAPI.Net.Tests.Core
 {
-    public class DatatypeAwareTest
+    public class DatatypeAwareTest : TMAPITestCase
     {
-        #region Fields
-        private readonly ITopicMapSystem _system;
-        #endregion
-
-        #region Static Constants
+        #region Static Fields
         public static readonly string TestTM1 = "mem://localhost/testm1";
         public static ILocator _xsdString;
         public static ILocator _xsdAnyURI;
@@ -23,9 +19,6 @@ namespace org.tmapi.test
         #region Constructors
         public DatatypeAwareTest()
         {
-            var tmf = TopicMapSystemFactory.NewInstance();
-            _system = tmf.NewTopicMapSystem();
-
             _xsdString = _system.CreateLocator("http://www.w3.org/2001/XMLSchema#string");
             _xsdAnyURI = _system.CreateLocator("http://www.w3.org/2001/XMLSchema#anyURI");
             _xsdInt = _system.CreateLocator("http://www.w3.org/2001/XMLSchema#int");

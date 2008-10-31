@@ -1,25 +1,12 @@
-﻿using org.tmapi.core;
-using Xunit;
+﻿using Xunit;
 
-namespace org.tmapi.test
+namespace TMAPI.Net.Tests.Core
 {
-    public class TopicMapMergeTest
+    public class TopicMapMergeTest : TMAPITestCase
     {
-        #region Fields
-        private readonly ITopicMapSystem _system;
-        #endregion
-
         #region Static Constants
         public static readonly string TestTM1 = "mem://localhost/testm1";
         public static readonly string TestTM2 = "mem://localhost/testm2";
-        #endregion
-
-        #region Constructors
-        public TopicMapMergeTest()
-        {
-            var tmf = TopicMapSystemFactory.NewInstance();
-            _system = tmf.NewTopicMapSystem();
-        }
         #endregion
 
         #region Tests
