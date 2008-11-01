@@ -1,4 +1,6 @@
-﻿namespace TMAPI.Net.Core
+﻿using System;
+
+namespace TMAPI.Net.Core
 {
 	/// <summary>
 	///     This factory class provides access to a <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/>.
@@ -67,6 +69,30 @@
 		/// </exception>
 		public abstract TopicMapSystemFactory NewInstance();
 
+		/// <summary>
+		/// Obtain a new instance of a <see cref="TopicMapSystemFactory"/>.
+		/// </summary>
+		/// <typeparam name="TFactory">The type of the factory.</typeparam>
+		/// <returns>
+		/// A new instance of <see cref="TopicMapSystemFactory"/>.
+		/// </returns>
+		/// <exception cref="FactoryConfigurationException">
+		/// If instance cannot be instantiated.
+		/// </exception>
+		public static TopicMapSystemFactory NewInstance<TFactory>()
+			where TFactory : TopicMapSystemFactory, new()
+		{
+			try
+			{
+				return new TFactory();
+			}
+			catch (Exception ex)
+			{
+				throw new FactoryConfigurationException(String.Format(
+					"Unable to instantiate the TopicMapSystemFactory implementation {0}.", typeof(TFactory).FullName), ex);
+			}
+		}
+        
 		/// <summary>
 		///     Creates a new <see cref="T:TMAPI.Net.Core.ITopicMapSystem"/> instance using the currently 
 		///     configured factory parameters.
