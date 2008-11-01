@@ -9,7 +9,7 @@ namespace TMAPI.Net.Tests.Core
 		private const string CORRECT_URI_EXTERNAL_FORM = "http://www.example.org/test%20+me/";
 
 		private const string CORRECT_IRI = "http://הצü.example.org/test+%20הצüß";
-		private const string CORRECT_IRI_EXTERNAL_FORM = "http://%C3%B6%C3%A4%C3%BC.example.org/test+%20%C3%B6%C3%A4%C3%BC%C3%9F";
+		private const string CORRECT_IRI_EXTERNAL_FORM = "http://הצü.example.org/test+%20%C3%A4%C3%B6%C3%BC%C3%9F";
 
 		private const string RELATIVE_URI = "../test + you";
 		private const string CORRECT_RESOLVED_URI = "http://www.example.org/test%20+%20you";
