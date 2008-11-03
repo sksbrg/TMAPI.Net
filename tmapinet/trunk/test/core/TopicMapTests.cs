@@ -269,7 +269,8 @@ namespace TMAPI.Net.Tests.Core
         {
             var tm = _system.CreateTopicMap(TestTM1);
             var iid = tm.CreateLocator("mem://bla/fisch");
-            tm.AddItemIdentifier(iid);
+            
+			tm.AddItemIdentifier(iid);
             Assert.Equal(2, tm.ItemIdentifiers.Count);
             Assert.Contains(iid, tm.ItemIdentifiers);
         }
@@ -279,13 +280,18 @@ namespace TMAPI.Net.Tests.Core
         {
             var tm = _system.CreateTopicMap(TestTM1);
             var iid = tm.CreateLocator("mem://bla/fisch");
-            tm.AddItemIdentifier(iid);
-            Assert.Equal(1, tm.ItemIdentifiers.Count);
-            Assert.Equal(iid, tm.ItemIdentifiers[0]);
-            tm.RemoveItemIdentifier(iid);
-            Assert.False(tm.ItemIdentifiers.Contains(iid));
-            Assert.Empty(tm.ItemIdentifiers);
+            
+			tm.AddItemIdentifier(iid);
+            Assert.Equal(2, tm.ItemIdentifiers.Count);
+            Assert.Contains(iid, tm.ItemIdentifiers);
 
+			tm.RemoveItemIdentifier(tm.CreateLocator(TestTM1));
+			Assert.Equal(1, tm.ItemIdentifiers.Count);
+			Assert.Contains(iid, tm.ItemIdentifiers);
+			Assert.DoesNotContain(tm.CreateLocator(TestTM1), tm.ItemIdentifiers);
+            
+			tm.RemoveItemIdentifier(iid);
+			Assert.Empty(tm.ItemIdentifiers);
         }
 
         #region TMAPI test cases
