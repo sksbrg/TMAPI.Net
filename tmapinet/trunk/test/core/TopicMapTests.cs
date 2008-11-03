@@ -270,8 +270,8 @@ namespace TMAPI.Net.Tests.Core
             var tm = _system.CreateTopicMap(TestTM1);
             var iid = tm.CreateLocator("mem://bla/fisch");
             tm.AddItemIdentifier(iid);
-            Assert.Equal(1, tm.ItemIdentifiers.Count);
-            Assert.Equal(iid, tm.ItemIdentifiers[0]);
+            Assert.Equal(2, tm.ItemIdentifiers.Count);
+            Assert.Contains(iid, tm.ItemIdentifiers);
         }
 
         [Fact]
