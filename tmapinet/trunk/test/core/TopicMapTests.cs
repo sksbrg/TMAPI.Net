@@ -23,8 +23,12 @@ namespace TMAPI.Net.Tests.Core
         public void Constructor_TestInitialisation()
         {
             ITopicMap tm = _system.CreateTopicMap(TestTM1);
-            Assert.Equal(TestTM1, tm.Id);
-        }
+			Assert.NotNull(tm.Associations);
+			Assert.NotNull(tm.Topics);
+
+			Assert.Empty(tm.Associations);
+			Assert.Empty(tm.Topics);
+		}
 
         [Fact]
         public void Topics_TestEmptyReadOnlyCollection()
