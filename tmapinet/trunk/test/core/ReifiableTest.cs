@@ -28,20 +28,30 @@ namespace TMAPI.Net.Tests.Core
             Assert.Null(reifiable.Reifier);
             Assert.Null(reifier.Reified);
 
-            reifiable.Reifier = reifier;
-
-            Assert.Equal(reifier, reifiable.Reifier);
-            Assert.Equal(reifiable, reifier.Reified);
-
-            //  TODO:   auf der TMAPI-mailingliste nach dem sinn fragen
-            reifiable.Reifier = reifier;
-
-            Assert.Equal(reifier, reifiable.Reifier);
-            Assert.Equal(reifiable, reifier.Reified);
-            //Assert.Throws<ModelConstraintException>("Setting the reifier to the same value is not allowed.", () => reifiable.Reifier = reifier);
+			TestReificationWithSameReifier(reifiable);
         }
 
-        private static void TestReificationCollosion(IReifiable reifiable)
+		/// <summary>
+		/// Tests the duplicate reification with same reifier.
+		/// </summary>
+		/// <remarks>
+		/// Assigning the *same* reifier is allowed, the TM processor MUST NOT raise an exception.
+		/// </remarks>
+		/// <param name="reifiable">The reifiable.</param>
+		private static void TestReificationWithSameReifier(IReifiable reifiable)
+		{
+			var topicMap = reifiable.TopicMap;
+			var reifier = topicMap.CreateTopic();
+
+			reifiable.Reifier = reifier;
+
+			Assert.Equal(reifier, reifiable.Reifier);
+			Assert.Equal(reifiable, reifier.Reified);
+
+			Assert.DoesNotThrow(delegate() { reifiable.Reifier = reifier; });
+		}
+
+    	private static void TestReificationCollosion(IReifiable reifiable)
         {
             var topicMap = reifiable.TopicMap;
             var reifier = topicMap.CreateTopic();
