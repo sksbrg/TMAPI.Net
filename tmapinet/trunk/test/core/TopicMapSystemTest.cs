@@ -72,18 +72,6 @@ namespace TMAPI.Net.Tests.Core
             Assert.Equal(2, system.Locators.Count);
         }
 
-
-        [Fact]
-        public void CreateTopicMap_OneAndCheckLocatorsEquality()
-        {
-            var tmf = TMAPITestCase.NewTopicMapSystemFactoryInstance();
-            var system = tmf.NewTopicMapSystem();
-
-            ITopicMap map1 = system.CreateTopicMap(TestTM1);
-            Assert.NotNull(map1);
-            Assert.Equal(TestTM1,map1.Id);
-        }
-
         [Fact]
         public void CreateTopicMap_TwoBySameIri()
         {
