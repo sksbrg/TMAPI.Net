@@ -5,8 +5,9 @@ namespace TMAPI.Net.Tests.Core
 {
     public class TopicMergeDetectionTest : TMAPITestCase
     {
-        #region Static Constants
-        public static readonly string TestTM1 = "mem://localhost/testm1";
+        #region constants
+        public const string TestTM1 = "mem://localhost/testm1";
+    	public const string AUTOMERGE_FEATURE = "http://tmapi.org/features/automerge";
         #endregion
 
         #region Tests
@@ -23,7 +24,7 @@ namespace TMAPI.Net.Tests.Core
 
             Assert.Equal(1, topic1.SubjectIdentifiers.Count);
             Assert.True(topic1.SubjectIdentifiers.Contains(subjectIdentifier));
-            if(_system.HasFeature("automerge"))
+            if(_system.HasFeature(AUTOMERGE_FEATURE))
             {
                 topic2.AddSubjectIdentifier(subjectIdentifier);
                 Assert.Equal(1, topicMap.Topics.Count);
@@ -66,7 +67,7 @@ namespace TMAPI.Net.Tests.Core
 
             Assert.Equal(1, topic1.SubjectLocators.Count);
             Assert.True(topic1.SubjectLocators.Contains(subjectLocator));
-            if (_system.HasFeature("automerge"))
+            if (_system.HasFeature(AUTOMERGE_FEATURE))
             {
                 topic2.AddSubjectLocator(subjectLocator);
                 Assert.Equal(1, topicMap.Topics.Count);
@@ -110,7 +111,7 @@ namespace TMAPI.Net.Tests.Core
 
             Assert.Equal(1, topic1.SubjectIdentifiers.Count);
             Assert.True(topic1.SubjectIdentifiers.Contains(locator));
-            if (_system.HasFeature("automerge"))
+            if (_system.HasFeature(AUTOMERGE_FEATURE))
             {
                 topic2.AddItemIdentifier(locator);
                 Assert.Equal(1, topicMap.Topics.Count);
@@ -162,7 +163,7 @@ namespace TMAPI.Net.Tests.Core
             Assert.Equal(1, topic1.ItemIdentifiers.Count);
             Assert.True(topic1.ItemIdentifiers.Contains(locator));
             Assert.Equal(topic1, topicMap.GetConstructByItemIdentifier(locator));
-            if (_system.HasFeature("automerge"))
+            if (_system.HasFeature(AUTOMERGE_FEATURE))
             {
                 topic2.AddSubjectIdentifier(locator);
                 Assert.Equal(1, topicMap.Topics.Count);
