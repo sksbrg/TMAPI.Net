@@ -1,9 +1,14 @@
 using System;
-using System.Reflection;
 using TMAPI.Net.Core;
 
 namespace TMAPI.Net.Tests
 {
+	/// <summary>
+	/// Base super class for all tests.
+	/// </summary>
+	/// <remarks>
+	/// It will initialize a new <see cref="TopicMapSystemFactory"/> and a <see cref="ITopicMapSystem"/>.
+	/// </remarks>
 	public class TMAPITestCase
 	{
 		#region Fields
@@ -11,12 +16,17 @@ namespace TMAPI.Net.Tests
 		#endregion
 
 		#region constructor logic
+		/// <summary>
+		/// Initializes a new instance of the <see cref="TMAPITestCase"/> class.
+		/// </summary>
 		public TMAPITestCase()
 		{
-			var tmf = NewTopicMapSystemFactoryInstance();
+			TopicMapSystemFactory tmf = NewTopicMapSystemFactoryInstance();
 			_system = tmf.NewTopicMapSystem();
 		}
+		#endregion
 
+		#region methods
 		/// <summary>
 		/// Returns a new instance of <see cref="TopicMapSystemFactory"/>.
 		/// </summary>
@@ -27,21 +37,10 @@ namespace TMAPI.Net.Tests
 		/// <returns>A new instance of TopicMapSystemFactory.</returns>
 		public static TopicMapSystemFactory NewTopicMapSystemFactoryInstance()
 		{
-			foreach (Type type in Assembly.GetExecutingAssembly().GetTypes())
-			{
-				if (type.IsSubclassOf(typeof(TopicMapSystemFactory)))
-				{
-					foreach (MethodInfo methodInfo in type.GetMethods(BindingFlags.Static | BindingFlags.Public))
-					{
-						if (methodInfo.Name == "NewInstance" && methodInfo.GetParameters().Length == 0)
-						{
-							return methodInfo.Invoke(null, null) as TopicMapSystemFactory;
-						}
-					}
-				}
-			}
+			throw new InvalidOperationException("You have to implement NewTopicMapSystemFactoryInstance method first.");
 
-			throw new InvalidOperationException("You have to implement TopicMapSystemFactory first and add the reference to this project.");
+			// TODO: implement NewTopicMapSystemFactoryInstance method for testing.
+			// return TopicMapSystemFactory.NewInstance<YOUR_FACTORY_IMPLEMENTATION_TYPE>();
 		}
 		#endregion
 	}
