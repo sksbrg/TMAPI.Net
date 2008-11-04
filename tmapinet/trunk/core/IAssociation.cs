@@ -51,7 +51,7 @@ namespace TMAPI.Net.Core
 		/// <summary>
 		///     Creates a new <see cref="T:TMAPI.Net.Core.IRole"/> representing a role in this association.
 		/// </summary>
-		/// <param name="type">
+		/// <param name="roleType">
 		///     The role type; must not be <c>null</c>.
 		/// </param>
 		/// <param name="player">
@@ -61,9 +61,9 @@ namespace TMAPI.Net.Core
 		///     A newly created association role.
 		/// </returns>
 		/// <exception cref="T:TMAPI.Net.Core.ModelConstraintException">
-		///     If the <paramref name="type"/> or <paramref name="player"/> is <c>null</c>.
+		///     If the <paramref name="roleType"/> or <paramref name="player"/> is <c>null</c>.
 		/// </exception>
-		IRole CreateRole(ITopic type, ITopic player);
+		IRole CreateRole(ITopic roleType, ITopic player);
 
 		/// <summary>
 		///     Returns all roles with the specified <c>type</c>.
