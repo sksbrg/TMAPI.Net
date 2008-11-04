@@ -102,9 +102,9 @@ namespace TMAPI.Net.Core
 		///     An unmodifiable set of <see cref="T:TMAPI.Net.Core.ITopic"/>s.
 		/// </returns>
 		/// <remarks>
-		///     This method may return only those types which where added by <see cref="M:TMAPI.Net.Core.ITopic.AddType"/> 
+		///     This method may return only those types which where added by <see cref="TMAPI.Net.Core.ITopic.AddType"/> 
 		///     and may ignore <a href="http://www.isotopicmaps.org/sam/sam-model/#sect-types">type-instance</a> 
-		///     relationships which are modelled as association.
+		///     relationships which are modeled as association.
 		/// </remarks>
 		ReadOnlyCollection<ITopic> Types
 		{
@@ -116,45 +116,54 @@ namespace TMAPI.Net.Core
 		/// <summary>
 		///     Adds an item identifier to this topic.
 		///     If adding the specified item identifier would make this topic represent the same subject 
-		///     as another topic and the feature "automerge" (http://tmapi.org/features/automerge) is disabled, 
+		///     as another topic and the feature "<c>automerge</c>" (http://tmapi.org/features/automerge) is disabled, 
 		///     an <see cref="IdentityConstraintException"/> is thrown.
 		/// </summary>
 		/// <param name="itemIdentifier">
 		///     The item identifier to be added; must not be <c>null</c>.
 		/// </param>
+		/// <exception cref="ModelConstraintException">
+		///     If the <paramref name="itemIdentifier"/> is <c>null</c>.
+		/// </exception>
 		/// <exception cref="IdentityConstraintException">
 		///     If adding <paramref name="itemIdentifier"/> would make this topic represent the same subject 
-		///     as another topic and the feature "automerge" (http://tmapi.org/features/automerge) is disabled.
+		///     as another topic and the feature "<c>automerge</c>" (http://tmapi.org/features/automerge) is disabled.
 		/// </exception>
 		new void AddItemIdentifier(ILocator itemIdentifier);
 
 		/// <summary>
 		///     Adds a subject identifier to this topic.
 		///     If adding the specified subject identifier would make this topic represent the same subject 
-		///     as another topic and the feature "automerge" (http://tmapi.org/features/automerge) is disabled, 
+		///     as another topic and the feature "<c>automerge</c>" (http://tmapi.org/features/automerge) is disabled, 
 		///     an <see cref="IdentityConstraintException"/> is thrown.
 		/// </summary>
 		/// <param name="subjectIdentifier">
 		///     The subject identifier to be added; must not be <c>null</c>.
 		/// </param>
+		/// <exception cref="ModelConstraintException">
+		///     If the <paramref name="subjectIdentifier"/> is <c>null</c>.
+		/// </exception>
 		/// <exception cref="IdentityConstraintException">
 		///     If adding <paramref name="subjectIdentifier"/> would make this topic represent the same subject 
-		///     as another topic and the feature "automerge" (http://tmapi.org/features/automerge) is disabled.
+		///     as another topic and the feature "<c>automerge</c>" (http://tmapi.org/features/automerge) is disabled.
 		/// </exception>
 		void AddSubjectIdentifier(ILocator subjectIdentifier);
 
 		/// <summary>
 		///     Adds a subject locator to this topic.
 		///     If adding the specified subject locator would make this topic represent the same subject 
-		///     as another topic and the feature "automerge" (http://tmapi.org/features/automerge) is disabled, 
+		///     as another topic and the feature "<c>automerge</c>" (http://tmapi.org/features/automerge) is disabled, 
 		///     an <see cref="IdentityConstraintException"/> is thrown.
 		/// </summary>
 		/// <param name="subjectLocator">
 		///     The subject locator to be added; must not be <c>null</c>.
 		/// </param>
+		/// <exception cref="ModelConstraintException">
+		///     If the <paramref name="subjectLocator"/> is <c>null</c>.
+		/// </exception>
 		/// <exception cref="IdentityConstraintException">
 		///     If adding <paramref name="subjectLocator"/> would make this topic represent the same subject 
-		///     as another topic and the feature "automerge" (http://tmapi.org/features/automerge) is disabled.
+		///     as another topic and the feature "<c>automerge</c>" (http://tmapi.org/features/automerge) is disabled.
 		/// </exception>
 		void AddSubjectLocator(ILocator subjectLocator);
 
@@ -288,7 +297,7 @@ namespace TMAPI.Net.Core
 		///     Creates a <see cref="T:TMAPI.Net.Core.IOccurrence"/> for this topic with the specified <paramref name="type"/>, 
 		///     string <paramref name="value"/>, and <paramref name="scope"/>.
 		///     The newly created <see cref="T:TMAPI.Net.Core.IOccurrence"/> will have the datatype 
-		///     <a href="http://www.w3.org/TR/xmlschema-2/#string">xsd:string</a>.
+		///     <a href="http://www.w3.org/TR/xmlschema-2/#string"><c>xsd:string</c></a>.
 		/// </summary>
 		/// <param name="type">
 		///     The occurrence type; MUST NOT be <c>null</c>.
@@ -311,7 +320,7 @@ namespace TMAPI.Net.Core
 		///     Creates a <see cref="T:TMAPI.Net.Core.IOccurrence"/> for this topic with the specified <paramref name="type"/>, 
 		///     IRI <paramref name="value"/>, and <paramref name="scope"/>.
 		///     The newly created <see cref="T:TMAPI.Net.Core.IOccurrence"/> will have the datatype 
-		///     <a href="http://www.w3.org/TR/xmlschema-2/#anyURI">xsd:anyURI</a>.
+		///     <a href="http://www.w3.org/TR/xmlschema-2/#anyURI"><c>xsd:anyURI</c></a>.
 		/// </summary>
 		/// <param name="type">
 		///     The occurrence type; MUST NOT be <c>null</c>.
@@ -336,7 +345,7 @@ namespace TMAPI.Net.Core
 		///     Creates a <see cref="T:TMAPI.Net.Core.IOccurrence"/> for this topic with the specified <paramref name="type"/>, 
 		///     IRI <paramref name="value"/>, and <paramref name="scope"/>.
 		///     The newly created <see cref="T:TMAPI.Net.Core.IOccurrence"/> will have the datatype 
-		///     <a href="http://www.w3.org/TR/xmlschema-2/#anyURI">xsd:anyURI</a>.
+		///     <a href="http://www.w3.org/TR/xmlschema-2/#anyURI"><c>xsd:anyURI</c></a>.
 		/// </summary>
 		/// <param name="type">
 		///     The occurrence type; MUST NOT be <c>null</c>.
@@ -456,25 +465,25 @@ namespace TMAPI.Net.Core
 		ReadOnlyCollection<IRole> GetRolesPlayedByTopicType(ITopic type);
 
 		/// <summary>
-		///     Returns the <see cref="T:TMAPI.Net.Core.IRole">roles</see> played by this topic where the role type is <paramref name="type"/> 
-		///     and the <see cref="T:TMAPI.Net.Core.IAssociation"/> type is <paramref name="assocType"/>.
+		///     Returns the <see cref="T:TMAPI.Net.Core.IRole">roles</see> played by this topic where the role type is <paramref name="roleType"/> 
+		///     and the <see cref="T:TMAPI.Net.Core.IAssociation"/> type is <paramref name="associationType"/>.
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
-		/// <param name="type">
+		/// <param name="roleType">
 		///     The type of the <see cref="T:TMAPI.Net.Core.IRole">roles</see> to be returned; must not be <c>null</c>.
 		/// </param>
-		/// <param name="assocType">
+		/// <param name="associationType">
 		///     The type of the <see cref="T:TMAPI.Net.Core.IAssociation"/> from which the returned roles must be part of; 
 		///     must not be <c>null</c>.
 		/// </param>
 		/// <returns>
-		///     An unmodifiable set of <see cref="T:TMAPI.Net.Core.IRole">roles</see> with the specified <paramref name="type"/> 
-		///     which are part of <see cref="T:TMAPI.Net.Core.IAssociation">associations</see> with the specified <paramref name="assocType"/>.
+		///     An unmodifiable set of <see cref="T:TMAPI.Net.Core.IRole">roles</see> with the specified <paramref name="roleType"/> 
+		///     which are part of <see cref="T:TMAPI.Net.Core.IAssociation">associations</see> with the specified <paramref name="associationType"/>.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">
-		///     If the <paramref name="type"/> or <paramref name="assocType"/> is <c>null</c>.
+		///     If the <paramref name="roleType"/> or <paramref name="associationType"/> is <c>null</c>.
 		/// </exception>
-		ReadOnlyCollection<IRole> GetRolesPlayedByTopicTypeAndAssociationType(ITopic type, ITopic assocType);
+		ReadOnlyCollection<IRole> GetRolesPlayedByTopicTypeAndAssociationType(ITopic roleType, ITopic associationType);
 
 		/// <summary>
 		///     Merges another topic into this topic.
