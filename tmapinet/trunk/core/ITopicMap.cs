@@ -59,12 +59,12 @@ namespace TMAPI.Net.Core
 
 		/// <summary>
 		///     Creates an <see cref="T:TMAPI.Net.Core.IAssociation"/> in this topic map with the specified 
-		///     <paramref name="type"/> and <paramref name="scope"/>.
+		///     <paramref name="associationType"/> and <paramref name="initialThemes"/>.
 		/// </summary>
-		/// <param name="type">
+		/// <param name="associationType">
 		///     The association type, MUST NOT be <c>null</c>.
 		/// </param>
-		/// <param name="scope">
+		/// <param name="initialThemes">
 		///     An optional array of themes, MUST NOT be <c>null</c>.
 		///     If the array's length is <c>0</c>, the association will be in the unconstrained scope.
 		/// </param>
@@ -72,9 +72,9 @@ namespace TMAPI.Net.Core
 		///     The newly created <see cref="T:TMAPI.Net.Core.IAssociation"/>.
 		/// </returns>
 		/// <exception cref="ModelConstraintException">
-		///     If either the <paramref name="type"/> or <paramref name="scope"/> is <c>null</c>.
+		///     If either the <paramref name="associationType"/> or <paramref name="initialThemes"/> is <c>null</c>.
 		/// </exception>
-		IAssociation CreateAssociation(ITopic type, params ITopic[] scope);
+		IAssociation CreateAssociation(ITopic associationType, params ITopic[] initialThemes);
 
 		/// <summary>
 		///     Creates an <see cref="T:TMAPI.Net.Core.IAssociation"/> in this topic map with the specified 
