@@ -140,7 +140,7 @@ namespace TMAPI.Net.Core
 		///     <c>true</c> if the named feature is enabled this TopicMapSystem instance; 
 		///     <c>false</c> if the named feature is disabled for this instance.
 		/// </returns>
-		bool HasFeature(string featureName);
+		bool GetFeature(string featureName);
 		#endregion
 	}
 }
