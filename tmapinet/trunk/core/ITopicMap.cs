@@ -78,21 +78,21 @@ namespace TMAPI.Net.Core
 
 		/// <summary>
 		///     Creates an <see cref="T:TMAPI.Net.Core.IAssociation"/> in this topic map with the specified 
-		///     <paramref name="type"/> and <paramref name="scope"/>.
+		///     <paramref name="associationType"/> and <paramref name="initialThemes"/>.
 		/// </summary>
-		/// <param name="type">
+		/// <param name="associationType">
 		///     The association type, MUST NOT be <c>null</c>.
 		/// </param>
-		/// <param name="scope">
+		/// <param name="initialThemes">
 		///     A collection of themes or <c>null</c> if the association should be in the unconstrained scope.
 		/// </param>
 		/// <returns>
 		///     The newly created <see cref="T:TMAPI.Net.Core.IAssociation"/>.
 		/// </returns>
 		/// <exception cref="ModelConstraintException">
-		///     If the <paramref name="type"/> is <c>null</c>.
+		///     If the <paramref name="associationType"/> is <c>null</c>.
 		/// </exception>
-		IAssociation CreateAssociation(ITopic type, IList<ITopic> scope);
+		IAssociation CreateAssociation(ITopic associationType, IList<ITopic> initialThemes);
 
 		/// <summary>
 		///     Returns a <see cref="T:TMAPI.Net.Core.ILocator"/> instance representing the specified IRI 
