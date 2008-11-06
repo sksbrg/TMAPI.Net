@@ -176,7 +176,7 @@ namespace TMAPI.Net.Core
 		/// <param name="type">
 		///     The type of which this topic should become an instance of; must not be <c>null</c>.
 		/// </param>
-		/// <exception cref="ArgumentNullException">
+		/// <exception cref="ModelConstraintException">
 		///     If the <paramref name="type"/> is <c>null</c>.
 		/// </exception>
 		void AddType(ITopic type);
@@ -450,19 +450,19 @@ namespace TMAPI.Net.Core
 		ReadOnlyCollection<IOccurrence> GetOccurrencesByTopicType(ITopic type);
 
 		/// <summary>
-		///     Returns the <see cref="T:TMAPI.Net.Core.IRole">roles</see> played by this topic where the role type is <paramref name="type"/>.
+		///     Returns the <see cref="T:TMAPI.Net.Core.IRole">roles</see> played by this topic where the role type is <paramref name="roleType"/>.
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
-		/// <param name="type">
+		/// <param name="roleType">
 		///     The type of the <see cref="T:TMAPI.Net.Core.IRole">roles</see> to be returned; must not be <c>null</c>.
 		/// </param>
 		/// <returns>
-		///     An unmodifiable set of <see cref="T:TMAPI.Net.Core.IRole">roles</see> with the specified <paramref name="type"/>.
+		///     An unmodifiable set of <see cref="T:TMAPI.Net.Core.IRole">roles</see> with the specified <paramref name="roleType"/>.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">
-		///     If the <paramref name="type"/> is <c>null</c>.
+		///     If the <paramref name="roleType"/> is <c>null</c>.
 		/// </exception>
-		ReadOnlyCollection<IRole> GetRolesPlayedByTopicType(ITopic type);
+		ReadOnlyCollection<IRole> GetRolesPlayedByTopicType(ITopic roleType);
 
 		/// <summary>
 		///     Returns the <see cref="T:TMAPI.Net.Core.IRole">roles</see> played by this topic where the role type is <paramref name="roleType"/> 
