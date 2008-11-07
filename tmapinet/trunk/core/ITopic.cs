@@ -360,7 +360,8 @@ namespace TMAPI.Net.Core
 		///     The newly created <see cref="T:TMAPI.Net.Core.IOccurrence"/>.
 		/// </returns>
 		/// <exception cref="ModelConstraintException">
-		///     If either the <paramref name="type"/> or the <paramref name="value"/> is <c>null</c>.
+		///     If either the <paramref name="type"/>, the <paramref name="value"/>, 
+		///     or the <paramref name="scope"/> is <c>null</c>.
 		/// </exception>
 		IOccurrence CreateOccurrence(ITopic type, ILocator value, IList<ITopic> scope);
 
@@ -414,8 +415,8 @@ namespace TMAPI.Net.Core
 		///     The newly created <see cref="T:TMAPI.Net.Core.IOccurrence"/>.
 		/// </returns>
 		/// <exception cref="ModelConstraintException">
-		///     If either the <paramref name="type"/>, the <paramref name="value"/> 
-		///     or the <paramref name="datatype"/> is <c>null</c>.
+		///     If either the <paramref name="type"/>, the <paramref name="value"/>, 
+		///     the <paramref name="datatype"/> or the <paramref name="scope"/> is <c>null</c>.
 		/// </exception>
 		IOccurrence CreateOccurrence(ITopic type, string value, ILocator datatype, IList<ITopic> scope);
 
