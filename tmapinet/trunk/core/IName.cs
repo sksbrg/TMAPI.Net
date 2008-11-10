@@ -25,7 +25,7 @@ namespace TMAPI.Net.Core
 		///     Gets or sets a string representing the value of this name.
 		/// </summary>
 		/// <exception cref="ModelConstraintException">
-		///     If trying to assing <c>null</c> as value.
+		///     If trying to assign <c>null</c> as value.
 		/// </exception>
 		string Value
 		{
@@ -38,7 +38,7 @@ namespace TMAPI.Net.Core
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
 		/// <returns>
-		///     An unmodifable set of <see cref="T:TMAPI.Net.Core.IVariant"/>s.
+		///     An unmodifiable set of <see cref="T:TMAPI.Net.Core.IVariant"/>s.
 		/// </returns>
 		ReadOnlyCollection<IVariant> Variants
 		{
