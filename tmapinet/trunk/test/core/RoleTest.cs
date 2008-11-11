@@ -1,4 +1,4 @@
-﻿using TMAPI.Net.Core;
+using TMAPI.Net.Core;
 using Xunit;
 
 namespace TMAPI.Net.Tests.Core
@@ -13,7 +13,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestRoleParentRelationship()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var parent = topicMap.CreateAssociation(topicMap.CreateTopic());
 
             Assert.Empty(parent.Roles);
@@ -32,7 +32,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Player_GetAndSetRolePlayer()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
             Assert.Empty(association.Roles);
@@ -61,7 +61,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Player_UsingInvalidPlayerThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
             var role = association.CreateRole(topicMap.CreateTopic(), topicMap.CreateTopic());
 

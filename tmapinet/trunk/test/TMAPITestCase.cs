@@ -12,7 +12,15 @@ namespace TMAPI.Net.Tests
 	public class TMAPITestCase
 	{
 		#region Fields
-		protected readonly ITopicMapSystem _system;
+		/// <summary>
+		/// Represents the current topic map system instance for the test case.
+		/// </summary>
+		protected readonly ITopicMapSystem topicMapSystem;
+
+		/// <summary>
+		/// Represents the current topic map system factory.
+		/// </summary>
+		protected readonly TopicMapSystemFactory topicMapSystemFactory;
 		#endregion
 
 		#region constructor logic
@@ -21,8 +29,8 @@ namespace TMAPI.Net.Tests
 		/// </summary>
 		public TMAPITestCase()
 		{
-			TopicMapSystemFactory tmf = NewTopicMapSystemFactoryInstance();
-			_system = tmf.NewTopicMapSystem();
+			topicMapSystemFactory = NewTopicMapSystemFactoryInstance();
+			topicMapSystem = topicMapSystemFactory.NewTopicMapSystem();
 		}
 		#endregion
 

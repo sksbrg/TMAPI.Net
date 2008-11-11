@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 
 namespace TMAPI.Net.Tests.Core
 {
@@ -12,7 +12,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestVariantParentRelationship()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var parent = topic.CreateName("Name");
 
@@ -32,7 +32,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Scope_VariantScopeContainsNameScope()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var nameTheme1 = topicMap.CreateTopic();
             var name = topic.CreateName("Name", nameTheme1);
@@ -77,7 +77,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestIfVariantThemeEqualToANameThemeStaysIfNameThemeIsRemoved()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var nameTheme = topicMap.CreateTopic();
             var variantTheme = topicMap.CreateTopic();
             var name = topicMap.CreateTopic().CreateName("Name", nameTheme);
@@ -103,7 +103,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestIfVariantThemeEqualToANameThemeStaysIfVariantThemeIsRemoved()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var nameTheme = topicMap.CreateTopic();
             var variantTheme = topicMap.CreateTopic();
             var name = topicMap.CreateTopic().CreateName("Name", nameTheme);

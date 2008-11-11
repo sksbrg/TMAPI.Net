@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using TMAPI.Net.Core;
 using Xunit;
 
@@ -14,7 +14,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestAssociationParentRelationship()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
 
             Assert.Empty(topicMap.Associations);
 
@@ -32,7 +32,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateRole_TestRoleTypeAndPlayer()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
             var roleType = topicMap.CreateTopic();
             var player = topicMap.CreateTopic();
@@ -51,7 +51,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateRole_UsingInvalidPlayerThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
             Assert.Throws<ModelConstraintException>("Using null as role player is not allowed.", () => association.CreateRole(topicMap.CreateTopic(), null));
@@ -60,7 +60,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateRole_UsingInvalidTypeThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
             Assert.Throws<ModelConstraintException>("Using null as role type is not allowed.", () => association.CreateRole(null, topicMap.CreateTopic()));
@@ -69,7 +69,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void RoleTypes_TestDifferentRoleTypes()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
             var type1 = topicMap.CreateTopic();
             var type2 = topicMap.CreateTopic();
@@ -113,7 +113,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void GetRoles_TestRoleFilter()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
             var type1 = topicMap.CreateTopic();
             var type2 = topicMap.CreateTopic();
@@ -160,7 +160,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void GetRoles_UsingInvalidTypeThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
 			Assert.Throws<ArgumentNullException>("Using null as role type is not allowed.", () => association.GetRolesByTopicType(null));
@@ -169,7 +169,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void GetRoles_TwoRolesTest()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var type = topicMap.CreateTopic();
             
             var player1 = topicMap.CreateTopic();

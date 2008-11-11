@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 
 namespace TMAPI.Net.Tests.Core
 {
@@ -13,9 +13,9 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void MergeIn_MergeTopicsByEqualItemIdentifiers()
         {
-            var topicMap1 = _system.CreateTopicMap(TestTM1);
-            var topicMap2 = _system.CreateTopicMap(TestTM2);
-            var itemIdentifier = _system.CreateLocator("http://www.example.org/12345");
+            var topicMap1 = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap2 = topicMapSystem.CreateTopicMap(TestTM2);
+            var itemIdentifier = topicMapSystem.CreateLocator("http://www.example.org/12345");
             var topic1 = topicMap1.CreateTopicByItemIdentifier(itemIdentifier);
             var topic2 = topicMap2.CreateTopicByItemIdentifier(itemIdentifier);
 
@@ -31,9 +31,9 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void MergeIn_MergeTopicsByEqualSubjectIdentifiers()
         {
-            var topicMap1 = _system.CreateTopicMap(TestTM1);
-            var topicMap2 = _system.CreateTopicMap(TestTM2);
-            var subjectIdentifier = _system.CreateLocator("http://www.example.org/12345");
+            var topicMap1 = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap2 = topicMapSystem.CreateTopicMap(TestTM2);
+            var subjectIdentifier = topicMapSystem.CreateLocator("http://www.example.org/12345");
             var topic1 = topicMap1.CreateTopicBySubjectIdentifier(subjectIdentifier);
             var topic2 = topicMap2.CreateTopicBySubjectIdentifier(subjectIdentifier);
 
@@ -49,9 +49,9 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void MergeIn_MergeTopicsByEqualSubjectLocators()
         {
-            var topicMap1 = _system.CreateTopicMap(TestTM1);
-            var topicMap2 = _system.CreateTopicMap(TestTM2);
-            var subjectLocator = _system.CreateLocator("http://www.example.org/12345");
+            var topicMap1 = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap2 = topicMapSystem.CreateTopicMap(TestTM2);
+            var subjectLocator = topicMapSystem.CreateLocator("http://www.example.org/12345");
             var topic1 = topicMap1.CreateTopicBySubjectLocator(subjectLocator);
             var topic2 = topicMap2.CreateTopicBySubjectLocator(subjectLocator);
 
@@ -67,9 +67,9 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void MergeIn_MergeTopicsByItemIdentifierEqualToSubjectIdentifierFromOtherMap()
         {
-            var topicMap1 = _system.CreateTopicMap(TestTM1);
-            var topicMap2 = _system.CreateTopicMap(TestTM2);
-            var locator = _system.CreateLocator("http://www.example.org/12345");
+            var topicMap1 = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap2 = topicMapSystem.CreateTopicMap(TestTM2);
+            var locator = topicMapSystem.CreateLocator("http://www.example.org/12345");
             var topic1 = topicMap1.CreateTopicByItemIdentifier(locator);
             var topic2 = topicMap2.CreateTopicBySubjectIdentifier(locator);
 
@@ -88,9 +88,9 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void MergeIn_MergeTopicsBySubjectIdentifierEqualToItemIdentifierFromOtherMap()
         {
-            var topicMap1 = _system.CreateTopicMap(TestTM1);
-            var topicMap2 = _system.CreateTopicMap(TestTM2);
-            var locator = _system.CreateLocator("http://www.example.org/12345");
+            var topicMap1 = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap2 = topicMapSystem.CreateTopicMap(TestTM2);
+            var locator = topicMapSystem.CreateLocator("http://www.example.org/12345");
             var topic1 = topicMap1.CreateTopicBySubjectIdentifier(locator);
             var topic2 = topicMap2.CreateTopicByItemIdentifier(locator);
 

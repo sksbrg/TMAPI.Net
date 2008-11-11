@@ -1,4 +1,4 @@
-﻿using TMAPI.Net.Index;
+using TMAPI.Net.Index;
 using Xunit;
 
 namespace TMAPI.Net.Tests.Index
@@ -21,7 +21,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void TestTopic()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var index = (ITypeInstanceIndex)topicMap.GetIndex<ITypeInstanceIndex>();
 
             index.Open();
@@ -100,7 +100,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void TestAssociation()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var index = (ITypeInstanceIndex)topicMap.GetIndex<ITypeInstanceIndex>();
             var type = topicMap.CreateTopic();
 
@@ -142,7 +142,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void TestRole()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var index = (ITypeInstanceIndex)topicMap.GetIndex<ITypeInstanceIndex>();
             var type = topicMap.CreateTopic();
 
@@ -196,7 +196,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void TestOccurrence()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var index = (ITypeInstanceIndex)topicMap.GetIndex<ITypeInstanceIndex>();
             var type = topicMap.CreateTopic();
 
@@ -240,7 +240,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void TestName()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var index = (ITypeInstanceIndex)topicMap.GetIndex<ITypeInstanceIndex>();
             var type = topicMap.CreateTopic();
 

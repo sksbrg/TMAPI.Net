@@ -1,4 +1,4 @@
-﻿using TMAPI.Net.Core;
+using TMAPI.Net.Core;
 using Xunit;
 
 namespace TMAPI.Net.Tests.Core
@@ -34,7 +34,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestTopicMap()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(topicMap);
 
             Assert.Null(topicMap.Parent);
@@ -47,7 +47,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestTopic()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopicBySubjectLocator(topicMap.CreateLocator(TestTM1 + "/12345"));
 
             ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(topic);
@@ -62,7 +62,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestAssociation()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
             ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(association);
@@ -77,7 +77,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestRole()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
             var role = association.CreateRole(topicMap.CreateTopic(), topicMap.CreateTopic());
 
@@ -93,7 +93,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestOccurrence()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var occurrence = topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence");
 
@@ -109,7 +109,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestName()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var name = topic.CreateName("Name");
 
@@ -125,7 +125,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestVariant()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var name = topic.CreateName("Name");
             var variant = name.CreateVariant("Variant", topicMap.CreateTopic());

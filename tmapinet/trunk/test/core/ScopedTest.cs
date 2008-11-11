@@ -1,4 +1,4 @@
-﻿using TMAPI.Net.Core;
+using TMAPI.Net.Core;
 using Xunit;
 
 namespace TMAPI.Net.Tests.Core
@@ -58,7 +58,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestAssociation()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
 
             Scope_AddScopeAndUsingInvalidScopeThrowsException(topicMap.CreateAssociation(topicMap.CreateTopic()));
         }
@@ -66,7 +66,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestOccurrence()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Scope_AddScopeAndUsingInvalidScopeThrowsException(topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence"));
@@ -75,7 +75,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestName()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Scope_AddScopeAndUsingInvalidScopeThrowsException(topic.CreateName("Name"));
@@ -84,7 +84,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestVariant()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var name = topic.CreateName("Name");
 
