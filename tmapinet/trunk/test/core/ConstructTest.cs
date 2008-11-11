@@ -10,32 +10,51 @@ namespace TMAPI.Net.Tests.Core
         #endregion
 
         #region Tests
-        private static void ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(IConstruct construct)
+		private void ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifierEmpty(IConstruct construct)
+		{
+			Assert.Empty(construct.ItemIdentifiers);
+
+			ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(construct);
+
+			Assert.Empty(construct.ItemIdentifiers);
+		}
+
+        private void ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifierNotEmpty(IConstruct construct, ILocator initialItemIdentifier)
+        {
+			Assert.NotEmpty(construct.ItemIdentifiers);
+			Assert.Contains(topicMapSystem.CreateLocator(TestTM1), construct.ItemIdentifiers);
+
+			ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(construct);
+		
+			Assert.NotEmpty(construct.ItemIdentifiers);
+			Assert.Contains(topicMapSystem.CreateLocator(TestTM1), construct.ItemIdentifiers);
+		}
+
+        private void ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(IConstruct construct)
         {
             var topicMap = construct.TopicMap;
-
-            Assert.Empty(construct.ItemIdentifiers);
-
             var itemIdentifier = topicMap.CreateLocator(TestTM1 + "/12345");
             construct.AddItemIdentifier(itemIdentifier);
-
-            Assert.Equal(1, construct.ItemIdentifiers.Count);
-            Assert.True(construct.ItemIdentifiers.Contains(itemIdentifier));
+            
+            Assert.Contains(itemIdentifier, construct.ItemIdentifiers);
             Assert.Equal(construct, topicMap.GetConstructByItemIdentifier(itemIdentifier));
 
             construct.RemoveItemIdentifier(itemIdentifier);
 
-            Assert.Empty(construct.ItemIdentifiers);
-            Assert.False(construct.ItemIdentifiers.Contains(itemIdentifier));
+            Assert.DoesNotContain(itemIdentifier, construct.ItemIdentifiers);
             Assert.Null(topicMap.GetConstructByItemIdentifier(itemIdentifier));
             Assert.Throws<ModelConstraintException>("Using null as item identifier is not allowed.", () => construct.AddItemIdentifier(null));
-        }
+
+			Assert.Equal(construct, topicMap.GetConstructById(construct.Id));
+		}
 
         [Fact]
         public void TestTopicMap()
         {
             var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
-            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(topicMap);
+            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifierNotEmpty(
+				topicMap, 
+				topicMapSystem.CreateLocator(TestTM1));
 
             Assert.Null(topicMap.Parent);
             Assert.Equal(topicMap, topicMap.TopicMap);
@@ -50,13 +69,10 @@ namespace TMAPI.Net.Tests.Core
             var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopicBySubjectLocator(topicMap.CreateLocator(TestTM1 + "/12345"));
 
-            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(topic);
+            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifierEmpty(topic);
 
             Assert.NotNull(topic.Parent);
             Assert.Equal(topicMap, topic.TopicMap);
-
-            var id = topic.Id;
-            Assert.Equal(topic, topicMap.GetConstructById(id));
         }
 
         [Fact]
@@ -65,13 +81,11 @@ namespace TMAPI.Net.Tests.Core
             var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
-            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(association);
+            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifierEmpty(association);
 
             Assert.NotNull(association.Parent);
             Assert.Equal(topicMap, association.TopicMap);
-
-            var id = association.Id;
-            Assert.Equal(association, topicMap.GetConstructById(id));
+			Assert.Empty(association.ItemIdentifiers);
         }
 
         [Fact]
@@ -81,13 +95,11 @@ namespace TMAPI.Net.Tests.Core
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
             var role = association.CreateRole(topicMap.CreateTopic(), topicMap.CreateTopic());
 
-            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(role);
+            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifierEmpty(role);
 
             Assert.NotNull(role.Parent);
             Assert.Equal(topicMap, role.TopicMap);
-
-            var id = role.Id;
-            Assert.Equal(role, topicMap.GetConstructById(id));
+			Assert.Empty(role.ItemIdentifiers);
         }
 
         [Fact]
@@ -97,13 +109,10 @@ namespace TMAPI.Net.Tests.Core
             var topic = topicMap.CreateTopic();
             var occurrence = topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence");
 
-            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(occurrence);
+            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifierEmpty(occurrence);
 
             Assert.NotNull(occurrence.Parent);
             Assert.Equal(topicMap, occurrence.TopicMap);
-
-            var id = occurrence.Id;
-            Assert.Equal(occurrence, topicMap.GetConstructById(id));
         }
 
         [Fact]
@@ -113,13 +122,10 @@ namespace TMAPI.Net.Tests.Core
             var topic = topicMap.CreateTopic();
             var name = topic.CreateName("Name");
 
-            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(name);
+            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifierEmpty(name);
 
             Assert.NotNull(name.Parent);
             Assert.Equal(topicMap, name.TopicMap);
-
-            var id = name.Id;
-            Assert.Equal(name, topicMap.GetConstructById(id));
         }
 
         [Fact]
@@ -130,13 +136,10 @@ namespace TMAPI.Net.Tests.Core
             var name = topic.CreateName("Name");
             var variant = name.CreateVariant("Variant", topicMap.CreateTopic());
 
-            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(variant);
+            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifierEmpty(variant);
 
             Assert.NotNull(variant.Parent);
             Assert.Equal(topicMap, variant.TopicMap);
-
-            var id = variant.Id;
-            Assert.Equal(variant, topicMap.GetConstructById(id));
         }
         #endregion
     }
