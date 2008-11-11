@@ -18,6 +18,7 @@ namespace TMAPI.Net.Core
 		///         <item>The reifier of this construct MUST NOT reify another information item.</item>
 		///     </list>
 		/// </remarks>
+		/// <exception cref="ModelConstraintException">If the specified <tt>reifier</tt> reifies another construct.</exception>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Reifier", Justification = "Its the naming convention of TMAPI.")]
 		ITopic Reifier
 		{
