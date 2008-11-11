@@ -74,8 +74,7 @@ namespace TMAPI.Net.Tests.Core
             Assert.True(variant.Scope.Contains(variantTheme));
         }
 
-		// TODO Skipped while this issue is not discussed: https://sourceforge.net/tracker2/?func=detail&aid=2259137&group_id=39237&atid=424686
-		[Fact(Skip = "Fails because of NameTest.CreateVariant_UsingParentScopeThrowsException oppositional behavior.")]
+		[Fact]
 		public void TestIfVariantThemeEqualToANameThemeStaysIfNameThemeIsRemoved()
         {
             var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
@@ -101,8 +100,7 @@ namespace TMAPI.Net.Tests.Core
             Assert.True(variant.Scope.Contains(variantTheme));
         }
 
-		// TODO Skipped while this issue is not discussed: https://sourceforge.net/tracker2/?func=detail&aid=2259137&group_id=39237&atid=424686
-		[Fact(Skip = "Fails because of NameTest.CreateVariant_UsingParentScopeThrowsException oppositional behavior.")]
+		[Fact]
 		public void TestIfVariantThemeEqualToANameThemeStaysIfVariantThemeIsRemoved()
         {
             var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
