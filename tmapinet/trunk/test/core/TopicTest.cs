@@ -778,30 +778,6 @@ namespace TMAPI.Net.Tests.Core
         }
 
         [Fact]
-        public void Remove_RemoveTopicUsedAsType()
-        {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
-            var topic = topicMap.CreateTopic();
-
-            Assert.Equal(1, topicMap.Topics.Count);
-            topic.Remove();
-            Assert.Equal(0, topicMap.Topics.Count);
-
-            topic = topicMap.CreateTopic();
-            Assert.Equal(1, topicMap.Topics.Count);
-
-            var association = topicMap.CreateAssociation(topic);
-
-            Assert.Throws<TopicInUseException>("Removing a topic used as type is not allowed.", topic.Remove);
-
-            association.Type = topicMap.CreateTopic();
-
-            Assert.Equal(2, topicMap.Topics.Count);
-            topic.Remove();
-            Assert.Equal(1, topicMap.Topics.Count);
-        }
-
-        [Fact]
         public void Remove_RemoveTopicUsedAsPlayer()
         {
             var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
@@ -828,55 +804,212 @@ namespace TMAPI.Net.Tests.Core
             Assert.Equal(3, topicMap.Topics.Count);
         }
 
-        [Fact]
-        public void Remove_RemoveTopicUsedAsTheme()
-        {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
-            var topic = topicMap.CreateTopic();
+		#region Remove topic used as type
+		private void RemoveTopicUsedAsType(ITyped typedConstruct)
+		{
+			var topicMap = typedConstruct.TopicMap;
+			var topicToBeRemoved = topicMap.CreateTopic();
 
-            Assert.Equal(1, topicMap.Topics.Count);
-            topic.Remove();
-            Assert.Equal(0, topicMap.Topics.Count);
+			Assert.Contains(topicToBeRemoved, topicMap.Topics);
+			Assert.DoesNotThrow(() => topicToBeRemoved.Remove());
+			Assert.DoesNotContain(topicToBeRemoved, topicMap.Topics);
 
-            topic = topicMap.CreateTopic();
-            Assert.Equal(1, topicMap.Topics.Count);
+			topicToBeRemoved = topicMap.CreateTopic();
+			Assert.Contains(topicToBeRemoved, topicMap.Topics);
+			typedConstruct.Type = topicToBeRemoved;
+			Assert.Throws<TopicInUseException>("Removing a topic used as type is not allowed.", topicToBeRemoved.Remove);
+			Assert.Contains(topicToBeRemoved, topicMap.Topics);
 
-            var association = topicMap.CreateAssociation(topicMap.CreateTopic(), topic);
-            Assert.Equal(2, topicMap.Topics.Count);
+			typedConstruct.Type = topicMap.CreateTopic();
+			Assert.DoesNotThrow(() => topicToBeRemoved.Remove());
+			Assert.DoesNotContain(topicToBeRemoved, topicMap.Topics);
 
-            Assert.Throws<TopicInUseException>("Removing a topic used as theme is not allowed.", topic.Remove);
+		}
 
-            association.RemoveTheme(topic);
-            topic.Remove();
+		[Fact]
+		public void Remove_RemoveTopicUsedAsTypeForAssociation()
+		{
+			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+			var typedConstruct = topicMap.CreateAssociation(topicMap.CreateTopic(), topicMap.CreateTopic());
 
-            Assert.Equal(1, topicMap.Topics.Count);
-        }
+			RemoveTopicUsedAsReifier(typedConstruct);
+		}
 
-        [Fact]
-        public void Remove_RemoveTopicUsedAsReifier()
-        {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
-            var topic = topicMap.CreateTopic();
+		[Fact]
+		public void Remove_RemoveTopicUsedAsTypeForOccurrence()
+		{
+			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+			var topic = topicMap.CreateTopic();
+			var typedConstruct = topic.CreateOccurrence(topicMap.CreateTopic(), "MyOccurrence", topicMap.CreateTopic());
 
-            Assert.Equal(1, topicMap.Topics.Count);
-            topic.Remove();
-            Assert.Equal(0, topicMap.Topics.Count);
+			RemoveTopicUsedAsReifier(typedConstruct);
+		}
 
-            topic = topicMap.CreateTopic();
-            Assert.Equal(1, topicMap.Topics.Count);
+		[Fact]
+		public void Remove_RemoveTopicUsedAsTypeForRole()
+		{
+			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+			var associationc = topicMap.CreateAssociation(topicMap.CreateTopic(), topicMap.CreateTopic());
+			var typedConstruct = associationc.CreateRole(topicMap.CreateTopic(), topicMap.CreateTopic());
 
-            var association = topicMap.CreateAssociation(topicMap.CreateTopic());
-            Assert.Equal(2, topicMap.Topics.Count);
+			RemoveTopicUsedAsReifier(typedConstruct);
+		}
 
-            association.Reifier = topic;
+		[Fact]
+		public void Remove_RemoveTopicUsedAsTypeForName()
+		{
+			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+			var topic = topicMap.CreateTopic();
+			var typedConstruct = topic.CreateName("MyName", topicMap.CreateTopic());
 
-            Assert.Throws<TopicInUseException>("Removing a topic used as reifier is not allowed.", topic.Remove);
+			RemoveTopicUsedAsReifier(typedConstruct);
+		}
+		#endregion
 
-            association.Reifier = null;
-            topic.Remove();
+		#region Remove topic used as reifier
+		private void RemoveTopicUsedAsReifier(IReifiable reifiableConstruct)
+		{
+			var topicMap = reifiableConstruct.TopicMap;
+			var topicToBeRemoved = topicMap.CreateTopic();
 
-            Assert.Equal(1, topicMap.Topics.Count);
-        }
-        #endregion
-    }
+			Assert.Contains(topicToBeRemoved, topicMap.Topics);
+			Assert.DoesNotThrow(() => topicToBeRemoved.Remove());
+			Assert.DoesNotContain(topicToBeRemoved, topicMap.Topics);
+
+			topicToBeRemoved = topicMap.CreateTopic();
+			Assert.Contains(topicToBeRemoved, topicMap.Topics);
+			reifiableConstruct.Reifier = topicToBeRemoved;
+			Assert.Throws<TopicInUseException>("Removing a topic used as reifier is not allowed.", topicToBeRemoved.Remove);
+			Assert.Contains(topicToBeRemoved, topicMap.Topics);
+
+			reifiableConstruct.Reifier = null;
+			Assert.DoesNotThrow(() => topicToBeRemoved.Remove());
+			Assert.DoesNotContain(topicToBeRemoved, topicMap.Topics);
+		}
+
+		[Fact]
+		public void Remove_RemoveTopicUsedAsReifierForAssociation()
+		{
+			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+			var reifiableConstruct = topicMap.CreateAssociation(topicMap.CreateTopic(), topicMap.CreateTopic());
+
+			RemoveTopicUsedAsReifier(reifiableConstruct);
+		}
+
+		[Fact]
+		public void Remove_RemoveTopicUsedAsReifierForOccurrence()
+		{
+			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+			var topic = topicMap.CreateTopic();
+			var reifiableConstruct = topic.CreateOccurrence(topicMap.CreateTopic(), "MyOccurrence", topicMap.CreateTopic());
+
+			RemoveTopicUsedAsReifier(reifiableConstruct);
+		}
+
+		[Fact]
+		public void Remove_RemoveTopicUsedAsReifierForRole()
+		{
+			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+			var association = topicMap.CreateAssociation(topicMap.CreateTopic(), topicMap.CreateTopic());
+			var reifiableConstruct = association.CreateRole(topicMap.CreateTopic(), topicMap.CreateTopic());
+
+			RemoveTopicUsedAsReifier(reifiableConstruct);
+		}
+
+		[Fact]
+		public void Remove_RemoveTopicUsedAsReifierForName()
+		{
+			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+			var topic = topicMap.CreateTopic();
+			var reifiableConstruct = topic.CreateName("MyName", topicMap.CreateTopic());
+			
+			RemoveTopicUsedAsReifier(reifiableConstruct);
+		}
+
+		[Fact]
+		public void Remove_RemoveTopicUsedAsReifierForTopicMap()
+		{
+			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+
+			RemoveTopicUsedAsReifier(topicMap);
+		}
+
+		[Fact]
+		public void Remove_RemoveTopicUsedAsReifierForVariant()
+		{
+			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+			var topic = topicMap.CreateTopic();
+			var name = topic.CreateName("MyName", topicMap.CreateTopic());
+			var reifiableConstruct = name.CreateVariant("MyVariant", topicMap.CreateTopic());
+
+			RemoveTopicUsedAsReifier(reifiableConstruct);
+		}
+		#endregion
+
+		#region Remove topic used as scope theme
+		private void RemoveTopicUsedAsScopeTheme(IScoped scopedConstruct)
+		{
+			var topicMap = scopedConstruct.TopicMap;
+			var topicToBeRemoved = topicMap.CreateTopic();
+
+			Assert.Contains(topicToBeRemoved, topicMap.Topics);
+			Assert.DoesNotThrow(() => topicToBeRemoved.Remove());
+			Assert.DoesNotContain(topicToBeRemoved, topicMap.Topics);
+
+			topicToBeRemoved = topicMap.CreateTopic();
+			Assert.Contains(topicToBeRemoved, topicMap.Topics);
+			scopedConstruct.AddTheme(topicToBeRemoved);
+			Assert.Throws<TopicInUseException>("Removing a topic used as theme is not allowed.", topicToBeRemoved.Remove);
+			Assert.Contains(topicToBeRemoved, topicMap.Topics);
+
+			scopedConstruct.RemoveTheme(topicToBeRemoved);
+			Assert.DoesNotThrow(() => topicToBeRemoved.Remove());
+			Assert.DoesNotContain(topicToBeRemoved, topicMap.Topics);
+		}
+
+		[Fact]
+		public void Remove_RemoveTopicUsedAsScopeThemeForAssociation()
+		{
+			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+			var scopedConstruct = topicMap.CreateAssociation(topicMap.CreateTopic(), topicMap.CreateTopic());
+
+			RemoveTopicUsedAsScopeTheme(scopedConstruct);
+		}
+
+		[Fact]
+		public void Remove_RemoveTopicUsedAsScopeThemeForOccurrence()
+		{
+			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+			var topic = topicMap.CreateTopic();
+			var scopedConstruct = topic.CreateOccurrence(topicMap.CreateTopic(),
+			                                             "MyOccurrence",
+			                                             topicMap.CreateTopic());
+
+			RemoveTopicUsedAsScopeTheme(scopedConstruct);
+		}
+
+		[Fact]
+		public void Remove_RemoveTopicUsedAsScopeThemeForVariant()
+		{
+			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+			var topic = topicMap.CreateTopic();
+			var name = topic.CreateName("MyName", topicMap.CreateTopic());
+			var scopedConstruct = name.CreateVariant("MyVariant", topicMap.CreateTopic());
+
+			RemoveTopicUsedAsScopeTheme(scopedConstruct);
+		}
+
+		[Fact]
+		public void Remove_RemoveTopicUsedAsScopeThemeForName()
+		{
+			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+			var topic = topicMap.CreateTopic();
+			var scopedConstruct = topic.CreateName("MyName", topicMap.CreateTopic());
+
+			RemoveTopicUsedAsScopeTheme(scopedConstruct);
+		}
+		#endregion
+
+		#endregion
+	}
 }
