@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using TMAPI.Net.Core;
 using Xunit;
 
@@ -16,7 +16,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestNameParentRelationship()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var parent = topicMap.CreateTopic();
 
             Assert.Empty(parent.Names);
@@ -35,7 +35,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Value_SettingDiffrentValues()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var parent = topicMap.CreateTopic();
             var name = parent.CreateName("Name");
             var value1 = "A name.";
@@ -55,7 +55,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateVariant_CreateVariantWithStringScope()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var parent = topicMap.CreateTopic();
             var name = parent.CreateName("Name");
             var theme = topicMap.CreateTopic();
@@ -71,7 +71,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateVariant_CreateVariantWithURIScope()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var parent = topicMap.CreateTopic();
             var name = parent.CreateName("Name");
             var theme = topicMap.CreateTopic();
@@ -89,7 +89,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateVariant_CreateVariantWithStringExplicitDataTypeScope()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var parent = topicMap.CreateTopic();
             var name = parent.CreateName("Name");
             var theme = topicMap.CreateTopic();
@@ -105,7 +105,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateVariant_UsingInvalidStringThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var parent = topicMap.CreateTopic();
             var name = parent.CreateName("Name");
             var theme = topicMap.CreateTopic();
@@ -116,7 +116,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateVariant_UsingInvalidURIThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var parent = topicMap.CreateTopic();
             var name = parent.CreateName("Name");
             var theme = topicMap.CreateTopic();
@@ -127,7 +127,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateVariant_UsingInvalidDataTypeThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var parent = topicMap.CreateTopic();
             var name = parent.CreateName("Name");
             var theme = topicMap.CreateTopic();
@@ -138,7 +138,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateVariant_UsingParentScopeThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var parent = topicMap.CreateTopic();
             var name = parent.CreateName("Name");
             var theme = topicMap.CreateTopic();
@@ -153,7 +153,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateVariant_UsingEmptyScopeThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var parent = topicMap.CreateTopic();
             var name = parent.CreateName("Name");
 
@@ -163,7 +163,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateVariant_UsingNullScopeThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var parent = topicMap.CreateTopic();
             var name = parent.CreateName("Name");
 

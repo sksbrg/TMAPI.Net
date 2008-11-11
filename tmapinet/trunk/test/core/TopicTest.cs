@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Xunit;
 using TMAPI.Net.Core;
@@ -17,7 +17,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestTopicParentRelationship()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             
             Assert.Empty(topicMap.Topics);
             
@@ -34,7 +34,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void AddSubjectIdentifier_UsingInvalidIdentifierThrowsEcxeption()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Throws<ModelConstraintException>("Using null as subject identifier is not allowed.", () => topic.AddSubjectIdentifier(null));
@@ -43,7 +43,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void AddSubjectLocator_UsingInvalidIdentifierThrowsEcxeption()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Throws<ModelConstraintException>("Using null as subject locator is not allowed.", () => topic.AddSubjectLocator(null));
@@ -52,9 +52,9 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void SubjectIdentifiers_AddAndDeleteSubjectIdentifiers()
         {
-            var subjectIdentifier1 = _system.CreateLocator(TestLocator1);
-            var subjectIdentifier2 = _system.CreateLocator(TestLocator2);
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var subjectIdentifier1 = topicMapSystem.CreateLocator(TestLocator1);
+            var subjectIdentifier2 = topicMapSystem.CreateLocator(TestLocator2);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopicBySubjectIdentifier(subjectIdentifier1);
 
             Assert.Equal(1, topic.SubjectIdentifiers.Count);
@@ -74,9 +74,9 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void SubjectLocators_AddAndDeleteSubjectLocators()
         {
-            var subjectLocator1 = _system.CreateLocator(TestLocator1);
-            var subjectLocator2 = _system.CreateLocator(TestLocator2);
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var subjectLocator1 = topicMapSystem.CreateLocator(TestLocator1);
+            var subjectLocator2 = topicMapSystem.CreateLocator(TestLocator2);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopicBySubjectLocator(subjectLocator1);
 
             Assert.Equal(1, topic.SubjectLocators.Count);
@@ -96,7 +96,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Types_AddAndDeleteTypes()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var type1 = topicMap.CreateTopic();
             var type2 = topicMap.CreateTopic();
@@ -126,7 +126,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Types_UsingInvalidTypeThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Throws<ModelConstraintException>("Using null as type is not allowed.", () => topic.AddType(null));
@@ -135,7 +135,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void GetRolesPlayed_TestRoleFilter()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var player = topicMap.CreateTopic();
             var type1 = topicMap.CreateTopic();
             var type2 = topicMap.CreateTopic();
@@ -172,7 +172,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void GetRolesPlayed_TestRoleAssociationFilter()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var player = topicMap.CreateTopic();
             var assocType1 = topicMap.CreateTopic();
             var assocType2 = topicMap.CreateTopic();
@@ -234,7 +234,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void GetOccurrences_TestOccurrenceFilter()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var type1 = topicMap.CreateTopic();
             var type2 = topicMap.CreateTopic();
@@ -270,7 +270,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void GetNames_TestNameFilter()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var type1 = topicMap.CreateTopic();
             var type2 = topicMap.CreateTopic();
@@ -306,7 +306,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateOccurrence_CreateOccurrenceWithTypeString()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var type = topicMap.CreateTopic();
             var value = "Occurrence";
@@ -328,7 +328,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateOccurrence_CreateOccurrenceWithTypeURI()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var type = topicMap.CreateTopic();
             var value = topicMap.CreateLocator("http://www.example.org/");
@@ -351,7 +351,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateOccurrence_CreateOccurrenceWithTypeStringExplicitDatatype()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var type = topicMap.CreateTopic();
             var value = "Occurrence";
@@ -373,7 +373,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateOccurrence_CreateOccurrenceWithTypeStringScopeArray()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var type = topicMap.CreateTopic();
             var theme1 = topicMap.CreateTopic();
@@ -399,7 +399,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateOccurrence_CreateOccurrenceWithTypeURIScopeArray()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var type = topicMap.CreateTopic();
             var theme1 = topicMap.CreateTopic();
@@ -426,7 +426,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateOccurrence_CreateOccurrenceWithTypeStringExplicitDatatypeScopeArray()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var type = topicMap.CreateTopic();
             var theme1 = topicMap.CreateTopic();
@@ -452,7 +452,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateOccurrence_CreateOccurrenceWithTypeStringScopeCollection()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var type = topicMap.CreateTopic();
             var theme1 = topicMap.CreateTopic();
@@ -478,7 +478,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateOccurrence_CreateOccurrenceWithTypeURIScopeCollection()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var type = topicMap.CreateTopic();
             var theme1 = topicMap.CreateTopic();
@@ -505,7 +505,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateOccurrence_CreateOccurrenceWithTypeStringExplicitDatatypeScopeCollection()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var type = topicMap.CreateTopic();
             var theme1 = topicMap.CreateTopic();
@@ -532,7 +532,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateOccurrence_UsingInvalidStringThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Throws<ModelConstraintException>("Using null for string value is not allowed.", () => topic.CreateOccurrence(topicMap.CreateTopic(), (string)null));
@@ -542,7 +542,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateOccurrence_UsingInvalidURIThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Throws<ModelConstraintException>("Using null for URI locator is not allowed.", () => topic.CreateOccurrence(topicMap.CreateTopic(), (ILocator)null));
@@ -551,7 +551,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateOccurrence_UsingInvalidDatatypeThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Throws<ModelConstraintException>("Using null for datatype is not allowed.", () => topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence", (ILocator)null));
@@ -560,7 +560,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateOccurrence_UsingInvalidTypeThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Throws<ModelConstraintException>("Using null for type is not allowed.", () => topic.CreateOccurrence(null, "Occurrence"));
@@ -569,7 +569,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateOccurrence_UsingInvalidScopeArrayThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Throws<ModelConstraintException>("Using null for scope array is not allowed.", () => topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence", (ITopic[])null));
@@ -578,7 +578,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateOccurrence_UsingInvalidScopeCollectionThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Throws<ModelConstraintException>("Using null for scope collection is not allowed.", () => topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence", (IList<ITopic>)null));
@@ -587,7 +587,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateName_CreateNameWithType()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var type = topicMap.CreateTopic();
             var value = "Name";
@@ -607,7 +607,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateName_CreateNameWithDefaultType()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var value = "Name";
             var defaultType = topicMap.CreateLocator("http://psi.topicmaps.org/iso13250/model/topic-name");
@@ -628,7 +628,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateName_CreateNameWithTypeScopeArray()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var type = topicMap.CreateTopic();
             var theme1 = topicMap.CreateTopic();
@@ -652,7 +652,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateName_CreateNameWithDefaultTypeScopeArray()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var value = "Name";
             var theme1 = topicMap.CreateTopic();
@@ -677,7 +677,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateName_CreateNameWithTypeScopeCollection()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var type = topicMap.CreateTopic();
             var theme1 = topicMap.CreateTopic();
@@ -701,7 +701,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateName_CreateNameWithDefaultTypeScopeCollection()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var value = "Name";
             var theme1 = topicMap.CreateTopic();
@@ -726,7 +726,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateName_UsingInvalidStringThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Throws<ModelConstraintException>("Using null for string value is not allowed.", () => topic.CreateName(topicMap.CreateTopic(), null));
@@ -735,7 +735,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateName_UsingInvalidScopeArrayThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Throws<ModelConstraintException>("Using null for scope array is not allowed.", () => topic.CreateName(topicMap.CreateTopic(), "Name", null));
@@ -744,7 +744,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateName_UsingInvalidScopeCollectionDoesNotThrowException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.DoesNotThrow(() => topic.CreateName(topicMap.CreateTopic(), "Name", (IList<ITopic>)null));
@@ -753,7 +753,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateName_UsingInvalidStringWithDefaultTypeThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Throws<ModelConstraintException>("Using null for string value is not allowed.", () => topic.CreateName(null));
@@ -762,7 +762,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateName_UsingInvalidScopeArrayWithDefaultTypeThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Throws<ModelConstraintException>("Using null for scope array is not allowed.", () => topic.CreateName("Name", null));
@@ -771,7 +771,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateName_UsingInvalidScopeCollectionWithDefaultTypeDoesNotThrowException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.DoesNotThrow(() => topic.CreateName("Name", (IList<ITopic>)null));
@@ -780,7 +780,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Remove_RemoveTopicUsedAsType()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Equal(1, topicMap.Topics.Count);
@@ -804,7 +804,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Remove_RemoveTopicUsedAsPlayer()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Equal(1, topicMap.Topics.Count);
@@ -831,7 +831,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Remove_RemoveTopicUsedAsTheme()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Equal(1, topicMap.Topics.Count);
@@ -855,7 +855,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Remove_RemoveTopicUsedAsReifier()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Assert.Equal(1, topicMap.Topics.Count);

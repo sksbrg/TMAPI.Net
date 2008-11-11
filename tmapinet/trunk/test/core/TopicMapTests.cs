@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using TMAPI.Net.Core;
 using TMAPI.Net.Index;
@@ -22,7 +22,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Constructor_TestInitialisation()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
 			Assert.NotNull(tm.Associations);
 			Assert.NotNull(tm.Topics);
 
@@ -33,7 +33,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Topics_TestEmptyReadOnlyCollection()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
             var topics = tm.Topics;
             Assert.Empty(topics);
             Assert.IsType<ReadOnlyCollection<ITopic>>(tm.Topics);
@@ -42,7 +42,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateTopic_Test()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
             ITopic topic = tm.CreateTopic();
             var topics = tm.Topics;
             Assert.Equal(1, topic.ItemIdentifiers.Count);
@@ -53,7 +53,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateTopicByItemIdentifier_AddOneTopic()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
             ILocator locator = tm.CreateLocator(TestTopic1);
             ITopic topic = tm.CreateTopicByItemIdentifier(locator);
             var topics = tm.Topics;
@@ -66,7 +66,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateTopicByItemIdentifier_AddThreeTopics()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
             ILocator locator1 = tm.CreateLocator(TestTopic1);
             ILocator locator2 = tm.CreateLocator(TestTopic2);
             ILocator locator3 = tm.CreateLocator(TestTopic3);
@@ -86,8 +86,8 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateTopicBySubjectIdentifier_CreateOneTopic()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
-            ILocator identifier = _system.CreateLocator(TestSubjectIdentifier);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
+            ILocator identifier = topicMapSystem.CreateLocator(TestSubjectIdentifier);
             ITopic topic = tm.CreateTopicBySubjectIdentifier(identifier);
             var topics = tm.Topics;
             Assert.Equal(1, topics.Count);
@@ -99,8 +99,8 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateTopicBySubjectLocator_CreateOneTopic()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
-            ILocator locator = _system.CreateLocator(TestSubjectLocator);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
+            ILocator locator = topicMapSystem.CreateLocator(TestSubjectLocator);
             ITopic topic = tm.CreateTopicBySubjectLocator(locator);
             var topics = tm.Topics;
             Assert.Equal(1, topics.Count);
@@ -112,7 +112,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Associations_TestForEmptyAssocListAtBeginning()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
             Assert.Empty(tm.Associations);
             Assert.IsType<ReadOnlyCollection<IAssociation>>(tm.Associations);
         }
@@ -120,7 +120,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateAssociation_OneScope()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
             var type = tm.CreateTopic();
             var scope = tm.CreateTopic();
             var association = tm.CreateAssociation(type, scope);
@@ -137,7 +137,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateAssociation_ByScopeList()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
             var type = tm.CreateTopic();
             var scope1 = tm.CreateTopic();
             var scope2 = tm.CreateTopic();
@@ -154,7 +154,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateAssociation_CreateTwoOfSameTypeAndRemove()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
             var type = tm.CreateTopic();
             var roletype1 = tm.CreateTopic();
             var roletype2 = tm.CreateTopic();
@@ -216,21 +216,21 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Parent_ReturnsNull()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
             Assert.Null(tm.Parent);
         }
 
         [Fact]
         public void GetConstructById_TestForImplementation()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
             tm.GetConstructById("anyID");
         }
 
         [Fact]
         public void GetConstructByItemIdentifier_RetrieveATopic()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
             var iid = tm.CreateLocator(TestTopic1);
             ITopic topic = tm.CreateTopicByItemIdentifier(iid);
             IConstruct tmc = tm.GetConstructByItemIdentifier(iid);
@@ -240,7 +240,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void GetTopicBySubjectIdentifier_RetrieveATopic()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
             var sid = tm.CreateLocator(TestSubjectIdentifier);
             ITopic topic = tm.CreateTopicBySubjectIdentifier(sid);
             IConstruct tmc = tm.GetTopicBySubjectIdentifier(sid);
@@ -250,7 +250,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void GetTopicBySubjectLocator_RetrieveATopic()
         {
-            ITopicMap tm = _system.CreateTopicMap(TestTM1);
+            ITopicMap tm = topicMapSystem.CreateTopicMap(TestTM1);
             var slo = tm.CreateLocator(TestSubjectLocator);
             ITopic topic = tm.CreateTopicBySubjectLocator(slo);
             IConstruct tmc = tm.GetTopicBySubjectLocator(slo);
@@ -260,14 +260,14 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void ItemIdentifiers_TestForReadOnlyCollection()
         {
-            var tm = _system.CreateTopicMap(TestTM1);
+            var tm = topicMapSystem.CreateTopicMap(TestTM1);
             Assert.IsType<ReadOnlyCollection<ILocator>>(tm.ItemIdentifiers);
         }
 
         [Fact]
         public void AddItemIdentifiers_AddNewIID()
         {
-            var tm = _system.CreateTopicMap(TestTM1);
+            var tm = topicMapSystem.CreateTopicMap(TestTM1);
             var iid = tm.CreateLocator("mem://bla/fisch");
             
 			tm.AddItemIdentifier(iid);
@@ -278,7 +278,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void RemoveItemIdentifiers_RemoveNewIID()
         {
-            var tm = _system.CreateTopicMap(TestTM1);
+            var tm = topicMapSystem.CreateTopicMap(TestTM1);
             var iid = tm.CreateLocator("mem://bla/fisch");
             
 			tm.AddItemIdentifier(iid);
@@ -298,7 +298,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Parent_ParentIsNull()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
 
             Assert.Null(topicMap.Parent);
         }
@@ -306,7 +306,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateTopicBySubjectIdentifier()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var subjectIdentifier = topicMap.CreateLocator("http://www.example.org");
 
             Assert.Empty(topicMap.Topics);
@@ -327,7 +327,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateTopicBySubjectIdentifier_UsingInvalidSubjectIdentifierThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
 
             Assert.Throws<ModelConstraintException>("Using null as a subject identifier for creating a nwe topic is not allowed.", () => topicMap.CreateTopicBySubjectIdentifier(null));
         }
@@ -335,7 +335,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateTopicBySubjectLocator()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var subjectLocator = topicMap.CreateLocator("http://www.example.org");
 
             Assert.Empty(topicMap.Topics);
@@ -356,7 +356,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateTopicBySubjectLocator_UsingInvalidSubjectLocatorThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
 
             Assert.Throws<ModelConstraintException>("Using null as a subject locator for creating a nwe topic is not allowed.", () => topicMap.CreateTopicBySubjectLocator(null));
         }
@@ -364,7 +364,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateTopicByItemIdentifier()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var itemIdentifier = topicMap.CreateLocator("http://www.example.org");
 
             Assert.Empty(topicMap.Topics);
@@ -385,7 +385,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateTopicByItemIdentifier_UsingInvalidItemIdentifierThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
 
             Assert.Throws<ModelConstraintException>("Using null as a item identifier for creating a nwe topic is not allowed.", () => topicMap.CreateTopicByItemIdentifier(null));
         }
@@ -393,7 +393,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateTopic_CreateTopicWithAutomaticAssigendItemIdentifier()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
 
             Assert.Empty(topicMap.Topics);
 
@@ -409,7 +409,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void GetTopicBySubjectIdentifier()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var subjectIdentifier = topicMap.CreateLocator("http://www.example.org");
             var topic1 = topicMap.GetTopicBySubjectIdentifier(subjectIdentifier);
 
@@ -430,7 +430,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void GetTopicBySubjectLocator()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var subjectLocator = topicMap.CreateLocator("http://www.example.org");
             var topic1 = topicMap.GetTopicBySubjectLocator(subjectLocator);
 
@@ -451,7 +451,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateAssociation_CreateAssociationWithType()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var type = topicMap.CreateTopic();
 
             Assert.Empty(topicMap.Associations);
@@ -468,7 +468,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateAssociation_CreateAssociationWithTypeScopeCollection()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var type = topicMap.CreateTopic();
             var theme = topicMap.CreateTopic();
 
@@ -487,7 +487,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateAssociation_CreateAssociationWithTypeScopeArray()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var type = topicMap.CreateTopic();
             var theme1 = topicMap.CreateTopic();
             var theme2 = topicMap.CreateTopic();
@@ -508,7 +508,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateAssociation_UsingInvalidTypeScopeArrayThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
 
             Assert.Throws<ModelConstraintException>("Using null as association type is not allowed.", () => topicMap.CreateAssociation(null));
         }
@@ -516,7 +516,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateAssociation_UsingInvalidTypeScopeCollectionThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
 
             Assert.Throws<ModelConstraintException>("Using null as association type is not allowed.", () => topicMap.CreateAssociation(null, new List<ITopic> { topicMap.CreateTopic() }));
         }
@@ -524,7 +524,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateAssociation_UsingTypeInvalidScopeArrayThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
 
             Assert.Throws<ModelConstraintException>("Using null as association type is not allowed.", () => topicMap.CreateAssociation(null, null));
         }
@@ -532,7 +532,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateAssociation_UsingTypeInvalidScopeCollectionThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
 
             Assert.Throws<ModelConstraintException>("Using null as association type is not allowed.", () => topicMap.CreateAssociation(null, (IList<ITopic>)null));
         }
@@ -540,7 +540,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void GetIndex_UsingInvalidIndexClassThrowsException()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
 
             //  TODO:   hier noch einen spezielleren exception-typ verwenden?
             //          IndexNotSupportedException

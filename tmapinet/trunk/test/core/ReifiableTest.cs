@@ -1,4 +1,4 @@
-﻿using TMAPI.Net.Core;
+using TMAPI.Net.Core;
 using Xunit;
 
 namespace TMAPI.Net.Tests.Core
@@ -81,21 +81,21 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestTopicMap()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             TestReification(topicMap);
         }
 
         [Fact]
         public void TestTopicMapReifierCollosion()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             TestReificationCollosion(topicMap);
         }
 
         [Fact]
         public void TestAssociation()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
             TestReification(association);
@@ -104,7 +104,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestAssociationReifierCollosion()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
             TestReificationCollosion(association);
@@ -113,7 +113,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestRole()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
             var role = association.CreateRole(topicMap.CreateTopic(), topicMap.CreateTopic());
 
@@ -123,7 +123,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestRoleReifierCollosion()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
             var role = association.CreateRole(topicMap.CreateTopic(), topicMap.CreateTopic());
 
@@ -133,7 +133,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestOccurrence()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var occurrence = topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence");
 
@@ -143,7 +143,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestOccurrenceReifierCollosion()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var occurrence = topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence");
 
@@ -153,7 +153,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestName()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var name = topic.CreateName("Name");
 
@@ -163,7 +163,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestNameReifierCollosion()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var name = topic.CreateName("Name");
 
@@ -173,7 +173,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestVariant()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var name = topic.CreateName("Name");
             var variant = name.CreateVariant("Variant", topicMap.CreateTopic());
@@ -184,7 +184,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestVariantReifierCollosion()
         {
-            var topicMap = _system.CreateTopicMap(TestTM1);
+            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var name = topic.CreateName("Name");
             var variant = name.CreateVariant("Variant", topicMap.CreateTopic());
