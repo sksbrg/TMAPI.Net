@@ -63,14 +63,14 @@ namespace TMAPI.Net.Index
 
 		/// <summary>
 		///     Returns the <see cref="T:TMAPI.Net.Core.IOccurrence"/>s in the topic map 
-		///     whose value property matches <paramref name="value"/> and whose datatye is <paramref name="datatype"/>. 
+		///     whose value property matches <paramref name="value"/> and whose <c>datatype</c> is <paramref name="datatype"/>. 
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
 		/// <param name="value">
 		///     The value of the <see cref="T:TMAPI.Net.Core.IOccurrence"/>s to be returned.
 		/// </param>
 		/// <param name="datatype">
-		///     The datatype of the <see cref="T:TMAPI.Net.Core.IOccurrence"/>s to be returned.
+		///     The <c>datatype</c> of the <see cref="T:TMAPI.Net.Core.IOccurrence"/>s to be returned.
 		/// </param>
 		/// <returns>
 		///     An unmodifiable collection of <see cref="T:TMAPI.Net.Core.IOccurrence"/>s.
@@ -82,8 +82,8 @@ namespace TMAPI.Net.Index
 
 		/// <summary>
 		///     Returns the <see cref="T:TMAPI.Net.Core.IVariant"/>s in the topic map whose 
-		///     value property matches <paramref name="value"/> and whose datatype property is 
-		///     <a href="http://www.w3.org/TR/xmlschema-2/#string">xsd:string</a>.
+		///     value property matches <paramref name="value"/> and whose <c>datatype</c> property is 
+		///     <a href="http://www.w3.org/TR/xmlschema-2/#string"><c>xsd:string</c></a>.
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
 		/// <param name="value">
@@ -100,8 +100,8 @@ namespace TMAPI.Net.Index
 		/// <summary>
 		///     Returns the <see cref="T:TMAPI.Net.Core.IVariant"/>s in the topic map whose 
 		///     value property matches the IRI represented by <paramref name="value"/>. 
-		///     Those <see cref="T:TMAPI.Net.Core.IVariant"/>s which have a datatype equal to 
-		///     <a href="http://www.w3.org/TR/xmlschema-2/#anyURI">xsd:anyURI</a> and their 
+		///     Those <see cref="T:TMAPI.Net.Core.IVariant"/>s which have a <c>datatype</c> equal to 
+		///     <a href="http://www.w3.org/TR/xmlschema-2/#anyURI"><c>xsd:anyURI</c></a> and their 
 		///     value property is equal to <see cref="P:TMAPI.Net.Core.ILocator.Reference"/> are returned. 
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
@@ -118,14 +118,14 @@ namespace TMAPI.Net.Index
 
 		/// <summary>
 		///     Returns the <see cref="T:TMAPI.Net.Core.IVariant"/>s in the topic map 
-		///     whose value property matches <paramref name="value"/> and whose datatye is <paramref name="datatype"/>. 
+		///     whose value property matches <paramref name="value"/> and whose <c>datatype</c> is <paramref name="datatype"/>. 
 		///     The return value may be empty but must never be <c>null</c>.
 		/// </summary>
 		/// <param name="value">
 		///     The value of the <see cref="T:TMAPI.Net.Core.IVariant"/>s to be returned.
 		/// </param>
 		/// <param name="datatype">
-		///     The datatype of the <see cref="T:TMAPI.Net.Core.IVariant"/>s to be returned.
+		///     The <c>datatype</c> of the <see cref="T:TMAPI.Net.Core.IVariant"/>s to be returned.
 		/// </param>
 		/// <returns>
 		///     An unmodifiable collection of <see cref="T:TMAPI.Net.Core.IVariant"/>s.
