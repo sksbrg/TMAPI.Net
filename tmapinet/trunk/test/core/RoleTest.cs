@@ -9,6 +9,28 @@ namespace TMAPI.Net.Tests.Core
         public static readonly string TestTM1 = "mem://localhost/testm1";
         #endregion
 
+		[Fact]
+		public void TestRoleTypeChanged()
+		{
+			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+			var association = topicMap.CreateAssociation(topicMap.CreateTopic());
+			
+			var initialType = topicMap.CreateTopic();
+			var modifiedType = topicMap.CreateTopic();
+
+			var role = association.CreateRole(initialType, topicMap.CreateTopic());
+
+			Assert.Equal(initialType, role.Type);
+			Assert.Contains(initialType, association.RoleTypes);
+			Assert.DoesNotContain(modifiedType, association.RoleTypes);
+
+			role.Type = modifiedType;
+
+			Assert.Equal(modifiedType, role.Type);
+			Assert.Contains(modifiedType, association.RoleTypes);
+			Assert.DoesNotContain(initialType, association.RoleTypes);
+		}
+
         #region Tests
         [Fact]
         public void TestRoleParentRelationship()
