@@ -54,7 +54,7 @@ namespace TMAPI.Net.Tests.Index
 
             Assert.Equal(1, index.TopicTypes.Count);
             Assert.True(index.TopicTypes.Contains(type1));
-            Assert.Equal(5, index.GetTopics(null).Count);
+            Assert.Equal(2, index.GetTopics(null).Count);
             Assert.False(index.GetTopics(null).Contains(topic));
             Assert.True(index.GetTopics(null).Contains(type1));
             Assert.True(index.GetTopics(null).Contains(type2));
@@ -71,7 +71,7 @@ namespace TMAPI.Net.Tests.Index
             Assert.Equal(2, index.TopicTypes.Count);
             Assert.True(index.TopicTypes.Contains(type1));
             Assert.True(index.TopicTypes.Contains(type2));
-            Assert.Equal(5, index.GetTopics(null).Count);
+            Assert.Equal(2, index.GetTopics(null).Count);
             Assert.False(index.GetTopics(null).Contains(topic));
             Assert.True(index.GetTopics(null).Contains(type1));
             Assert.True(index.GetTopics(null).Contains(type2));
@@ -88,7 +88,7 @@ namespace TMAPI.Net.Tests.Index
             UpdateIndex(index);
 
             Assert.Empty(index.TopicTypes);
-            Assert.Equal(5, index.GetTopics(null).Count);
+            Assert.Equal(2, index.GetTopics(null).Count);
             Assert.True(index.GetTopics(null).Contains(type1));
             Assert.True(index.GetTopics(null).Contains(type2));
             Assert.Empty(index.GetTopics(type1));
