@@ -38,13 +38,19 @@ namespace TMAPI.Net.Tests.Core
             
             Assert.Contains(itemIdentifier, construct.ItemIdentifiers);
             Assert.Equal(construct, topicMap.GetConstructByItemIdentifier(itemIdentifier));
+			
+			if (!(construct is ITopic))
+			{
+				Assert.Throws<IdentityConstraintException>(() => topicMap.CreateTopicByItemIdentifier(itemIdentifier));
+				Assert.Throws<IdentityConstraintException>(() => topicMap.CreateTopic().AddItemIdentifier(itemIdentifier));
+			}
 
             construct.RemoveItemIdentifier(itemIdentifier);
 
             Assert.DoesNotContain(itemIdentifier, construct.ItemIdentifiers);
             Assert.Null(topicMap.GetConstructByItemIdentifier(itemIdentifier));
             Assert.Throws<ModelConstraintException>("Using null as item identifier is not allowed.", () => construct.AddItemIdentifier(null));
-
+			
 			Assert.Equal(construct, topicMap.GetConstructById(construct.Id));
 		}
 
@@ -141,6 +147,6 @@ namespace TMAPI.Net.Tests.Core
             Assert.NotNull(variant.Parent);
             Assert.Equal(topicMap, variant.TopicMap);
         }
-        #endregion
+    	#endregion
     }
 }
