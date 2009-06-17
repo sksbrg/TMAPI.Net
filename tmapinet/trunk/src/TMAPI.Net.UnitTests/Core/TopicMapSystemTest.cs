@@ -1,11 +1,6 @@
 ﻿using Xunit;
 using TMAPI.Net.Core;
-
-#if XUNIT_1_1
 using Xunit.Extensions;
-#else
-using XunitExt;
-#endif
 
 namespace TMAPI.Net.Tests.Core
 {
