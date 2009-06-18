@@ -62,6 +62,9 @@ namespace TMAPI.Net.Core
         /// <returns>
         /// The newly created <see cref="T:TMAPI.Net.Core.ITopicMap"/> instance.
         /// </returns>
+        /// <exception cref="TopicMapExistsException">
+        /// If this <see cref="ITopicMapSystem"/> already manages a <see cref="ITopicMap"/> under the specified IRI.
+        /// </exception>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming",
                 "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "iri",
                 Justification = "Means the Internationalized Resource Identifier (IRI)")]
