@@ -517,7 +517,7 @@ namespace TMAPI.Net.Core
         /// Removes a subject identifier from this topic.
         /// </summary>
         /// <param name="subjectIdentifier">
-        /// The subject identifier t be removed.
+        /// The subject identifier to be removed.
         /// </param>
         void RemoveSubjectIdentifier(ILocator subjectIdentifier);
 
