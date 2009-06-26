@@ -113,7 +113,7 @@ namespace TMAPI.Net.Index
         /// </summary>
         /// <param name="theme">
         /// <see cref="T:TMAPI.Net.Core.ITopic"/>which must be part of the scope. 
-        /// f it is <c>null</c> all <see cref="T:TMAPI.Net.Core.IName"/>s in the 
+        /// If it is <c>null</c> all <see cref="T:TMAPI.Net.Core.IName"/>s in the 
         /// unconstrained scope are returned.
         /// </param>
         /// <returns>
