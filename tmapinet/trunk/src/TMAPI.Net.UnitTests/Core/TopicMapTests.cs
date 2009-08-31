@@ -261,7 +261,7 @@ namespace TMAPI.Net.Tests.Core
         public void ItemIdentifiers_TestForReadOnlyCollection()
         {
             var tm = topicMapSystem.CreateTopicMap(TestTM1);
-            Assert.IsType<ReadOnlyCollection<ILocator>>(tm.ItemIdentifiers);
+            Assert.IsAssignableFrom<ReadOnlyCollection<ILocator>>(tm.ItemIdentifiers);
         }
 
         [Fact]
