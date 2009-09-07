@@ -1,8 +1,7 @@
 namespace TMAPI.Net.Index
 {
     using System.Collections.ObjectModel;
-
-    using TMAPI.Net.Core;
+    using Core;
 
     /// <summary>
     /// Index for <see cref="T:TMAPI.Net.Core.IScoped"/> statements and their scope. 
