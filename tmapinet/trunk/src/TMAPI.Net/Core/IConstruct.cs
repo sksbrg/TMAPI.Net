@@ -56,7 +56,7 @@ namespace TMAPI.Net.Core
         /// A <see cref="T:TMAPI.Net.Core.ITopicMap"/> instance returns itself. 
         /// </summary>
         /// <returns>
-        /// The <see cref="T:TMAPI.Net.Core.ITopicMap"/> instance to which this constructs belongs.
+        /// The <see cref="T:TMAPI.Net.Core.ITopicMap"/> instance to which this construct belongs.
         /// </returns>
         ITopicMap TopicMap
         {
