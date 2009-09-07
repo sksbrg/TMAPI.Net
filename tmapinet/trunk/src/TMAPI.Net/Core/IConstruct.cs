@@ -122,7 +122,7 @@ namespace TMAPI.Net.Core
         /// Removes an item identifier.
         /// </summary>
         /// <param name="itemIdentifier">
-        /// The item identifier to be removed.
+        ///  The item identifier to be removed from this construct, if present (<c>null</c> is ignored).
         /// </param>
         void RemoveItemIdentifier(ILocator itemIdentifier);
 
