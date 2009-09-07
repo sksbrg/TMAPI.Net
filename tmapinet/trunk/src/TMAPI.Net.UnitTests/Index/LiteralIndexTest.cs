@@ -1,10 +1,10 @@
-using System;
-using TMAPI.Net.Core;
-using TMAPI.Net.Index;
-using Xunit;
-
-namespace TMAPI.Net.Tests.Index
+namespace TMAPI.Net.UnitTests.Index
 {
+    using System;
+    using Net.Core;
+    using Net.Index;
+    using Xunit;
+
     public class LiteralIndexTest : TMAPITestCase
     {
         #region Static Constants
@@ -16,8 +16,8 @@ namespace TMAPI.Net.Tests.Index
         #region Constructor
         public LiteralIndexTest()
         {
-            _xsdString = topicMapSystem.CreateLocator("http://www.w3.org/2001/XMLSchema#string");
-            _xsdAnyURI = topicMapSystem.CreateLocator("http://www.w3.org/2001/XMLSchema#anyURI");
+            _xsdString = TopicMapSystem.CreateLocator("http://www.w3.org/2001/XMLSchema#string");
+            _xsdAnyURI = TopicMapSystem.CreateLocator("http://www.w3.org/2001/XMLSchema#anyURI");
         }
         #endregion
 
@@ -33,7 +33,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void GetNames()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
             var value1 = "Value1";
             var value2 = "Value2";
@@ -66,7 +66,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void GetNames_UsingInvalidStringThrowsException()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
 
             Assert.Throws<ArgumentNullException>("Using null as string value is not allowed.", () => index.GetNames(null));
@@ -75,7 +75,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void GetOccurrences_String()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
             var value1 = "Value1";
             var value2 = "Value2";
@@ -117,7 +117,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void GetOccurrences_URI()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
             var value1 = topicMap.CreateLocator("http://www.example.org/1");
             var value2 = topicMap.CreateLocator("http://www.example.org/2");
@@ -159,7 +159,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void GetOccurrences_URIExplicitDatatype()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
             var value1 = "http://www.example.org/1";
             var value2 = "http://www.example.org/2";
@@ -198,7 +198,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void GetOccurrences_UsingInvalidStringThrowsException()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
 
             Assert.Throws<ArgumentNullException>("Using null as string value is not allowed.", () => index.GetOccurrences((string)null));
@@ -207,7 +207,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void GetOccurrences_UsingInvalidURIThrowsException()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
 
             Assert.Throws<ArgumentNullException>("Using null as locator is not allowed.", () => index.GetOccurrences((ILocator)null));
@@ -216,7 +216,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void GetOccurrences_UsingInvalidDatatypeThrowsException()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
 
             Assert.Throws<ArgumentNullException>("Using null as datatype is not allowed.", () => index.GetOccurrences("Value", null));
@@ -225,7 +225,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void GetVariants_String()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
             var value1 = "Value1";
             var value2 = "Value2";
@@ -267,7 +267,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void GetVariants_URI()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
             var value1 = topicMap.CreateLocator("http://www.example.org/1");
             var value2 = topicMap.CreateLocator("http://www.example.org/2");
@@ -309,7 +309,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void GetVariants_URIExplicitDatatype()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
             var value1 = "http://www.example.org/1";
             var value2 = "http://www.example.org/2";
@@ -348,7 +348,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void GetVariants_UsingInvalidStringThrowsException()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
 
             Assert.Throws<ArgumentNullException>("Using null as string value is not allowed.", () => index.GetVariants((string)null));
@@ -357,7 +357,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void GetVariants_UsingInvalidURIThrowsException()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
 
             Assert.Throws<ArgumentNullException>("Using null as locator value is not allowed.", () => index.GetVariants((ILocator)null));
@@ -366,7 +366,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void GetVariants_UsingInvalidDatatypeThrowsException()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
 
             Assert.Throws<ArgumentNullException>("Using null as datatype is not allowed.", () => index.GetVariants("Value", null));

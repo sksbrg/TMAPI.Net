@@ -1,4 +1,4 @@
-namespace TMAPI.Net.Tests
+namespace TMAPI.Net.UnitTests
 {
     using System;
     using Net.Core;
@@ -7,7 +7,7 @@ namespace TMAPI.Net.Tests
     /// Base super class for all tests.
     /// </summary>
     /// <remarks>
-    /// It will initialize a new <see cref="TopicMapSystemFactory"/> and a <see cref="ITopicMapSystem"/>.
+    /// It will initialize a new <see cref="Net.Core.TopicMapSystemFactory"/> and a <see cref="ITopicMapSystem"/>.
     /// </remarks>
     public class TMAPITestCase : IDisposable
     {
@@ -21,12 +21,12 @@ namespace TMAPI.Net.Tests
         /// <summary>
         /// Represents the current topic map system instance for the test case.
         /// </summary>
-        protected readonly ITopicMapSystem topicMapSystem;
+        protected readonly ITopicMapSystem TopicMapSystem;
 
         /// <summary>
         /// Represents the current topic map system factory.
         /// </summary>
-        protected readonly TopicMapSystemFactory topicMapSystemFactory;
+        protected readonly TopicMapSystemFactory TopicMapSystemFactory;
 
         #endregion
 
@@ -37,10 +37,10 @@ namespace TMAPI.Net.Tests
         /// </summary>
         protected TMAPITestCase()
         {
-            topicMapSystemFactory = NewTopicMapSystemFactoryInstance();
-            topicMapSystem = topicMapSystemFactory.NewTopicMapSystem();
+            TopicMapSystemFactory = NewTopicMapSystemFactoryInstance();
+            TopicMapSystem = TopicMapSystemFactory.NewTopicMapSystem();
 
-            TopicMap = topicMapSystem.CreateTopicMap(DefaultAddress);
+            TopicMap = TopicMapSystem.CreateTopicMap(DefaultAddress);
         }
 
         #endregion
@@ -57,11 +57,11 @@ namespace TMAPI.Net.Tests
         #region Methods
 
         /// <summary>
-        /// Returns a new instance of <see cref="TopicMapSystemFactory"/>.
+        /// Returns a new instance of <see cref="Net.Core.TopicMapSystemFactory"/>.
         /// </summary>
         /// <remarks>
-        /// Tries to find an implementation (subclass) of <see cref="TopicMapSystemFactory"/> 
-        /// and will invoke the <see cref="TopicMapSystemFactory.NewInstance"/> method.
+        /// Tries to find an implementation (subclass) of <see cref="Net.Core.TopicMapSystemFactory"/> 
+        /// and will invoke the <see cref="Net.Core.TopicMapSystemFactory.NewInstance"/> method.
         /// </remarks>
         /// <returns>A new instance of TopicMapSystemFactory.</returns>
         public static TopicMapSystemFactory NewTopicMapSystemFactoryInstance()
@@ -77,9 +77,9 @@ namespace TMAPI.Net.Tests
         /// </summary>
         public void Dispose()
         {
-            foreach (var locator in topicMapSystem.Locators)
+            foreach (var locator in TopicMapSystem.Locators)
             {
-                var topicMap = topicMapSystem.GetTopicMap(locator);
+                var topicMap = TopicMapSystem.GetTopicMap(locator);
 
                 topicMap.Remove();
             }

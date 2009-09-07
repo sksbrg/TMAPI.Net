@@ -1,11 +1,11 @@
-using TMAPI.Net.Index;
-using Xunit;
-
-namespace TMAPI.Net.Tests.Index
+namespace TMAPI.Net.UnitTests.Index
 {
+    using Net.Index;
+    using Xunit;
+
     public class TypeInstanceIndexTest : TMAPITestCase
     {
-		#region Static Constants
+        #region Static Constants
         public static readonly string TestTM1 = "mem://localhost/testm1";
         #endregion
 
@@ -21,7 +21,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void TestTopic()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ITypeInstanceIndex)topicMap.GetIndex<ITypeInstanceIndex>();
 
             index.Open();
@@ -100,7 +100,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void TestAssociation()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ITypeInstanceIndex)topicMap.GetIndex<ITypeInstanceIndex>();
             var type = topicMap.CreateTopic();
 
@@ -142,7 +142,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void TestRole()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ITypeInstanceIndex)topicMap.GetIndex<ITypeInstanceIndex>();
             var type = topicMap.CreateTopic();
 
@@ -196,7 +196,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void TestOccurrence()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ITypeInstanceIndex)topicMap.GetIndex<ITypeInstanceIndex>();
             var type = topicMap.CreateTopic();
 
@@ -240,7 +240,7 @@ namespace TMAPI.Net.Tests.Index
         [Fact]
         public void TestName()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var index = (ITypeInstanceIndex)topicMap.GetIndex<ITypeInstanceIndex>();
             var type = topicMap.CreateTopic();
 

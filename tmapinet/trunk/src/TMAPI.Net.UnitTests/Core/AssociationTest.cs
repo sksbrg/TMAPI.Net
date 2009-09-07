@@ -1,9 +1,9 @@
-using System;
-using TMAPI.Net.Core;
-using Xunit;
-
-namespace TMAPI.Net.Tests.Core
+namespace TMAPI.Net.UnitTests.Core
 {
+    using System;
+    using Net.Core;
+    using Xunit;
+
     public class AssociationTest : TMAPITestCase
     {
         #region Static Constants
@@ -14,7 +14,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestAssociationParentRelationship()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
 
             Assert.Empty(topicMap.Associations);
 
@@ -32,7 +32,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateRole_TestRoleTypeAndPlayer()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
             var roleType = topicMap.CreateTopic();
             var player = topicMap.CreateTopic();
@@ -51,7 +51,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateRole_UsingInvalidPlayerThrowsException()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
             Assert.Throws<ModelConstraintException>("Using null as role player is not allowed.", () => association.CreateRole(topicMap.CreateTopic(), null));
@@ -60,7 +60,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void CreateRole_UsingInvalidTypeThrowsException()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
             Assert.Throws<ModelConstraintException>("Using null as role type is not allowed.", () => association.CreateRole(null, topicMap.CreateTopic()));
@@ -69,7 +69,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void RoleTypes_TestDifferentRoleTypes()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
             var type1 = topicMap.CreateTopic();
             var type2 = topicMap.CreateTopic();
@@ -113,63 +113,63 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void GetRoles_TestRoleFilter()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
             var type1 = topicMap.CreateTopic();
             var type2 = topicMap.CreateTopic();
             var unusedType = topicMap.CreateTopic();
 
-			Assert.Empty(association.GetRolesByTopicType(type1));
-			Assert.Empty(association.GetRolesByTopicType(type2));
-			Assert.Empty(association.GetRolesByTopicType(unusedType));
+            Assert.Empty(association.GetRolesByTopicType(type1));
+            Assert.Empty(association.GetRolesByTopicType(type2));
+            Assert.Empty(association.GetRolesByTopicType(unusedType));
 
             var role1 = association.CreateRole(type1, topicMap.CreateTopic());
 
-			Assert.Equal(1, association.GetRolesByTopicType(type1).Count);
-			Assert.True(association.GetRolesByTopicType(type1).Contains(role1));
-			Assert.Empty(association.GetRolesByTopicType(type2));
-			Assert.Empty(association.GetRolesByTopicType(unusedType));
+            Assert.Equal(1, association.GetRolesByTopicType(type1).Count);
+            Assert.True(association.GetRolesByTopicType(type1).Contains(role1));
+            Assert.Empty(association.GetRolesByTopicType(type2));
+            Assert.Empty(association.GetRolesByTopicType(unusedType));
 
             var role2 = association.CreateRole(type2, topicMap.CreateTopic());
 
-			Assert.Equal(1, association.GetRolesByTopicType(type2).Count);
-			Assert.True(association.GetRolesByTopicType(type2).Contains(role2));
+            Assert.Equal(1, association.GetRolesByTopicType(type2).Count);
+            Assert.True(association.GetRolesByTopicType(type2).Contains(role2));
 
             var role3 = association.CreateRole(type2, topicMap.CreateTopic());
 
-			Assert.Equal(2, association.GetRolesByTopicType(type2).Count);
-			Assert.True(association.GetRolesByTopicType(type2).Contains(role2));
-			Assert.True(association.GetRolesByTopicType(type2).Contains(role3));
-			Assert.Empty(association.GetRolesByTopicType(unusedType));
+            Assert.Equal(2, association.GetRolesByTopicType(type2).Count);
+            Assert.True(association.GetRolesByTopicType(type2).Contains(role2));
+            Assert.True(association.GetRolesByTopicType(type2).Contains(role3));
+            Assert.Empty(association.GetRolesByTopicType(unusedType));
 
             role3.Remove();
 
-			Assert.Equal(1, association.GetRolesByTopicType(type2).Count);
-			Assert.True(association.GetRolesByTopicType(type2).Contains(role2));
+            Assert.Equal(1, association.GetRolesByTopicType(type2).Count);
+            Assert.True(association.GetRolesByTopicType(type2).Contains(role2));
 
             role2.Remove();
 
-			Assert.Empty(association.GetRolesByTopicType(type2));
+            Assert.Empty(association.GetRolesByTopicType(type2));
 
             role1.Remove();
 
-			Assert.Empty(association.GetRolesByTopicType(type1));
+            Assert.Empty(association.GetRolesByTopicType(type1));
             Assert.Empty(association.GetRolesByTopicType(unusedType));
         }
 
         [Fact]
         public void GetRoles_UsingInvalidTypeThrowsException()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
-			Assert.Throws<ArgumentNullException>("Using null as role type is not allowed.", () => association.GetRolesByTopicType(null));
+            Assert.Throws<ArgumentNullException>("Using null as role type is not allowed.", () => association.GetRolesByTopicType(null));
         }
 
         [Fact]
         public void GetRoles_TwoRolesTest()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var type = topicMap.CreateTopic();
             
             var player1 = topicMap.CreateTopic();

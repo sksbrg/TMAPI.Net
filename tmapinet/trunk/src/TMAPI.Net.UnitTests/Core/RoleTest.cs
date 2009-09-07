@@ -1,41 +1,41 @@
-using TMAPI.Net.Core;
-using Xunit;
-
-namespace TMAPI.Net.Tests.Core
+namespace TMAPI.Net.UnitTests.Core
 {
+    using Net.Core;
+    using Xunit;
+
     public class RoleTest : TMAPITestCase
     {
         #region Static Constants
         public static readonly string TestTM1 = "mem://localhost/testm1";
         #endregion
 
-		[Fact]
-		public void TestRoleTypeChanged()
-		{
-			var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
-			var association = topicMap.CreateAssociation(topicMap.CreateTopic());
+        [Fact]
+        public void TestRoleTypeChanged()
+        {
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
+            var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 			
-			var initialType = topicMap.CreateTopic();
-			var modifiedType = topicMap.CreateTopic();
+            var initialType = topicMap.CreateTopic();
+            var modifiedType = topicMap.CreateTopic();
 
-			var role = association.CreateRole(initialType, topicMap.CreateTopic());
+            var role = association.CreateRole(initialType, topicMap.CreateTopic());
 
-			Assert.Equal(initialType, role.Type);
-			Assert.Contains(initialType, association.RoleTypes);
-			Assert.DoesNotContain(modifiedType, association.RoleTypes);
+            Assert.Equal(initialType, role.Type);
+            Assert.Contains(initialType, association.RoleTypes);
+            Assert.DoesNotContain(modifiedType, association.RoleTypes);
 
-			role.Type = modifiedType;
+            role.Type = modifiedType;
 
-			Assert.Equal(modifiedType, role.Type);
-			Assert.Contains(modifiedType, association.RoleTypes);
-			Assert.DoesNotContain(initialType, association.RoleTypes);
-		}
+            Assert.Equal(modifiedType, role.Type);
+            Assert.Contains(modifiedType, association.RoleTypes);
+            Assert.DoesNotContain(initialType, association.RoleTypes);
+        }
 
         #region Tests
         [Fact]
         public void TestRoleParentRelationship()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var parent = topicMap.CreateAssociation(topicMap.CreateTopic());
 
             Assert.Empty(parent.Roles);
@@ -54,7 +54,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Player_GetAndSetRolePlayer()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
             Assert.Empty(association.Roles);
@@ -83,7 +83,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Player_UsingInvalidPlayerThrowsException()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
             var role = association.CreateRole(topicMap.CreateTopic(), topicMap.CreateTopic());
 

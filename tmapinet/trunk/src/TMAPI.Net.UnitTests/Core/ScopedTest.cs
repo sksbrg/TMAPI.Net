@@ -1,8 +1,8 @@
-using TMAPI.Net.Core;
-using Xunit;
-
-namespace TMAPI.Net.Tests.Core
+namespace TMAPI.Net.UnitTests.Core
 {
+    using Net.Core;
+    using Xunit;
+
     public class ScopedTest : TMAPITestCase
     {
         #region Tests
