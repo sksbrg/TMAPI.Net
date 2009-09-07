@@ -742,12 +742,12 @@ namespace TMAPI.Net.UnitTests.Core
         }
 
         [Fact]
-        public void CreateName_UsingInvalidScopeCollectionDoesNotThrowException()
+        public void CreateName_UsingInvalidScopeCollectionThrowsException()
         {
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.DoesNotThrow(() => topic.CreateName(topicMap.CreateTopic(), "Name", (IList<ITopic>)null));
+            Assert.Throws<ModelConstraintException>("Using null for scope collection is not allowed.", () => topic.CreateName(topicMap.CreateTopic(), "Name", (IList<ITopic>)null));
         }
 
         [Fact]
@@ -769,12 +769,12 @@ namespace TMAPI.Net.UnitTests.Core
         }
 
         [Fact]
-        public void CreateName_UsingInvalidScopeCollectionWithDefaultTypeDoesNotThrowException()
+        public void CreateName_UsingInvalidScopeCollectionWithDefaultTypeThrowsException()
         {
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.DoesNotThrow(() => topic.CreateName("Name", (IList<ITopic>)null));
+            Assert.Throws<ModelConstraintException>("Using null for scope collection is not allowed.", () => topic.CreateName("Name", (IList<ITopic>)null));
         }
 
         [Fact]
