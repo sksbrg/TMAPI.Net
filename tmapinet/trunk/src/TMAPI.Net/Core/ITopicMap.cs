@@ -108,6 +108,9 @@ namespace TMAPI.Net.Core
         /// <returns>
         /// A <see cref="T:TMAPI.Net.Core.ILocator"/> representing the IRI <paramref name="reference"/>.
         /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="reference"/> is <c>null</c>.
+        /// </exception>
         ILocator CreateLocator(string reference);
 
         /// <summary>
@@ -251,7 +254,7 @@ namespace TMAPI.Net.Core
         /// <a href="http://www.isotopicmaps.org/sam/sam-model/#d0e1862">Topic Maps - Data Model (TMDM) merging rules</a>.
         /// </summary>
         /// <param name="other">
-        /// The topic map to be merged with this topic map instance.
+        /// The topic map to be merged with this topic map instance, must not be <c>null</c>.
         /// </param>
         /// <remarks>
         /// <para>
@@ -261,6 +264,9 @@ namespace TMAPI.Net.Core
         /// If <tt>this.Equals(other)</tt> no changes are made to the topic map.
         /// </para>
         /// </remarks>
+        /// <exception cref="ModelConstraintException">
+        /// If <paramref name="other"/> is <c>null</c>.
+        /// </exception>
         void MergeIn(ITopicMap other);
 
         #endregion
