@@ -116,6 +116,9 @@ namespace TMAPI.Net.Core
         /// <summary>
         /// Deletes this construct from its parent container.
         /// </summary>
+        /// <remarks>
+        /// After invocation of this method, the construct is in an undefined state and must not be used further.
+        /// </remarks>
         void Remove();
 
         /// <summary>
