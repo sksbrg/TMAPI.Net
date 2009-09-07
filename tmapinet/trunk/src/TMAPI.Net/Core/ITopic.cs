@@ -499,7 +499,12 @@ namespace TMAPI.Net.Core
         /// The topic to be merged into this topic.
         /// </param>
         /// <remarks>
+        /// <para>
         /// The other topic MUST belong to the same <see cref="T:TMAPI.Net.Core.ITopicMap"/> instance as this topic!
+        /// </para>
+        /// <para>
+        /// If <tt>this.Equals(other)</tt> no changes are made to the topic.
+        /// </para>
         /// </remarks>
         void MergeIn(ITopic other);
 
