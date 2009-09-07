@@ -3,8 +3,7 @@ namespace TMAPI.Net.Core
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-
-    using TMAPI.Net.Index;
+    using Index;
 
     /// <summary>
     /// Represents a 
