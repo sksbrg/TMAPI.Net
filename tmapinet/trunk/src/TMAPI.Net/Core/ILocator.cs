@@ -62,6 +62,9 @@ namespace TMAPI.Net.Core
         /// <returns>
         /// A locator representing an absolute IRI.
         /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// If the <paramref name="reference"/> is <c>null</c>.
+        /// </exception>
         ILocator Resolve(string reference);
 
         #endregion
