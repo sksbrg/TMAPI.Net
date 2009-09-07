@@ -251,7 +251,7 @@ namespace TMAPI.Net.Core
         /// All <see cref="T:TMAPI.Net.Core.ITopic"/>s and <see cref="T:TMAPI.Net.Core.IAssociation"/>s and all of 
         /// their contents in <paramref name="other"/> will be added to this topic map.
         /// All information items in <paramref name="other"/> will be merged into this topic map as defined by the 
-        /// <a href="http://www.isotopicmaps.org/sam/sam-model/#d0e1862">Topic Maps - Data Model (TMDM) merging rules</a>.
+        /// <a href="http://www.isotopicmaps.org/sam/sam-model/#sect-merging">Topic Maps - Data Model (TMDM) merging rules</a>.
         /// </summary>
         /// <param name="other">
         /// The topic map to be merged with this topic map instance, must not be <c>null</c>.
