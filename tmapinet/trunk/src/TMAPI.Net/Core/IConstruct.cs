@@ -12,6 +12,10 @@ namespace TMAPI.Net.Core
         /// <summary>
         /// Gets the identifier of this construct.
         /// This property has no representation in the Topic Maps - Data Model.
+        /// <para>
+        /// The ID can be anything, so long as no other <see cref="T:TMAPI.Net.Core.IConstruct"/> 
+        /// in the same topic map has the same ID.
+        /// </para>
         /// </summary>
         /// <returns>
         /// An identifier which identifies this construct uniquely within a topic map.
