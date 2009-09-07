@@ -496,7 +496,7 @@ namespace TMAPI.Net.Core
         /// After this method completes, <paramref name="other"/> will have been removed from the <see cref="T:TMAPI.Net.Core.ITopicMap"/>.
         /// </summary>
         /// <param name="other">
-        /// The topic to be merged into this topic.
+        /// The topic to be merged into this topic, must not be <c>null</c>.
         /// </param>
         /// <remarks>
         /// <para>
@@ -506,6 +506,9 @@ namespace TMAPI.Net.Core
         /// If <tt>this.Equals(other)</tt> no changes are made to the topic.
         /// </para>
         /// </remarks>
+        /// <exception cref="ModelConstraintException">
+        /// If <paramref name="other"/> is <c>null</c>.
+        /// </exception>
         void MergeIn(ITopic other);
 
         /// <summary>
@@ -522,7 +525,7 @@ namespace TMAPI.Net.Core
         /// Removes a subject identifier from this topic.
         /// </summary>
         /// <param name="subjectIdentifier">
-        /// The subject identifier to be removed.
+        ///  The subject identifier to be removed from this topic, if present (<c>null</c> is ignored).
         /// </param>
         void RemoveSubjectIdentifier(ILocator subjectIdentifier);
 
@@ -530,7 +533,7 @@ namespace TMAPI.Net.Core
         /// Removes a subject locator from this topic.
         /// </summary>
         /// <param name="subjectLocator">
-        /// The subject locator to be removed.
+        /// The subject locator to be removed from this topic, if present (<c>null</c> is ignored).
         /// </param>
         void RemoveSubjectLocator(ILocator subjectLocator);
 
@@ -538,7 +541,7 @@ namespace TMAPI.Net.Core
         /// Removes a type from this topic.
         /// </summary>
         /// <param name="type">
-        /// The type to remove.
+        /// The type to be removed from this topic, if present (<c>null</c> is ignored).
         /// </param>
         void RemoveType(ITopic type);
 
