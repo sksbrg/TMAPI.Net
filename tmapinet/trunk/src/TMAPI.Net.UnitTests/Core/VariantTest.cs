@@ -1,7 +1,7 @@
-using Xunit;
-
-namespace TMAPI.Net.Tests.Core
+namespace TMAPI.Net.UnitTests.Core
 {
+    using Xunit;
+
     public class VariantTest : TMAPITestCase
     {
         #region Static Constants
@@ -12,7 +12,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestVariantParentRelationship()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var parent = topic.CreateName("Name");
 
@@ -32,7 +32,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void Scope_VariantScopeContainsNameScope()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
             var nameTheme1 = topicMap.CreateTopic();
             var name = topic.CreateName("Name", nameTheme1);
@@ -74,10 +74,10 @@ namespace TMAPI.Net.Tests.Core
             Assert.True(variant.Scope.Contains(variantTheme));
         }
 
-		[Fact]
-		public void TestIfVariantThemeEqualToANameThemeStaysIfNameThemeIsRemoved()
+        [Fact]
+        public void TestIfVariantThemeEqualToANameThemeStaysIfNameThemeIsRemoved()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var nameTheme = topicMap.CreateTopic();
             var variantTheme = topicMap.CreateTopic();
             var name = topicMap.CreateTopic().CreateName("Name", nameTheme);
@@ -100,10 +100,10 @@ namespace TMAPI.Net.Tests.Core
             Assert.True(variant.Scope.Contains(variantTheme));
         }
 
-		[Fact]
-		public void TestIfVariantThemeEqualToANameThemeStaysIfVariantThemeIsRemoved()
+        [Fact]
+        public void TestIfVariantThemeEqualToANameThemeStaysIfVariantThemeIsRemoved()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var nameTheme = topicMap.CreateTopic();
             var variantTheme = topicMap.CreateTopic();
             var name = topicMap.CreateTopic().CreateName("Name", nameTheme);

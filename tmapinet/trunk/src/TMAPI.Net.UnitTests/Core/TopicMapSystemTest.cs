@@ -1,9 +1,9 @@
-﻿using Xunit;
-using TMAPI.Net.Core;
-using Xunit.Extensions;
-
-namespace TMAPI.Net.Tests.Core
+﻿namespace TMAPI.Net.UnitTests.Core
 {
+    using Net.Core;
+    using Xunit;
+    using Xunit.Extensions;
+
     public class TopicMapSystemTest
     {
         #region Static Constants
@@ -80,7 +80,7 @@ namespace TMAPI.Net.Tests.Core
 
             system.CreateTopicMap(TestTM1);
             Assert.Throws<TopicMapExistsException>( () => 
-                                      system.CreateTopicMap(TestTM1)
+                                                    system.CreateTopicMap(TestTM1)
                 );      
         }
 
@@ -94,7 +94,7 @@ namespace TMAPI.Net.Tests.Core
             var locator = system.CreateLocator(TestTM1);
             system.CreateTopicMap(locator);
             Assert.Throws<TopicMapExistsException>(() =>
-                                     system.CreateTopicMap(locator)
+                                                   system.CreateTopicMap(locator)
                 );
         }
 
@@ -107,7 +107,7 @@ namespace TMAPI.Net.Tests.Core
             var locator = system.CreateLocator(TestTM1);
             system.CreateTopicMap(locator);
             Assert.Throws<TopicMapExistsException>(() =>
-                                     system.CreateTopicMap(TestTM1)
+                                                   system.CreateTopicMap(TestTM1)
                 );
         }
 
@@ -122,7 +122,7 @@ namespace TMAPI.Net.Tests.Core
             var locator2 = system.CreateLocator(TestTM1);
             system.CreateTopicMap(locator1);
             Assert.Throws<TopicMapExistsException>(() =>
-                                     system.CreateTopicMap(locator2)
+                                                   system.CreateTopicMap(locator2)
                 );
         }
 

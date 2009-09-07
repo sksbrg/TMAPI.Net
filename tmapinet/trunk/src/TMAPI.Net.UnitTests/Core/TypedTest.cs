@@ -1,8 +1,8 @@
-using TMAPI.Net.Core;
-using Xunit;
-
-namespace TMAPI.Net.Tests.Core
+namespace TMAPI.Net.UnitTests.Core
 {
+    using Net.Core;
+    using Xunit;
+
     public class TypedTest : TMAPITestCase
     {
         #region Static Constants
@@ -32,7 +32,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestAssociation()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
 
             Type_SetTypeAndUsingInvalidTypeThrowsException(topicMap.CreateAssociation(topicMap.CreateTopic()));
         }
@@ -40,7 +40,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestRole()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
             Type_SetTypeAndUsingInvalidTypeThrowsException(association.CreateRole(topicMap.CreateTopic(), topicMap.CreateTopic())); 
@@ -49,7 +49,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestOccurrrence()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Type_SetTypeAndUsingInvalidTypeThrowsException(topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence"));
@@ -58,7 +58,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestName()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
             Type_SetTypeAndUsingInvalidTypeThrowsException(topic.CreateName("Name"));

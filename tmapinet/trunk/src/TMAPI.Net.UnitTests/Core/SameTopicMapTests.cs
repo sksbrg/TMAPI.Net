@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using Net.Core;
-    using Tests;
     using Xunit;
 
     /// <summary>
@@ -19,7 +18,7 @@
         #region Constructors
 
         public SameTopicMapTests() {
-            _tm2 = topicMapSystem.CreateTopicMap("http://topicMap2");
+            _tm2 = TopicMapSystem.CreateTopicMap("http://topicMap2");
         }
 
         #endregion

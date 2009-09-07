@@ -1,7 +1,7 @@
-using Xunit;
-
-namespace TMAPI.Net.Tests.Core
+namespace TMAPI.Net.UnitTests.Core
 {
+    using Xunit;
+
     public class OccurrenceTest : TMAPITestCase
     {
         #region Static Constants
@@ -14,7 +14,7 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestOccurrenceParentRelationship()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
+            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var parent = topicMap.CreateTopic();
 
             Assert.Empty(parent.Occurrences);
