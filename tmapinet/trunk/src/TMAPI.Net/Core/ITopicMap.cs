@@ -249,11 +249,18 @@ namespace TMAPI.Net.Core
         /// their contents in <paramref name="other"/> will be added to this topic map.
         /// All information items in <paramref name="other"/> will be merged into this topic map as defined by the 
         /// <a href="http://www.isotopicmaps.org/sam/sam-model/#d0e1862">Topic Maps - Data Model (TMDM) merging rules</a>.
-        /// The merge process will not modify <paramref name="other"/> in any way.
         /// </summary>
         /// <param name="other">
         /// The topic map to be merged with this topic map instance.
         /// </param>
+        /// <remarks>
+        /// <para>
+        /// The merge process will not modify <paramref name="other"/> in any way.
+        /// </para>
+        /// <para>
+        /// If <tt>this.Equals(other)</tt> no changes are made to the topic map.
+        /// </para>
+        /// </remarks>
         void MergeIn(ITopicMap other);
 
         #endregion
