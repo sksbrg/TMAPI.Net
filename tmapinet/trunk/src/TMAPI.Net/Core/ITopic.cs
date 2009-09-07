@@ -218,13 +218,13 @@ namespace TMAPI.Net.Core
         /// The string value of the name; MUST NOT be <c>null</c>.
         /// </param>
         /// <param name="scope">
-        /// A collection of themes or <c>null</c> if the name should be in the unconstrained scope.
+        /// A collection of themes. The collection may be empty if the name should be in the unconstrained scope.
         /// </param>
         /// <returns>
         /// The newly created <see cref="T:TMAPI.Net.Core.IName"/>.
         /// </returns>
         /// <exception cref="ModelConstraintException">
-        /// If either the <paramref name="type"/> or the <paramref name="value"/> is <c>null</c>.
+        /// If either the <paramref name="type"/>, the <paramref name="value"/> or the <paramref name="scope"/> is <c>null</c>.
         /// </exception>
         IName CreateName(ITopic type, string value, IList<ITopic> scope);
 
@@ -261,13 +261,13 @@ namespace TMAPI.Net.Core
         /// The string value of the name; MUST NOT be <c>null</c>.
         /// </param>
         /// <param name="scope">
-        /// A collection of themes or <c>null</c> if the name should be in the unconstrained scope.
+        /// A collection of themes. The collection may be empty if the name should be in the unconstrained scope.
         /// </param>
         /// <returns>
         /// The newly created <see cref="T:TMAPI.Net.Core.IName"/>.
         /// </returns>
         /// <exception cref="ModelConstraintException">
-        /// If the <paramref name="value"/> is <c>null</c>.
+        /// If the <paramref name="value"/> or the <paramref name="scope"/> is <c>null</c>.
         /// </exception>
         IName CreateName(string value, IList<ITopic> scope);
 
@@ -309,13 +309,13 @@ namespace TMAPI.Net.Core
         /// The string value of the occurrence.
         /// </param>
         /// <param name="scope">
-        /// A collection of themes or <c>null</c> if the occurrence should be in the unconstrained scope.
+        /// A collection of themes. The collection may be empty if the occurrence should be in the unconstrained scope.
         /// </param>
         /// <returns>
         /// The newly created <see cref="T:TMAPI.Net.Core.IOccurrence"/>.
         /// </returns>
         /// <exception cref="ModelConstraintException">
-        /// If either the <paramref name="type"/> or the <paramref name="value"/> is <c>null</c>.
+        /// If either the <paramref name="type"/>, the <paramref name="value"/>, or the <paramref name="scope"/> is <c>null</c>.
         /// </exception>
         IOccurrence CreateOccurrence(ITopic type, string value, IList<ITopic> scope);
 
@@ -357,7 +357,7 @@ namespace TMAPI.Net.Core
         /// A <see cref="T:TMAPI.Net.Core.ILocator"/> which represents an IRI.
         /// </param>
         /// <param name="scope">
-        /// A collection of themes or <c>null</c> if the occurrence should be in the unconstrained scope.
+        /// A collection of themes. The collection may be empty if the occurrence should be in the unconstrained scope.
         /// </param>
         /// <returns>
         /// The newly created <see cref="T:TMAPI.Net.Core.IOccurrence"/>.
@@ -412,7 +412,7 @@ namespace TMAPI.Net.Core
         /// A <see cref="T:TMAPI.Net.Core.ILocator"/> indicating the datatype of the <paramref name="value"/>.
         /// </param>
         /// <param name="scope">
-        /// A collection of themes or <c>null</c> if the occurrence should be in the unconstrained scope.
+        /// A collection of themes. The collection may be empty if the occurrence should be in the unconstrained scope.
         /// </param>
         /// <returns>
         /// The newly created <see cref="T:TMAPI.Net.Core.IOccurrence"/>.
