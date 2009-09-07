@@ -61,6 +61,7 @@
     <Compile Include="Core\OccurrenceTest.cs" />
     <Compile Include="Core\ReifiableTest.cs" />
     <Compile Include="Core\RoleTest.cs" />
+    <Compile Include="Core\SameTopicMapTests.cs" />
     <Compile Include="Core\ScopedTest.cs" />
     <Compile Include="Core\TopicMapMergeTest.cs" />
     <Compile Include="Core\TopicMapSystemTest.cs" />
