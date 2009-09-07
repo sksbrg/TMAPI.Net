@@ -49,6 +49,9 @@ namespace TMAPI.Net.Core
         /// <returns>
         /// A <see cref="T:TMAPI.Net.Core.ILocator"/> representing the IRI <paramref name="reference"/>.
         /// </returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// If <paramref name="reference"/> is <c>null</c>.
+        /// </exception>
         ILocator CreateLocator(string reference);
 
         /// <summary>
