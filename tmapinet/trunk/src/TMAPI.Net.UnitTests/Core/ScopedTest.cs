@@ -5,11 +5,8 @@ namespace TMAPI.Net.Tests.Core
 {
     public class ScopedTest : TMAPITestCase
     {
-        #region Static Constants
-        public static readonly string TestTM1 = "mem://localhost/testm1";
-        #endregion
-
         #region Tests
+
         private static void Scope_AddScopeAndUsingInvalidScopeThrowsException(IScoped scoped)
         {
             var scopeSize = (scoped is IVariant) ? scoped.Scope.Count : 0;
@@ -58,38 +55,27 @@ namespace TMAPI.Net.Tests.Core
         [Fact]
         public void TestAssociation()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
-
-            Scope_AddScopeAndUsingInvalidScopeThrowsException(topicMap.CreateAssociation(topicMap.CreateTopic()));
+            Scope_AddScopeAndUsingInvalidScopeThrowsException(CreateAssociation());
         }
 
         [Fact]
         public void TestOccurrence()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
-            var topic = topicMap.CreateTopic();
-
-            Scope_AddScopeAndUsingInvalidScopeThrowsException(topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence"));
+            Scope_AddScopeAndUsingInvalidScopeThrowsException(CreateOccurrence());
         }
 
         [Fact]
         public void TestName()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
-            var topic = topicMap.CreateTopic();
-
-            Scope_AddScopeAndUsingInvalidScopeThrowsException(topic.CreateName("Name"));
+            Scope_AddScopeAndUsingInvalidScopeThrowsException(CreateName());
         }
 
         [Fact]
         public void TestVariant()
         {
-            var topicMap = topicMapSystem.CreateTopicMap(TestTM1);
-            var topic = topicMap.CreateTopic();
-            var name = topic.CreateName("Name");
-
-            Scope_AddScopeAndUsingInvalidScopeThrowsException(name.CreateVariant("Variant", topicMap.CreateTopic()));
+            Scope_AddScopeAndUsingInvalidScopeThrowsException(CreateVariant());
         }
+
         #endregion
     }
 }
