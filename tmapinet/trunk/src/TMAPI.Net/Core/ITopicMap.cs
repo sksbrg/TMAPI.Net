@@ -81,7 +81,7 @@ namespace TMAPI.Net.Core
 
         /// <summary>
         /// Creates an <see cref="T:TMAPI.Net.Core.IAssociation"/> in this topic map with the specified 
-        /// <paramref name="associationType"/>and <paramref name="initialThemes"/>.
+        /// <paramref name="associationType"/> and <paramref name="initialThemes"/>.
         /// </summary>
         /// <param name="associationType">
         /// The association type, MUST NOT be <c>null</c>.
@@ -100,7 +100,7 @@ namespace TMAPI.Net.Core
 
         /// <summary>
         /// Creates an <see cref="T:TMAPI.Net.Core.IAssociation"/> in this topic map with the specified 
-        /// <paramref name="associationType"/>and <paramref name="initialThemes"/>.
+        /// <paramref name="associationType"/> and <paramref name="initialThemes"/>.
         /// </summary>
         /// <param name="associationType">
         /// The association type, MUST NOT be <c>null</c>.
