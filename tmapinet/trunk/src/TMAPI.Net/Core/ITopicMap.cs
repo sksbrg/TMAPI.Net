@@ -94,7 +94,8 @@ namespace TMAPI.Net.Core
         /// The newly created <see cref="T:TMAPI.Net.Core.IAssociation"/>.
         /// </returns>
         /// <exception cref="ModelConstraintException">
-        /// If either the <paramref name="associationType"/> or <paramref name="initialThemes"/> is <c>null</c>.
+        /// If either the <paramref name="associationType"/> or <paramref name="initialThemes"/> is <c>null</c> or 
+        /// if either the <paramref name="associationType"/> or at least one theme of <paramref name="initialThemes"/> belongs to another topic map.
         /// </exception>
         IAssociation CreateAssociation(ITopic associationType, params ITopic[] initialThemes);
 
@@ -112,7 +113,8 @@ namespace TMAPI.Net.Core
         /// The newly created <see cref="T:TMAPI.Net.Core.IAssociation"/>.
         /// </returns>
         /// <exception cref="ModelConstraintException">
-        /// If the <paramref name="associationType"/> is <c>null</c>.
+        /// If the <paramref name="associationType"/> is <c>null</c> or 
+        /// if either the <paramref name="associationType"/> or at least one theme of <paramref name="initialThemes"/> belongs to another topic map.
         /// </exception>
         IAssociation CreateAssociation(ITopic associationType, IList<ITopic> initialThemes);
 
