@@ -23,17 +23,12 @@ namespace TMAPI.Net.UnitTests.Core
 
     public class TypedTest : TMAPITestCase
     {
-        #region Static Constants
-        public static readonly string TestTM1 = "mem://localhost/testm1";
-        #endregion
-
         #region Tests
-        private static void Type_SetTypeAndUsingInvalidTypeThrowsException(ITyped typed)
+        private void Type_SetTypeAndUsingInvalidTypeThrowsException(ITyped typed)
         {
-            var topicMap = typed.TopicMap;
-            var type = topicMap.CreateTopic();
+            var type = CreateTopic();
 
-            ITopic oldType = typed.Type;
+            var oldType = typed.Type;
 
             Assert.NotNull(oldType);
 
@@ -50,36 +45,33 @@ namespace TMAPI.Net.UnitTests.Core
         [Fact]
         public void TestAssociation()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
+            var association = CreateAssociation();
 
-            Type_SetTypeAndUsingInvalidTypeThrowsException(topicMap.CreateAssociation(topicMap.CreateTopic()));
+            Type_SetTypeAndUsingInvalidTypeThrowsException(association);
         }
 
         [Fact]
         public void TestRole()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var association = topicMap.CreateAssociation(topicMap.CreateTopic());
+            var role = CreateRole();
 
-            Type_SetTypeAndUsingInvalidTypeThrowsException(association.CreateRole(topicMap.CreateTopic(), topicMap.CreateTopic())); 
+            Type_SetTypeAndUsingInvalidTypeThrowsException(role);
         }
 
         [Fact]
         public void TestOccurrrence()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var topic = topicMap.CreateTopic();
+            var occurrence = CreateOccurrence();
 
-            Type_SetTypeAndUsingInvalidTypeThrowsException(topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence"));
+            Type_SetTypeAndUsingInvalidTypeThrowsException(occurrence);
         }
 
         [Fact]
         public void TestName()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var topic = topicMap.CreateTopic();
+            var name = CreateName();
 
-            Type_SetTypeAndUsingInvalidTypeThrowsException(topic.CreateName("Name"));
+            Type_SetTypeAndUsingInvalidTypeThrowsException(name);
         }
         #endregion
     }
