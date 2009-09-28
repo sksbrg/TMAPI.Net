@@ -25,10 +25,15 @@ namespace TMAPI.Net.UnitTests.Index
 
     public class LiteralIndexTest : TMAPITestCase
     {
-        #region Static Constants
-        public static readonly string TestTM1 = "mem://localhost/testm1";
-        public static ILocator _xsdString;
-        public static ILocator _xsdAnyURI;
+        #region Constants
+        private const string Value1 = "http://www.example.org/1";
+        private const string Value2 = "http://www.example.org/2";
+        #endregion
+        
+        #region Fields
+        private static ILocator _xsdString;
+        private static ILocator _xsdAnyURI;
+        private static ILocator _datatype;
         #endregion
 
         #region Constructor
@@ -36,56 +41,45 @@ namespace TMAPI.Net.UnitTests.Index
         {
             _xsdString = TopicMapSystem.CreateLocator("http://www.w3.org/2001/XMLSchema#string");
             _xsdAnyURI = TopicMapSystem.CreateLocator("http://www.w3.org/2001/XMLSchema#anyURI");
+            _datatype = TopicMap.CreateLocator("http://www.example.org/datatype");
         }
         #endregion
 
         #region Tests
-        private static void UpdateIndex(IIndex index)
-        {
-            if (!index.AutoUpdated)
-            {
-                index.Reindex();
-            }
-        }
-
         [Fact]
         public void GetNames()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
-            var value1 = "Value1";
-            var value2 = "Value2";
+            var index = TopicMap.GetIndex<ILiteralIndex>();
 
             index.Open();
             UpdateIndex(index);
 
-            Assert.Empty(index.GetNames(value1));
+            Assert.Empty(index.GetNames(Value1));
 
-            var name = topicMap.CreateTopic().CreateName(value1);
+            var name = CreateTopic().CreateName(Value1);
             UpdateIndex(index);
 
-            Assert.Equal(1, index.GetNames(value1).Count);
-            Assert.True(index.GetNames(value1).Contains(name));
+            Assert.Equal(1, index.GetNames(Value1).Count);
+            Assert.True(index.GetNames(Value1).Contains(name));
 
-            name.Value = value2;
+            name.Value = Value2;
             UpdateIndex(index);
 
-            Assert.Empty(index.GetNames(value1));
-            Assert.Equal(1, index.GetNames(value2).Count);
-            Assert.True(index.GetNames(value2).Contains(name));
+            Assert.Empty(index.GetNames(Value1));
+            Assert.Equal(1, index.GetNames(Value2).Count);
+            Assert.True(index.GetNames(Value2).Contains(name));
 
             name.Remove();
             UpdateIndex(index);
 
-            Assert.Empty(index.GetNames(value1));
-            Assert.Empty(index.GetNames(value2));
+            Assert.Empty(index.GetNames(Value1));
+            Assert.Empty(index.GetNames(Value2));
         }
 
         [Fact]
         public void GetNames_UsingInvalidStringThrowsException()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
+            var index = TopicMap.GetIndex<ILiteralIndex>();
 
             Assert.Throws<ArgumentNullException>("Using null as string value is not allowed.", () => index.GetNames(null));
         }
@@ -93,131 +87,122 @@ namespace TMAPI.Net.UnitTests.Index
         [Fact]
         public void GetOccurrences_String()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
-            var value1 = "Value1";
-            var value2 = "Value2";
+            var index = TopicMap.GetIndex<ILiteralIndex>();
 
             index.Open();
             UpdateIndex(index);
 
-            Assert.Empty(index.GetOccurrences(value1));
-            Assert.Empty(index.GetOccurrences(value1, _xsdString));
+            Assert.Empty(index.GetOccurrences(Value1));
+            Assert.Empty(index.GetOccurrences(Value1, _xsdString));
 
-            var type = topicMap.CreateTopic();
-            var occurrence = topicMap.CreateTopic().CreateOccurrence(type, value1);
+            var type = CreateTopic();
+            var occurrence = CreateTopic().CreateOccurrence(type, Value1);
             UpdateIndex(index);
 
-            Assert.Equal(1, index.GetOccurrences(value1).Count);
-            Assert.True(index.GetOccurrences(value1).Contains(occurrence));
-            Assert.Equal(1, index.GetOccurrences(value1, _xsdString).Count);
-            Assert.True(index.GetOccurrences(value1, _xsdString).Contains(occurrence));
+            Assert.Equal(1, index.GetOccurrences(Value1).Count);
+            Assert.True(index.GetOccurrences(Value1).Contains(occurrence));
+            Assert.Equal(1, index.GetOccurrences(Value1, _xsdString).Count);
+            Assert.True(index.GetOccurrences(Value1, _xsdString).Contains(occurrence));
 
-            occurrence.Value = value2;
+            occurrence.Value = Value2;
             UpdateIndex(index);
 
-            Assert.Empty(index.GetOccurrences(value1));
-            Assert.Empty(index.GetOccurrences(value1, _xsdString));
-            Assert.Equal(1, index.GetOccurrences(value2).Count);
-            Assert.True(index.GetOccurrences(value2).Contains(occurrence));
-            Assert.Equal(1, index.GetOccurrences(value2, _xsdString).Count);
-            Assert.True(index.GetOccurrences(value2, _xsdString).Contains(occurrence));
+            Assert.Empty(index.GetOccurrences(Value1));
+            Assert.Empty(index.GetOccurrences(Value1, _xsdString));
+            Assert.Equal(1, index.GetOccurrences(Value2).Count);
+            Assert.True(index.GetOccurrences(Value2).Contains(occurrence));
+            Assert.Equal(1, index.GetOccurrences(Value2, _xsdString).Count);
+            Assert.True(index.GetOccurrences(Value2, _xsdString).Contains(occurrence));
 
             occurrence.Remove();
             UpdateIndex(index);
 
-            Assert.Empty(index.GetOccurrences(value1));
-            Assert.Empty(index.GetOccurrences(value1, _xsdString));
-            Assert.Empty(index.GetOccurrences(value2));
-            Assert.Empty(index.GetOccurrences(value2, _xsdString));
+            Assert.Empty(index.GetOccurrences(Value1));
+            Assert.Empty(index.GetOccurrences(Value1, _xsdString));
+            Assert.Empty(index.GetOccurrences(Value2));
+            Assert.Empty(index.GetOccurrences(Value2, _xsdString));
         }
 
         [Fact]
         public void GetOccurrences_URI()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
-            var value1 = topicMap.CreateLocator("http://www.example.org/1");
-            var value2 = topicMap.CreateLocator("http://www.example.org/2");
+            var index = TopicMap.GetIndex<ILiteralIndex>();
+            var locatorValue1 = TopicMap.CreateLocator("http://www.example.org/1");
+            var locatorValue2 = TopicMap.CreateLocator("http://www.example.org/2");
 
             index.Open();
             UpdateIndex(index);
 
-            Assert.Empty(index.GetOccurrences(value1));
-            Assert.Empty(index.GetOccurrences(value1.Reference, _xsdAnyURI));
+            Assert.Empty(index.GetOccurrences(locatorValue1));
+            Assert.Empty(index.GetOccurrences(locatorValue1.Reference, _xsdAnyURI));
 
-            var type = topicMap.CreateTopic();
-            var occurrence = topicMap.CreateTopic().CreateOccurrence(type, value1);
+            var type = CreateTopic();
+            var occurrence = CreateTopic().CreateOccurrence(type, locatorValue1);
             UpdateIndex(index);
 
-            Assert.Equal(1, index.GetOccurrences(value1).Count);
-            Assert.True(index.GetOccurrences(value1).Contains(occurrence));
-            Assert.Equal(1, index.GetOccurrences(value1.Reference, _xsdAnyURI).Count);
-            Assert.True(index.GetOccurrences(value1.Reference, _xsdAnyURI).Contains(occurrence));
+            Assert.Equal(1, index.GetOccurrences(locatorValue1).Count);
+            Assert.True(index.GetOccurrences(locatorValue1).Contains(occurrence));
+            Assert.Equal(1, index.GetOccurrences(locatorValue1.Reference, _xsdAnyURI).Count);
+            Assert.True(index.GetOccurrences(locatorValue1.Reference, _xsdAnyURI).Contains(occurrence));
 
-            occurrence.LocatorValue = value2;
+            occurrence.LocatorValue = locatorValue2;
             UpdateIndex(index);
 
-            Assert.Empty(index.GetOccurrences(value1));
-            Assert.Empty(index.GetOccurrences(value1.Reference, _xsdAnyURI));
-            Assert.Equal(1, index.GetOccurrences(value2).Count);
-            Assert.True(index.GetOccurrences(value2).Contains(occurrence));
-            Assert.Equal(1, index.GetOccurrences(value2.Reference, _xsdAnyURI).Count);
-            Assert.True(index.GetOccurrences(value2.Reference, _xsdAnyURI).Contains(occurrence));
+            Assert.Empty(index.GetOccurrences(locatorValue1));
+            Assert.Empty(index.GetOccurrences(locatorValue1.Reference, _xsdAnyURI));
+            Assert.Equal(1, index.GetOccurrences(locatorValue2).Count);
+            Assert.True(index.GetOccurrences(locatorValue2).Contains(occurrence));
+            Assert.Equal(1, index.GetOccurrences(locatorValue2.Reference, _xsdAnyURI).Count);
+            Assert.True(index.GetOccurrences(locatorValue2.Reference, _xsdAnyURI).Contains(occurrence));
 
             occurrence.Remove();
             UpdateIndex(index);
 
-            Assert.Empty(index.GetOccurrences(value1));
-            Assert.Empty(index.GetOccurrences(value1.Reference, _xsdAnyURI));
-            Assert.Empty(index.GetOccurrences(value2));
-            Assert.Empty(index.GetOccurrences(value2.Reference, _xsdAnyURI));
+            Assert.Empty(index.GetOccurrences(locatorValue1));
+            Assert.Empty(index.GetOccurrences(locatorValue1.Reference, _xsdAnyURI));
+            Assert.Empty(index.GetOccurrences(locatorValue2));
+            Assert.Empty(index.GetOccurrences(locatorValue2.Reference, _xsdAnyURI));
         }
 
         [Fact]
         public void GetOccurrences_URIExplicitDatatype()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
-            var value1 = "http://www.example.org/1";
-            var value2 = "http://www.example.org/2";
-            var datatype = topicMap.CreateLocator("http://www.example.org/datatype");
+            var index = TopicMap.GetIndex<ILiteralIndex>();
 
             index.Open();
             UpdateIndex(index);
 
-            Assert.Empty(index.GetOccurrences(value1));
-            Assert.Empty(index.GetOccurrences(value1, datatype));
+            Assert.Empty(index.GetOccurrences(Value1));
+            Assert.Empty(index.GetOccurrences(Value1, _datatype));
 
-            var type = topicMap.CreateTopic();
-            var occurrence = topicMap.CreateTopic().CreateOccurrence(type, value1, datatype);
+            var type = CreateTopic();
+            var occurrence = CreateTopic().CreateOccurrence(type, Value1, _datatype);
             UpdateIndex(index);
 
-            Assert.Empty(index.GetOccurrences(value1));
-            Assert.Equal(1, index.GetOccurrences(value1, datatype).Count);
-            Assert.True(index.GetOccurrences(value1, datatype).Contains(occurrence));
+            Assert.Empty(index.GetOccurrences(Value1));
+            Assert.Equal(1, index.GetOccurrences(Value1, _datatype).Count);
+            Assert.True(index.GetOccurrences(Value1, _datatype).Contains(occurrence));
 
-            occurrence.SetValue(value2, datatype);
+            occurrence.SetValue(Value2, _datatype);
             UpdateIndex(index);
 
-            Assert.Empty(index.GetOccurrences(value1));
-            Assert.Empty(index.GetOccurrences(value1, datatype));
-            Assert.Empty(index.GetOccurrences(value2));
-            Assert.Equal(1, index.GetOccurrences(value2, datatype).Count);
-            Assert.True(index.GetOccurrences(value2, datatype).Contains(occurrence));
+            Assert.Empty(index.GetOccurrences(Value1));
+            Assert.Empty(index.GetOccurrences(Value1, _datatype));
+            Assert.Empty(index.GetOccurrences(Value2));
+            Assert.Equal(1, index.GetOccurrences(Value2, _datatype).Count);
+            Assert.True(index.GetOccurrences(Value2, _datatype).Contains(occurrence));
 
             occurrence.Remove();
             UpdateIndex(index);
 
-            Assert.Empty(index.GetOccurrences(value2));
-            Assert.Empty(index.GetOccurrences(value2, datatype));
+            Assert.Empty(index.GetOccurrences(Value2));
+            Assert.Empty(index.GetOccurrences(Value2, _datatype));
         }
 
         [Fact]
         public void GetOccurrences_UsingInvalidStringThrowsException()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
+            var index = TopicMap.GetIndex<ILiteralIndex>();
 
             Assert.Throws<ArgumentNullException>("Using null as string value is not allowed.", () => index.GetOccurrences((string)null));
         }
@@ -225,8 +210,7 @@ namespace TMAPI.Net.UnitTests.Index
         [Fact]
         public void GetOccurrences_UsingInvalidURIThrowsException()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
+            var index = TopicMap.GetIndex<ILiteralIndex>();
 
             Assert.Throws<ArgumentNullException>("Using null as locator is not allowed.", () => index.GetOccurrences((ILocator)null));
         }
@@ -234,8 +218,7 @@ namespace TMAPI.Net.UnitTests.Index
         [Fact]
         public void GetOccurrences_UsingInvalidDatatypeThrowsException()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
+            var index = TopicMap.GetIndex<ILiteralIndex>();
 
             Assert.Throws<ArgumentNullException>("Using null as datatype is not allowed.", () => index.GetOccurrences("Value", null));
         }
@@ -243,131 +226,122 @@ namespace TMAPI.Net.UnitTests.Index
         [Fact]
         public void GetVariants_String()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
-            var value1 = "Value1";
-            var value2 = "Value2";
+            var index = TopicMap.GetIndex<ILiteralIndex>();
 
             index.Open();
             UpdateIndex(index);
 
-            Assert.Empty(index.GetVariants(value1));
-            Assert.Empty(index.GetVariants(value1, _xsdString));
+            Assert.Empty(index.GetVariants(Value1));
+            Assert.Empty(index.GetVariants(Value1, _xsdString));
 
-            var theme = topicMap.CreateTopic();
-            var variant = topicMap.CreateTopic().CreateName("Name").CreateVariant(value1, theme);
+            var theme = CreateTopic();
+            var variant = CreateTopic().CreateName("Name").CreateVariant(Value1, theme);
             UpdateIndex(index);
 
-            Assert.Equal(1, index.GetVariants(value1).Count);
-            Assert.True(index.GetVariants(value1).Contains(variant));
-            Assert.Equal(1, index.GetVariants(value1, _xsdString).Count);
-            Assert.True(index.GetVariants(value1, _xsdString).Contains(variant));
+            Assert.Equal(1, index.GetVariants(Value1).Count);
+            Assert.True(index.GetVariants(Value1).Contains(variant));
+            Assert.Equal(1, index.GetVariants(Value1, _xsdString).Count);
+            Assert.True(index.GetVariants(Value1, _xsdString).Contains(variant));
 
-            variant.Value = value2;
+            variant.Value = Value2;
             UpdateIndex(index);
 
-            Assert.Empty(index.GetVariants(value1));
-            Assert.Empty(index.GetVariants(value1, _xsdString));
-            Assert.Equal(1, index.GetVariants(value2).Count);
-            Assert.True(index.GetVariants(value2).Contains(variant));
-            Assert.Equal(1, index.GetVariants(value2, _xsdString).Count);
-            Assert.True(index.GetVariants(value2, _xsdString).Contains(variant));
+            Assert.Empty(index.GetVariants(Value1));
+            Assert.Empty(index.GetVariants(Value1, _xsdString));
+            Assert.Equal(1, index.GetVariants(Value2).Count);
+            Assert.True(index.GetVariants(Value2).Contains(variant));
+            Assert.Equal(1, index.GetVariants(Value2, _xsdString).Count);
+            Assert.True(index.GetVariants(Value2, _xsdString).Contains(variant));
 
             variant.Remove();
             UpdateIndex(index);
 
-            Assert.Empty(index.GetVariants(value1));
-            Assert.Empty(index.GetVariants(value1, _xsdString));
-            Assert.Empty(index.GetVariants(value2));
-            Assert.Empty(index.GetVariants(value2, _xsdString));
+            Assert.Empty(index.GetVariants(Value1));
+            Assert.Empty(index.GetVariants(Value1, _xsdString));
+            Assert.Empty(index.GetVariants(Value2));
+            Assert.Empty(index.GetVariants(Value2, _xsdString));
         }
 
         [Fact]
         public void GetVariants_URI()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
-            var value1 = topicMap.CreateLocator("http://www.example.org/1");
-            var value2 = topicMap.CreateLocator("http://www.example.org/2");
+            var index = TopicMap.GetIndex<ILiteralIndex>();
+            var locatorValue1 = TopicMap.CreateLocator("http://www.example.org/1");
+            var locatorValue2 = TopicMap.CreateLocator("http://www.example.org/2");
 
             index.Open();
             UpdateIndex(index);
 
-            Assert.Empty(index.GetVariants(value1));
-            Assert.Empty(index.GetVariants(value1.Reference, _xsdAnyURI));
+            Assert.Empty(index.GetVariants(locatorValue1));
+            Assert.Empty(index.GetVariants(locatorValue1.Reference, _xsdAnyURI));
 
-            var theme = topicMap.CreateTopic();
-            var variant = topicMap.CreateTopic().CreateName("Name").CreateVariant(value1, theme);
+            var theme = CreateTopic();
+            var variant = CreateTopic().CreateName("Name").CreateVariant(locatorValue1, theme);
             UpdateIndex(index);
 
-            Assert.Equal(1, index.GetVariants(value1).Count);
-            Assert.True(index.GetVariants(value1).Contains(variant));
-            Assert.Equal(1, index.GetVariants(value1.Reference, _xsdAnyURI).Count);
-            Assert.True(index.GetVariants(value1.Reference, _xsdAnyURI).Contains(variant));
+            Assert.Equal(1, index.GetVariants(locatorValue1).Count);
+            Assert.True(index.GetVariants(locatorValue1).Contains(variant));
+            Assert.Equal(1, index.GetVariants(locatorValue1.Reference, _xsdAnyURI).Count);
+            Assert.True(index.GetVariants(locatorValue1.Reference, _xsdAnyURI).Contains(variant));
 
-            variant.LocatorValue = value2;
+            variant.LocatorValue = locatorValue2;
             UpdateIndex(index);
 
-            Assert.Empty(index.GetVariants(value1));
-            Assert.Empty(index.GetVariants(value1.Reference, _xsdAnyURI));
-            Assert.Equal(1, index.GetVariants(value2).Count);
-            Assert.True(index.GetVariants(value2).Contains(variant));
-            Assert.Equal(1, index.GetVariants(value2.Reference, _xsdAnyURI).Count);
-            Assert.True(index.GetVariants(value2.Reference, _xsdAnyURI).Contains(variant));
+            Assert.Empty(index.GetVariants(locatorValue1));
+            Assert.Empty(index.GetVariants(locatorValue1.Reference, _xsdAnyURI));
+            Assert.Equal(1, index.GetVariants(locatorValue2).Count);
+            Assert.True(index.GetVariants(locatorValue2).Contains(variant));
+            Assert.Equal(1, index.GetVariants(locatorValue2.Reference, _xsdAnyURI).Count);
+            Assert.True(index.GetVariants(locatorValue2.Reference, _xsdAnyURI).Contains(variant));
 
             variant.Remove();
             UpdateIndex(index);
 
-            Assert.Empty(index.GetVariants(value1));
-            Assert.Empty(index.GetVariants(value1.Reference, _xsdAnyURI));
-            Assert.Empty(index.GetVariants(value2));
-            Assert.Empty(index.GetVariants(value2.Reference, _xsdAnyURI));
+            Assert.Empty(index.GetVariants(locatorValue1));
+            Assert.Empty(index.GetVariants(locatorValue1.Reference, _xsdAnyURI));
+            Assert.Empty(index.GetVariants(locatorValue2));
+            Assert.Empty(index.GetVariants(locatorValue2.Reference, _xsdAnyURI));
         }
 
         [Fact]
         public void GetVariants_URIExplicitDatatype()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
-            var value1 = "http://www.example.org/1";
-            var value2 = "http://www.example.org/2";
-            var datatype = topicMap.CreateLocator("http://www.example.org/datatype");
+            var index = TopicMap.GetIndex<ILiteralIndex>();
 
             index.Open();
             UpdateIndex(index);
 
-            Assert.Empty(index.GetVariants(value1));
-            Assert.Empty(index.GetVariants(value1, datatype));
+            Assert.Empty(index.GetVariants(Value1));
+            Assert.Empty(index.GetVariants(Value1, _datatype));
 
-            var theme = topicMap.CreateTopic();
-            var variant = topicMap.CreateTopic().CreateName("Name").CreateVariant(value1, datatype, theme);
+            var theme = CreateTopic();
+            var variant = CreateTopic().CreateName("Name").CreateVariant(Value1, _datatype, theme);
             UpdateIndex(index);
 
-            Assert.Empty(index.GetVariants(value1));
-            Assert.Equal(1, index.GetVariants(value1, datatype).Count);
-            Assert.True(index.GetVariants(value1, datatype).Contains(variant));
+            Assert.Empty(index.GetVariants(Value1));
+            Assert.Equal(1, index.GetVariants(Value1, _datatype).Count);
+            Assert.True(index.GetVariants(Value1, _datatype).Contains(variant));
 
-            variant.SetValue(value2, datatype);
+            variant.SetValue(Value2, _datatype);
             UpdateIndex(index);
 
-            Assert.Empty(index.GetVariants(value1));
-            Assert.Empty(index.GetVariants(value1, datatype));
-            Assert.Empty(index.GetVariants(value2));
-            Assert.Equal(1, index.GetVariants(value2, datatype).Count);
-            Assert.True(index.GetVariants(value2, datatype).Contains(variant));
+            Assert.Empty(index.GetVariants(Value1));
+            Assert.Empty(index.GetVariants(Value1, _datatype));
+            Assert.Empty(index.GetVariants(Value2));
+            Assert.Equal(1, index.GetVariants(Value2, _datatype).Count);
+            Assert.True(index.GetVariants(Value2, _datatype).Contains(variant));
 
             variant.Remove();
             UpdateIndex(index);
 
-            Assert.Empty(index.GetVariants(value2));
-            Assert.Empty(index.GetVariants(value2, datatype));
+            Assert.Empty(index.GetVariants(Value2));
+            Assert.Empty(index.GetVariants(Value2, _datatype));
         }
 
         [Fact]
         public void GetVariants_UsingInvalidStringThrowsException()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
+            var index = TopicMap.GetIndex<ILiteralIndex>();
 
             Assert.Throws<ArgumentNullException>("Using null as string value is not allowed.", () => index.GetVariants((string)null));
         }
@@ -375,8 +349,7 @@ namespace TMAPI.Net.UnitTests.Index
         [Fact]
         public void GetVariants_UsingInvalidURIThrowsException()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
+            var index = TopicMap.GetIndex<ILiteralIndex>();
 
             Assert.Throws<ArgumentNullException>("Using null as locator value is not allowed.", () => index.GetVariants((ILocator)null));
         }
@@ -384,10 +357,19 @@ namespace TMAPI.Net.UnitTests.Index
         [Fact]
         public void GetVariants_UsingInvalidDatatypeThrowsException()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var index = (ILiteralIndex)topicMap.GetIndex<ILiteralIndex>();
+            var index = TopicMap.GetIndex<ILiteralIndex>();
 
             Assert.Throws<ArgumentNullException>("Using null as datatype is not allowed.", () => index.GetVariants("Value", null));
+        }
+        #endregion
+
+        #region Methods
+        private static void UpdateIndex(IIndex index)
+        {
+            if (!index.AutoUpdated)
+            {
+                index.Reindex();
+            }
         }
         #endregion
     }
