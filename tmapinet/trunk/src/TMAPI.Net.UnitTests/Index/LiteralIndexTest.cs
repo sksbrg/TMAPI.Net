@@ -197,7 +197,7 @@ namespace TMAPI.Net.UnitTests.Index
             Assert.Equal(1, index.GetOccurrences(value1, datatype).Count);
             Assert.True(index.GetOccurrences(value1, datatype).Contains(occurrence));
 
-            occurrence.Value = value2;
+            occurrence.SetValue(value2, datatype);
             UpdateIndex(index);
 
             Assert.Empty(index.GetOccurrences(value1));
@@ -347,7 +347,7 @@ namespace TMAPI.Net.UnitTests.Index
             Assert.Equal(1, index.GetVariants(value1, datatype).Count);
             Assert.True(index.GetVariants(value1, datatype).Contains(variant));
 
-            variant.Value = value2;
+            variant.SetValue(value2, datatype);
             UpdateIndex(index);
 
             Assert.Empty(index.GetVariants(value1));
