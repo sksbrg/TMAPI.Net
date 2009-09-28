@@ -83,7 +83,8 @@ namespace TMAPI.Net.Core
         /// A newly created association role.
         /// </returns>
         /// <exception cref="T:TMAPI.Net.Core.ModelConstraintException">
-        /// If the <paramref name="roleType"/> or <paramref name="player"/> is <c>null</c>.
+        /// If the <paramref name="roleType"/> or <paramref name="player"/> is <c>null</c> or 
+        /// if <paramref name="roleType"/> or <paramref name="player"/> belongs to another topic map.
         /// </exception>
         IRole CreateRole(ITopic roleType, ITopic player);
 

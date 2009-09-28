@@ -33,7 +33,7 @@ namespace TMAPI.Net.Core
         /// Gets or sets the type of this construct.
         /// </summary>
         /// <exception cref="ModelConstraintException">
-        /// If the type is <c>null</c>.
+        /// If the type is <c>null</c> or if the type belongs to another topic map.
         /// </exception>
         /// <remarks>
         /// Any previous type is overridden.

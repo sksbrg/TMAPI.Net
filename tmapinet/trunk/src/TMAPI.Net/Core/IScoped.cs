@@ -55,7 +55,8 @@ namespace TMAPI.Net.Core
         /// The <see cref="T:TMAPI.Net.Core.ITopic"/> which should be added to the scope.
         /// </param>
         /// <exception cref="ModelConstraintException">
-        /// If the <paramref name="theme"/> is <c>null</c>.
+        /// If the <paramref name="theme"/> is <c>null</c> or
+        /// if <paramref name="theme"/> belongs to another topic map.
         /// </exception>
         void AddTheme(ITopic theme);
 

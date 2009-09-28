@@ -42,7 +42,7 @@ namespace TMAPI.Net.Core
         /// Gets or sets the <see cref="T:TMAPI.Net.Core.ITopic"/> playing this role.
         /// </summary>
         /// <exception cref="ModelConstraintException">
-        /// If trying to set the role player to <c>null</c>.
+        /// If trying to set the role player to <c>null</c> or if the player belongs to another topic map.
         /// </exception>
         ITopic Player
         {
