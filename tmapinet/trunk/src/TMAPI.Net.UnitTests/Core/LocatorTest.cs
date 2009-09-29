@@ -18,7 +18,6 @@
 
 namespace TMAPI.Net.UnitTests.Core
 {
-    using Net.Core;
     using Xunit;
 
     public class LocatorTest : TMAPITestCase
@@ -80,12 +79,5 @@ namespace TMAPI.Net.UnitTests.Core
         {
             Assert.Equal(CORRECT_IRI_EXTERNAL_FORM, TopicMapSystem.CreateLocator(CORRECT_IRI).ExternalForm);
         }
-
-        [Fact]
-        public void ShouldThrowTMAPIExceptionOnRelativeURI()
-        {
-            Assert.Throws(typeof(TMAPIException), delegate { TopicMapSystem.CreateLocator(RELATIVE_URI); });
-        }
-
     }
 }
