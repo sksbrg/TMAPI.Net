@@ -37,6 +37,11 @@ namespace TMAPI.Net.UnitTests
         protected const string DefaultAddress = "http://sourceforge.net/projects/tmapinet/";
 
         /// <summary>
+        /// Feature indicating that type-instance relations are modelled as associations.
+        /// </summary>
+        protected const string FeatureTypeInstanceAssociations = "http://tmapi.org/features/type-instance-associations";
+
+        /// <summary>
         /// Represents the current topic map system instance for the test case.
         /// </summary>
         protected readonly ITopicMapSystem TopicMapSystem;
@@ -87,6 +92,8 @@ namespace TMAPI.Net.UnitTests
             throw new InvalidOperationException("You have to implement NewTopicMapSystemFactoryInstance method first.");
 
             // TODO: implement NewTopicMapSystemFactoryInstance method for testing.
+            // TODO: activate feature "http://tmapi.org/features/type-instance-associations" if necessary
+            //          TopicMapSystemFactory.SetFeature(FeatureTypeInstanceAssociations, true);
             // return TopicMapSystemFactory.NewInstance<YOUR_FACTORY_IMPLEMENTATION_TYPE>();
         }
 
