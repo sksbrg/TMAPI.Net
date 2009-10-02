@@ -16,8 +16,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Xunit.Extensions;
+
 namespace TMAPI.Net.UnitTests.Core
 {
+    using Net.Core;
     using Xunit;
 
     public class LocatorTest : TMAPITestCase
@@ -78,6 +81,20 @@ namespace TMAPI.Net.UnitTests.Core
         public void ShouldReturnExternalIriForm()
         {
             Assert.Equal(CORRECT_IRI_EXTERNAL_FORM, TopicMapSystem.CreateLocator(CORRECT_IRI).ExternalForm);
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("#fragment")]
+        public void IllegalLocatorAddressesShouldThrowMalformedIRIException(string reference)
+        {
+            // act
+            Assert.ThrowsDelegate topicMap = () => TopicMap.CreateLocator(reference);
+            Assert.ThrowsDelegate topicMapSystem = () => TopicMapSystem.CreateLocator(reference);
+
+            // assert
+            Assert.Throws<MalformedIRIException>(topicMap);
+            Assert.Throws<MalformedIRIException>(topicMapSystem);
         }
     }
 }

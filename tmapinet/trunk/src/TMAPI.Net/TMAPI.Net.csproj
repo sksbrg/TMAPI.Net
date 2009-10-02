@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\TMAPI.Net.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -63,6 +64,7 @@
     <Compile Include="Core\ITopicMapSystem.cs" />
     <Compile Include="Core\ITyped.cs" />
     <Compile Include="Core\IVariant.cs" />
+    <Compile Include="Core\MalformedIRIException.cs" />
     <Compile Include="Core\ModelConstraintException.cs" />
     <Compile Include="Core\TMAPIException.cs" />
     <Compile Include="Core\TMAPIRuntimeException.cs" />
