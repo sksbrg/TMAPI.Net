@@ -39,8 +39,7 @@ namespace TMAPI.Net.UnitTests.Index
         [Fact]
         public void TestTopic()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            var index = (ITypeInstanceIndex)topicMap.GetIndex<ITypeInstanceIndex>();
+            var index = TopicMap.GetIndex<ITypeInstanceIndex>();
 
             index.Open();
             UpdateIndex(index);
@@ -48,15 +47,15 @@ namespace TMAPI.Net.UnitTests.Index
             Assert.Empty(index.GetTopics(null));
             Assert.Empty(index.TopicTypes);
 
-            var topic = topicMap.CreateTopic();
+            var topic = CreateTopic();
             UpdateIndex(index);
 
             Assert.Empty(index.TopicTypes);
             Assert.Equal(1, index.GetTopics(null).Count);
             Assert.True(index.GetTopics(null).Contains(topic));
 
-            var type1 = topicMap.CreateTopic();
-            var type2 = topicMap.CreateTopic();
+            var type1 = CreateTopic();
+            var type2 = CreateTopic();
             UpdateIndex(index);
 
             Assert.Empty(index.TopicTypes);
@@ -64,7 +63,7 @@ namespace TMAPI.Net.UnitTests.Index
             Assert.True(index.GetTopics(null).Contains(topic));
             Assert.True(index.GetTopics(null).Contains(type1));
             Assert.True(index.GetTopics(null).Contains(type2));
-            Assert.Empty(index.GetTopics(new[] {type1, type2}, false));
+            Assert.Empty(index.GetTopics(new[] { type1, type2 }, false));
             Assert.Empty(index.GetTopics(new[] { type1, type2 }, true));
 
             topic.AddType(type1);
@@ -72,7 +71,16 @@ namespace TMAPI.Net.UnitTests.Index
 
             Assert.Equal(1, index.TopicTypes.Count);
             Assert.True(index.TopicTypes.Contains(type1));
-            Assert.Equal(2, index.GetTopics(null).Count);
+
+            if (TopicMapSystem.GetFeature(FeatureTypeInstanceAssociations))
+            {
+                Assert.Equal(5, index.GetTopics(null).Count);
+            }
+            else
+            {
+                Assert.Equal(2, index.GetTopics(null).Count);
+            }
+
             Assert.False(index.GetTopics(null).Contains(topic));
             Assert.True(index.GetTopics(null).Contains(type1));
             Assert.True(index.GetTopics(null).Contains(type2));
@@ -82,14 +90,23 @@ namespace TMAPI.Net.UnitTests.Index
             Assert.True(index.GetTopics(new[] { type1, type2 }, false).Contains(topic));
             Assert.Empty(index.GetTopics(new[] { type1, type2 }, true));
 
-            //  topic now has two types
+            // topic now has two types
             topic.AddType(type2);
             UpdateIndex(index);
 
             Assert.Equal(2, index.TopicTypes.Count);
             Assert.True(index.TopicTypes.Contains(type1));
             Assert.True(index.TopicTypes.Contains(type2));
-            Assert.Equal(2, index.GetTopics(null).Count);
+
+            if (TopicMapSystem.GetFeature(FeatureTypeInstanceAssociations))
+            {
+                Assert.Equal(5, index.GetTopics(null).Count);
+            }
+            else
+            {
+                Assert.Equal(2, index.GetTopics(null).Count);
+            }
+
             Assert.False(index.GetTopics(null).Contains(topic));
             Assert.True(index.GetTopics(null).Contains(type1));
             Assert.True(index.GetTopics(null).Contains(type2));
@@ -106,7 +123,16 @@ namespace TMAPI.Net.UnitTests.Index
             UpdateIndex(index);
 
             Assert.Empty(index.TopicTypes);
-            Assert.Equal(2, index.GetTopics(null).Count);
+
+            if (TopicMapSystem.GetFeature(FeatureTypeInstanceAssociations))
+            {
+                Assert.Equal(5, index.GetTopics(null).Count);
+            }
+            else
+            {
+                Assert.Equal(2, index.GetTopics(null).Count);
+            }
+
             Assert.True(index.GetTopics(null).Contains(type1));
             Assert.True(index.GetTopics(null).Contains(type2));
             Assert.Empty(index.GetTopics(type1));
