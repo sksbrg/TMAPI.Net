@@ -83,6 +83,9 @@ namespace TMAPI.Net.Core
         /// <exception cref="System.ArgumentNullException">
         /// If the <paramref name="reference"/> is <c>null</c>.
         /// </exception>
+        /// <exception cref="MalformedIRIException">
+        /// If the provided string cannot be resolved against this locator.
+        /// </exception>
         ILocator Resolve(string reference);
 
         #endregion

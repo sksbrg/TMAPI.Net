@@ -73,6 +73,9 @@ namespace TMAPI.Net.Core
         /// <exception cref="System.ArgumentNullException">
         /// If <paramref name="reference"/> is <c>null</c>.
         /// </exception>
+        /// <exception cref="MalformedIRIException">
+        /// If the provided <paramref name="reference"/> cannot be used to create a valid <see cref="ILocator"/>.
+        /// </exception>
         ILocator CreateLocator(string reference);
 
         /// <summary>
