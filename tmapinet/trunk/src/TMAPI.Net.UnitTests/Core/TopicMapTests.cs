@@ -96,9 +96,9 @@ namespace TMAPI.Net.UnitTests.Core
             Assert.Equal(locator2, topic2.ItemIdentifiers[0]);
             Assert.Equal(locator3, topic3.ItemIdentifiers[0]);
             Assert.Equal(3, topics.Count);
-            Assert.Equal(topic1, topics[0]);
-            Assert.Equal(topic2, topics[1]);
-            Assert.Equal(topic3, topics[2]);
+            Assert.Contains(topic1, topics);
+            Assert.Contains(topic2, topics);
+            Assert.Contains(topic3, topics);
         }
 
         [Fact]
