@@ -813,7 +813,8 @@ namespace TMAPI.Net.UnitTests.Core
 
             Assert.Equal(3, topicMap.Topics.Count);
 
-            Assert.Throws<TopicInUseException>("Removing a topic used as player is not allowed.", topic.Remove);
+            Assert.ThrowsDelegate d = () => topic.Remove();
+            Assert.Throws<TopicInUseException>("Removing a topic used as player is not allowed.", d);
 
             role.Player = topicMap.CreateTopic();
 
@@ -835,7 +836,8 @@ namespace TMAPI.Net.UnitTests.Core
             topicToBeRemoved = topicMap.CreateTopic();
             Assert.Contains(topicToBeRemoved, topicMap.Topics);
             typedConstruct.Type = topicToBeRemoved;
-            Assert.Throws<TopicInUseException>("Removing a topic used as type is not allowed.", topicToBeRemoved.Remove);
+            Assert.ThrowsDelegate d = () => topicToBeRemoved.Remove();
+            Assert.Throws<TopicInUseException>("Removing a topic used as type is not allowed.", d);
             Assert.Contains(topicToBeRemoved, topicMap.Topics);
 
             typedConstruct.Type = topicMap.CreateTopic();
@@ -897,7 +899,8 @@ namespace TMAPI.Net.UnitTests.Core
             topicToBeRemoved = topicMap.CreateTopic();
             Assert.Contains(topicToBeRemoved, topicMap.Topics);
             reifiableConstruct.Reifier = topicToBeRemoved;
-            Assert.Throws<TopicInUseException>("Removing a topic used as reifier is not allowed.", topicToBeRemoved.Remove);
+            Assert.ThrowsDelegate d = () => topicToBeRemoved.Remove();
+            Assert.Throws<TopicInUseException>("Removing a topic used as reifier is not allowed.", d);
             Assert.Contains(topicToBeRemoved, topicMap.Topics);
 
             reifiableConstruct.Reifier = null;
@@ -977,7 +980,8 @@ namespace TMAPI.Net.UnitTests.Core
             topicToBeRemoved = topicMap.CreateTopic();
             Assert.Contains(topicToBeRemoved, topicMap.Topics);
             scopedConstruct.AddTheme(topicToBeRemoved);
-            Assert.Throws<TopicInUseException>("Removing a topic used as theme is not allowed.", topicToBeRemoved.Remove);
+            Assert.ThrowsDelegate d = () => topicToBeRemoved.Remove();
+            Assert.Throws<TopicInUseException>("Removing a topic used as theme is not allowed.", d);
             Assert.Contains(topicToBeRemoved, topicMap.Topics);
 
             scopedConstruct.RemoveTheme(topicToBeRemoved);
