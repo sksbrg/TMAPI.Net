@@ -32,7 +32,14 @@ namespace TMAPI.Net.UnitTests.Core
         #endregion
 
         #region Constructor (used for preparations before tests)
-        public void TopicMapSystemsTest() {}
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TopicMapSystemTest"/> class.
+        /// </summary>
+        public TopicMapSystemTest()
+        {
+        }
+
         #endregion
 
         #region Tests
