@@ -34,31 +34,34 @@ namespace TMAPI.Net.Core
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelConstraintException"/> class.
         /// </summary>
-        public ModelConstraintException()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ModelConstraintException"/> class with the specified detail <paramref name="message"/>.
-        /// </summary>
+        /// <param name="reporter">
+        /// The <see cref="IConstruct"/> which has thrown this exception.
+        /// </param>
         /// <param name="message">
         /// The detail message.
         /// </param>
-        public ModelConstraintException(string message) : base(message)
+        public ModelConstraintException(IConstruct reporter, string message)
+            : base(message)
         {
+            Reporter = reporter;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelConstraintException"/> class that wraps another exception with the specified detail <paramref name="message"/>.
         /// </summary>
+        /// <param name="reporter">
+        /// The <see cref="IConstruct"/> which has thrown this exception.
+        /// </param>
         /// <param name="message">
         /// The detail message.
         /// </param>
         /// <param name="innerException">
         /// Exception to be wrapped.
         /// </param>
-        public ModelConstraintException(string message, Exception innerException) : base(message, innerException)
+        public ModelConstraintException(IConstruct reporter, string message, Exception innerException)
+            : base(message, innerException)
         {
+            Reporter = reporter;
         }
 
         /// <summary>
@@ -83,6 +86,15 @@ namespace TMAPI.Net.Core
                 StreamingContext context) : base(info, context)
         {
         }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the <see cref="IConstruct"/> which has thrown the exception.
+        /// </summary>
+        public IConstruct Reporter { get; private set; }
 
         #endregion
     }

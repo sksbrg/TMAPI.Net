@@ -244,22 +244,26 @@ namespace TMAPI.Net.UnitTests.Core
 
         private static void SetValue_UsingInvalidDatatypeThrowsException(IDatatypeAware datatypeAware)
         {
-            Assert.Throws<ModelConstraintException>("Using null as value datatytpe is not allowed.", () => datatypeAware.SetValue("Value", null));
+            var e = Assert.Throws<ModelConstraintException>("Using null as value datatytpe is not allowed.", () => datatypeAware.SetValue("Value", null));
+            Assert.Equal(datatypeAware, e.Reporter);
         }
 
         private static void Value_UsingInvalidStringThrowsException(IDatatypeAware datatypeAware)
         {
-            Assert.Throws<ModelConstraintException>("Using null as string value is not allowed.", () => datatypeAware.Value = null);
+            var e = Assert.Throws<ModelConstraintException>("Using null as string value is not allowed.", () => datatypeAware.Value = null);
+            Assert.Equal(datatypeAware, e.Reporter);
         }
 
         private static void Value_UsingInvalidStringWithExplicitDatatypeThrowsException(IDatatypeAware datatypeAware)
         {
-            Assert.Throws<ModelConstraintException>("Using null as string value is not allowed.", () => datatypeAware.SetValue(null, _xsdString));
+            var e = Assert.Throws<ModelConstraintException>("Using null as string value is not allowed.", () => datatypeAware.SetValue(null, _xsdString));
+            Assert.Equal(datatypeAware, e.Reporter);
         }
 
         private static void LocatorValue_UsingInvalidLocatorThrowsException(IDatatypeAware datatypeAware)
         {
-            Assert.Throws<ModelConstraintException>("Using null as locator value is not allowed.", () => datatypeAware.LocatorValue = null);
+            var e = Assert.Throws<ModelConstraintException>("Using null as locator value is not allowed.", () => datatypeAware.LocatorValue = null);
+            Assert.Equal(datatypeAware, e.Reporter);
         }
 
         private static void AssertFailLocator(IDatatypeAware datatypeAware)

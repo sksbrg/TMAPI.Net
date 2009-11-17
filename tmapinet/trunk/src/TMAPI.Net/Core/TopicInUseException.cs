@@ -34,30 +34,31 @@ namespace TMAPI.Net.Core
         /// <summary>
         /// Initializes a new instance of the <see cref="TopicInUseException"/> class.
         /// </summary>
-        public TopicInUseException()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TopicInUseException"/> class with the specified detail <paramref name="message"/>.
-        /// </summary>
+        /// <param name="topic">
+        /// The <see cref="ITopic"/> which is not removable.
+        /// </param>
         /// <param name="message">
         /// The detail message.
         /// </param>
-        public TopicInUseException(string message) : base(message)
+        public TopicInUseException(ITopic topic, string message)
+            : base(topic, message)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TopicInUseException"/> class that wraps another exception with the specified detail <paramref name="message"/>.
         /// </summary>
+        /// <param name="topic">
+        /// The <see cref="ITopic"/> which is not removable.
+        /// </param>
         /// <param name="message">
         /// The detail message.
         /// </param>
         /// <param name="innerException">
         /// Exception to be wrapped.
         /// </param>
-        public TopicInUseException(string message, Exception innerException) : base(message, innerException)
+        public TopicInUseException(ITopic topic, string message, Exception innerException)
+            : base(topic, message, innerException)
         {
         }
 
@@ -82,6 +83,21 @@ namespace TMAPI.Net.Core
                 SerializationInfo info,
                 StreamingContext context) : base(info, context)
         {
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the <see cref="IConstruct"/> which has thrown the exception.
+        /// </summary>
+        public new ITopic Reporter
+        {
+            get
+            {
+                return (ITopic)base.Reporter;    
+            }
         }
 
         #endregion

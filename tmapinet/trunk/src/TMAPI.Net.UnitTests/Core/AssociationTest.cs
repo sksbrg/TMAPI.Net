@@ -72,7 +72,8 @@ namespace TMAPI.Net.UnitTests.Core
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
-            Assert.Throws<ModelConstraintException>("Using null as role player is not allowed.", () => association.CreateRole(topicMap.CreateTopic(), null));
+            var e = Assert.Throws<ModelConstraintException>("Using null as role player is not allowed.", () => association.CreateRole(topicMap.CreateTopic(), null));
+            Assert.Equal(association, e.Reporter);
         }
 
         [Fact]
@@ -81,7 +82,8 @@ namespace TMAPI.Net.UnitTests.Core
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var association = topicMap.CreateAssociation(topicMap.CreateTopic());
 
-            Assert.Throws<ModelConstraintException>("Using null as role type is not allowed.", () => association.CreateRole(null, topicMap.CreateTopic()));
+            var e = Assert.Throws<ModelConstraintException>("Using null as role type is not allowed.", () => association.CreateRole(null, topicMap.CreateTopic()));
+            Assert.Equal(association, e.Reporter);
         }
 
         [Fact]

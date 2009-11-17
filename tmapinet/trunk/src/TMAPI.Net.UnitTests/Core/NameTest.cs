@@ -66,7 +66,8 @@ namespace TMAPI.Net.UnitTests.Core
             name.Value = value2;
 
             Assert.Equal(value2, name.Value);
-            Assert.Throws<ModelConstraintException>("Using null as string value for name is not allowed.", () => name.Value = null);
+            var e = Assert.Throws<ModelConstraintException>("Using null as string value for name is not allowed.", () => name.Value = null);
+            Assert.Equal(name, e.Reporter);
             Assert.Equal(value2, name.Value);
         }
 
@@ -128,7 +129,8 @@ namespace TMAPI.Net.UnitTests.Core
             var name = parent.CreateName("Name");
             var theme = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null as string value for variants is not allowed.", () => name.CreateVariant((string)null, theme));
+            var e = Assert.Throws<ModelConstraintException>("Using null as string value for variants is not allowed.", () => name.CreateVariant((string)null, theme));
+            Assert.Equal(name, e.Reporter);
         }
 
         [Fact]
@@ -139,7 +141,8 @@ namespace TMAPI.Net.UnitTests.Core
             var name = parent.CreateName("Name");
             var theme = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null as string value for variants is not allowed.", () => name.CreateVariant((ILocator)null, theme));
+            var e = Assert.Throws<ModelConstraintException>("Using null as string value for variants is not allowed.", () => name.CreateVariant((ILocator)null, theme));
+            Assert.Equal(name, e.Reporter);
         }
 
         [Fact]
@@ -150,7 +153,8 @@ namespace TMAPI.Net.UnitTests.Core
             var name = parent.CreateName("Name");
             var theme = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null as string value for variants is not allowed.", () => name.CreateVariant("Variant", (ILocator)null, theme));
+            var e = Assert.Throws<ModelConstraintException>("Using null as string value for variants is not allowed.", () => name.CreateVariant("Variant", (ILocator)null, theme));
+            Assert.Equal(name, e.Reporter);
         }
 
         [Fact]
@@ -165,7 +169,8 @@ namespace TMAPI.Net.UnitTests.Core
             Assert.Equal(1, name.Scope.Count);
             Assert.True(name.Scope.Contains(theme));
 
-            Assert.Throws<ModelConstraintException>("The variant would be in the same scope as the parent.", () => name.CreateVariant("Variant", theme));
+            var e = Assert.Throws<ModelConstraintException>("The variant would be in the same scope as the parent.", () => name.CreateVariant("Variant", theme));
+            Assert.Equal(name, e.Reporter);
         }
 
         [Fact]
@@ -175,7 +180,8 @@ namespace TMAPI.Net.UnitTests.Core
             var parent = topicMap.CreateTopic();
             var name = parent.CreateName("Name");
 
-            Assert.Throws<ModelConstraintException>("Creation of a variant with empty scope is not allowed.", () => name.CreateVariant("Variant", new List<ITopic>()));
+            var e = Assert.Throws<ModelConstraintException>("Creation of a variant with empty scope is not allowed.", () => name.CreateVariant("Variant", new List<ITopic>()));
+            Assert.Equal(name, e.Reporter);
         }
 
         [Fact]
@@ -185,7 +191,8 @@ namespace TMAPI.Net.UnitTests.Core
             var parent = topicMap.CreateTopic();
             var name = parent.CreateName("Name");
 
-            Assert.Throws<ModelConstraintException>("Creation of a variant with a null scope is not allowed.", () => name.CreateVariant("Variant", (ITopic[])null));
+            var e = Assert.Throws<ModelConstraintException>("Creation of a variant with a null scope is not allowed.", () => name.CreateVariant("Variant", (ITopic[])null));
+            Assert.Equal(name, e.Reporter);
         }
         #endregion
     }

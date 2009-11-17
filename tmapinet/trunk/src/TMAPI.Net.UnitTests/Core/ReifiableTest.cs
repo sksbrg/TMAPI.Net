@@ -83,7 +83,8 @@ namespace TMAPI.Net.UnitTests.Core
             Assert.Equal(reifier, otherReifiable.Reifier);
             Assert.Equal(otherReifiable, reifier.Reified);
 
-            Assert.Throws<ModelConstraintException>("The reifier reifies already another construct.", () => reifiable.Reifier = reifier);
+            var e = Assert.Throws<ModelConstraintException>("The reifier reifies already another construct.", () => reifiable.Reifier = reifier);
+            Assert.Equal(reifiable, e.Reporter);
 
             otherReifiable.Reifier = null;
 
