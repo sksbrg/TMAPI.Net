@@ -549,24 +549,24 @@ namespace TMAPI.Net.UnitTests.Core
             Assert.Empty(occurrence.ItemIdentifiers);
         }
 
-        //  TODO: ModelConstraintException unter Vorbehalt, Anfrage an Mailingliste laeuft
         [Fact]
         public void CreateOccurrence_UsingInvalidStringThrowsException()
         {
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null for string value is not allowed.", () => topic.CreateOccurrence(topicMap.CreateTopic(), (string)null));
+            var e = Assert.Throws<ModelConstraintException>("Using null for string value is not allowed.", () => topic.CreateOccurrence(topicMap.CreateTopic(), (string)null));
+            Assert.Equal(topic, e.Reporter);
         }
 
-        //  TODO: ModelConstraintException unter Vorbehalt, Anfrage an Mailingliste laeuft
         [Fact]
         public void CreateOccurrence_UsingInvalidURIThrowsException()
         {
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null for URI locator is not allowed.", () => topic.CreateOccurrence(topicMap.CreateTopic(), (ILocator)null));
+            var e = Assert.Throws<ModelConstraintException>("Using null for URI locator is not allowed.", () => topic.CreateOccurrence(topicMap.CreateTopic(), (ILocator)null));
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
