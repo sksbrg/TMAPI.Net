@@ -56,19 +56,30 @@ namespace TMAPI.Net.UnitTests.Core
             
             Assert.Contains(itemIdentifier, construct.ItemIdentifiers);
             Assert.Equal(construct, topicMap.GetConstructByItemIdentifier(itemIdentifier));
-			
+
             if (!(construct is ITopic))
             {
-                Assert.Throws<IdentityConstraintException>(() => topicMap.CreateTopicByItemIdentifier(itemIdentifier));
-                Assert.Throws<IdentityConstraintException>(() => topicMap.CreateTopic().AddItemIdentifier(itemIdentifier));
+                var identityConstraintException = Assert.Throws<IdentityConstraintException>(() => topicMap.CreateTopicByItemIdentifier(itemIdentifier));
+                Assert.Equal(topicMap, identityConstraintException.Reporter);
+                Assert.Equal(construct, identityConstraintException.Existing);
+                Assert.Equal(itemIdentifier, identityConstraintException.Locator);
+
+                var topic = CreateTopic();
+
+                identityConstraintException = Assert.Throws<IdentityConstraintException>(() => topic.AddItemIdentifier(itemIdentifier));
+                Assert.Equal(topic, identityConstraintException.Reporter);
+                Assert.Equal(construct, identityConstraintException.Existing);
+                Assert.Equal(itemIdentifier, identityConstraintException.Locator);
             }
 
             construct.RemoveItemIdentifier(itemIdentifier);
 
             Assert.DoesNotContain(itemIdentifier, construct.ItemIdentifiers);
             Assert.Null(topicMap.GetConstructByItemIdentifier(itemIdentifier));
-            Assert.Throws<ModelConstraintException>("Using null as item identifier is not allowed.", () => construct.AddItemIdentifier(null));
-			
+
+            var modelConstraintException = Assert.Throws<ModelConstraintException>("Using null as item identifier is not allowed.", () => construct.AddItemIdentifier(null));
+            Assert.Equal(construct, modelConstraintException.Reporter);
+
             Assert.Equal(construct, topicMap.GetConstructById(construct.Id));
         }
 

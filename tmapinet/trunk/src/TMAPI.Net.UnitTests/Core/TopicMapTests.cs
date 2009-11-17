@@ -347,7 +347,8 @@ namespace TMAPI.Net.UnitTests.Core
         {
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
 
-            Assert.Throws<ModelConstraintException>("Using null as a subject identifier for creating a nwe topic is not allowed.", () => topicMap.CreateTopicBySubjectIdentifier(null));
+            var e = Assert.Throws<ModelConstraintException>("Using null as a subject identifier for creating a nwe topic is not allowed.", () => topicMap.CreateTopicBySubjectIdentifier(null));
+            Assert.Equal(topicMap, e.Reporter);
         }
 
         [Fact]
@@ -376,7 +377,8 @@ namespace TMAPI.Net.UnitTests.Core
         {
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
 
-            Assert.Throws<ModelConstraintException>("Using null as a subject locator for creating a nwe topic is not allowed.", () => topicMap.CreateTopicBySubjectLocator(null));
+            var e = Assert.Throws<ModelConstraintException>("Using null as a subject locator for creating a nwe topic is not allowed.", () => topicMap.CreateTopicBySubjectLocator(null));
+            Assert.Equal(topicMap, e.Reporter);
         }
 
         [Fact]
@@ -405,7 +407,8 @@ namespace TMAPI.Net.UnitTests.Core
         {
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
 
-            Assert.Throws<ModelConstraintException>("Using null as a item identifier for creating a nwe topic is not allowed.", () => topicMap.CreateTopicByItemIdentifier(null));
+            var e = Assert.Throws<ModelConstraintException>("Using null as a item identifier for creating a nwe topic is not allowed.", () => topicMap.CreateTopicByItemIdentifier(null));
+            Assert.Equal(topicMap, e.Reporter);
         }
 
         [Fact]
@@ -528,7 +531,8 @@ namespace TMAPI.Net.UnitTests.Core
         {
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
 
-            Assert.Throws<ModelConstraintException>("Using null as association type is not allowed.", () => topicMap.CreateAssociation(null));
+            var e = Assert.Throws<ModelConstraintException>("Using null as association type is not allowed.", () => topicMap.CreateAssociation(null));
+            Assert.Equal(topicMap, e.Reporter);
         }
 
         [Fact]
@@ -536,7 +540,8 @@ namespace TMAPI.Net.UnitTests.Core
         {
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
 
-            Assert.Throws<ModelConstraintException>("Using null as association type is not allowed.", () => topicMap.CreateAssociation(null, new List<ITopic> { topicMap.CreateTopic() }));
+            var e = Assert.Throws<ModelConstraintException>("Using null as association type is not allowed.", () => topicMap.CreateAssociation(null, new List<ITopic> { topicMap.CreateTopic() }));
+            Assert.Equal(topicMap, e.Reporter);
         }
 
         [Fact]
@@ -544,7 +549,8 @@ namespace TMAPI.Net.UnitTests.Core
         {
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
 
-            Assert.Throws<ModelConstraintException>("Using null as association type is not allowed.", () => topicMap.CreateAssociation(null, null));
+            var e = Assert.Throws<ModelConstraintException>("Using null as association type is not allowed.", () => topicMap.CreateAssociation(null, null));
+            Assert.Equal(topicMap, e.Reporter);
         }
 
         [Fact]
@@ -552,7 +558,8 @@ namespace TMAPI.Net.UnitTests.Core
         {
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
 
-            Assert.Throws<ModelConstraintException>("Using null as association type is not allowed.", () => topicMap.CreateAssociation(null, (IList<ITopic>)null));
+            var e = Assert.Throws<ModelConstraintException>("Using null as association type is not allowed.", () => topicMap.CreateAssociation(null, (IList<ITopic>)null));
+            Assert.Equal(topicMap, e.Reporter);
         }
 
         [Fact]

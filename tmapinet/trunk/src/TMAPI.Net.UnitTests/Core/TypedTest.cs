@@ -39,7 +39,8 @@ namespace TMAPI.Net.UnitTests.Core
             typed.Type = oldType;
 
             Assert.Equal(oldType, typed.Type);
-            Assert.Throws<ModelConstraintException>("Using null for type is not allowed.", () => typed.Type = null);
+            var e = Assert.Throws<ModelConstraintException>("Using null for type is not allowed.", () => typed.Type = null);
+            Assert.Equal(typed, e.Reporter);
         }
 
         [Fact]

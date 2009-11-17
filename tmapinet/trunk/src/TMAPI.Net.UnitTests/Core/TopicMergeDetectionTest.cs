@@ -51,7 +51,10 @@ namespace TMAPI.Net.UnitTests.Core
             }
             else
             {
-                Assert.Throws<IdentityConstraintException>("Detected topic with identical subject identifier.", () => topic2.AddSubjectIdentifier(subjectIdentifier));                
+                var e = Assert.Throws<IdentityConstraintException>("Detected topic with identical subject identifier.", () => topic2.AddSubjectIdentifier(subjectIdentifier));
+                Assert.Equal(topic2, e.Reporter);
+                Assert.Equal(topic1, e.Existing);
+                Assert.Equal(subjectIdentifier, e.Locator);
             }
         }
 
@@ -94,8 +97,11 @@ namespace TMAPI.Net.UnitTests.Core
             }
             else
             {
-                Assert.Throws<IdentityConstraintException>("Detected topic with identical subject locator.",
+                var e = Assert.Throws<IdentityConstraintException>("Detected topic with identical subject locator.",
                                                            () => topic2.AddSubjectLocator(subjectLocator));
+                Assert.Equal(topic2, e.Reporter);
+                Assert.Equal(topic1, e.Existing);
+                Assert.Equal(subjectLocator, e.Locator);
             }
         }
 
@@ -141,9 +147,12 @@ namespace TMAPI.Net.UnitTests.Core
             }
             else
             {
-                Assert.Throws<IdentityConstraintException>(
+                var e = Assert.Throws<IdentityConstraintException>(
                     "Detected topic with subject identifier equal to this item identifier.",
                     () => topic2.AddItemIdentifier(locator));
+                Assert.Equal(topic2, e.Reporter);
+                Assert.Equal(topic1, e.Existing);
+                Assert.Equal(locator, e.Locator);
             }
         }
 
@@ -192,9 +201,12 @@ namespace TMAPI.Net.UnitTests.Core
             }
             else
             {
-                Assert.Throws<IdentityConstraintException>(
+                var e = Assert.Throws<IdentityConstraintException>(
                     "Detected topic with item identifier equal to this subject identifier.",
                     () => topic2.AddSubjectIdentifier(locator));
+                Assert.Equal(topic2, e.Reporter);
+                Assert.Equal(topic1, e.Existing);
+                Assert.Equal(locator, e.Locator);
             }
         }
 

@@ -67,7 +67,8 @@ namespace TMAPI.Net.UnitTests.Core
             scopeSize--;
 
             Assert.Equal(scopeSize, scoped.Scope.Count);
-            Assert.Throws<ModelConstraintException>("Using null as scope is not allowed.", () => scoped.AddTheme(null));
+            var e = Assert.Throws<ModelConstraintException>("Using null as scope is not allowed.", () => scoped.AddTheme(null));
+            Assert.Equal(scoped, e.Reporter);
         }
 
         [Fact]

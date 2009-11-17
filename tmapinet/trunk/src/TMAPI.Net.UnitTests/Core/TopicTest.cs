@@ -55,7 +55,8 @@ namespace TMAPI.Net.UnitTests.Core
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null as subject identifier is not allowed.", () => topic.AddSubjectIdentifier(null));
+            var e = Assert.Throws<ModelConstraintException>("Using null as subject identifier is not allowed.", () => topic.AddSubjectIdentifier(null));
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
@@ -64,7 +65,8 @@ namespace TMAPI.Net.UnitTests.Core
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null as subject locator is not allowed.", () => topic.AddSubjectLocator(null));
+            var e = Assert.Throws<ModelConstraintException>("Using null as subject locator is not allowed.", () => topic.AddSubjectLocator(null));
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
@@ -147,7 +149,8 @@ namespace TMAPI.Net.UnitTests.Core
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null as type is not allowed.", () => topic.AddType(null));
+            var e = Assert.Throws<ModelConstraintException>("Using null as type is not allowed.", () => topic.AddType(null));
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
@@ -572,7 +575,8 @@ namespace TMAPI.Net.UnitTests.Core
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null for datatype is not allowed.", () => topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence", (ILocator)null));
+            var e = Assert.Throws<ModelConstraintException>("Using null for datatype is not allowed.", () => topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence", (ILocator)null));
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
@@ -581,7 +585,8 @@ namespace TMAPI.Net.UnitTests.Core
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null for type is not allowed.", () => topic.CreateOccurrence(null, "Occurrence"));
+            var e = Assert.Throws<ModelConstraintException>("Using null for type is not allowed.", () => topic.CreateOccurrence(null, "Occurrence"));
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
@@ -590,7 +595,8 @@ namespace TMAPI.Net.UnitTests.Core
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null for scope array is not allowed.", () => topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence", (ITopic[])null));
+            var e = Assert.Throws<ModelConstraintException>("Using null for scope array is not allowed.", () => topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence", (ITopic[])null));
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
@@ -599,7 +605,8 @@ namespace TMAPI.Net.UnitTests.Core
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null for scope collection is not allowed.", () => topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence", (IList<ITopic>)null));
+            var e = Assert.Throws<ModelConstraintException>("Using null for scope collection is not allowed.", () => topic.CreateOccurrence(topicMap.CreateTopic(), "Occurrence", (IList<ITopic>)null));
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
@@ -747,7 +754,8 @@ namespace TMAPI.Net.UnitTests.Core
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null for string value is not allowed.", () => topic.CreateName(topicMap.CreateTopic(), null));
+            var e = Assert.Throws<ModelConstraintException>("Using null for string value is not allowed.", () => topic.CreateName(topicMap.CreateTopic(), null));
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
@@ -756,7 +764,8 @@ namespace TMAPI.Net.UnitTests.Core
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null for scope array is not allowed.", () => topic.CreateName(topicMap.CreateTopic(), "Name", null));
+            var e = Assert.Throws<ModelConstraintException>("Using null for scope array is not allowed.", () => topic.CreateName(topicMap.CreateTopic(), "Name", null));
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
@@ -765,7 +774,8 @@ namespace TMAPI.Net.UnitTests.Core
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null for scope collection is not allowed.", () => topic.CreateName(topicMap.CreateTopic(), "Name", (IList<ITopic>)null));
+            var e = Assert.Throws<ModelConstraintException>("Using null for scope collection is not allowed.", () => topic.CreateName(topicMap.CreateTopic(), "Name", (IList<ITopic>)null));
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
@@ -774,7 +784,8 @@ namespace TMAPI.Net.UnitTests.Core
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null for string value is not allowed.", () => topic.CreateName(null));
+            var e = Assert.Throws<ModelConstraintException>("Using null for string value is not allowed.", () => topic.CreateName(null));
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
@@ -783,7 +794,8 @@ namespace TMAPI.Net.UnitTests.Core
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null for scope array is not allowed.", () => topic.CreateName("Name", null));
+            var e = Assert.Throws<ModelConstraintException>("Using null for scope array is not allowed.", () => topic.CreateName("Name", null));
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
@@ -792,7 +804,8 @@ namespace TMAPI.Net.UnitTests.Core
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             var topic = topicMap.CreateTopic();
 
-            Assert.Throws<ModelConstraintException>("Using null for scope collection is not allowed.", () => topic.CreateName("Name", (IList<ITopic>)null));
+            var e = Assert.Throws<ModelConstraintException>("Using null for scope collection is not allowed.", () => topic.CreateName("Name", (IList<ITopic>)null));
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
@@ -814,7 +827,8 @@ namespace TMAPI.Net.UnitTests.Core
             Assert.Equal(3, topicMap.Topics.Count);
 
             Assert.ThrowsDelegate d = () => topic.Remove();
-            Assert.Throws<TopicInUseException>("Removing a topic used as player is not allowed.", d);
+            var e = Assert.Throws<TopicInUseException>("Removing a topic used as player is not allowed.", d);
+            Assert.Equal(topic, e.Reporter);
 
             role.Player = topicMap.CreateTopic();
 
@@ -837,7 +851,8 @@ namespace TMAPI.Net.UnitTests.Core
             Assert.Contains(topicToBeRemoved, topicMap.Topics);
             typedConstruct.Type = topicToBeRemoved;
             Assert.ThrowsDelegate d = () => topicToBeRemoved.Remove();
-            Assert.Throws<TopicInUseException>("Removing a topic used as type is not allowed.", d);
+            var e = Assert.Throws<TopicInUseException>("Removing a topic used as type is not allowed.", d);
+            Assert.Equal(topicToBeRemoved, e.Reporter);
             Assert.Contains(topicToBeRemoved, topicMap.Topics);
 
             typedConstruct.Type = topicMap.CreateTopic();
@@ -900,7 +915,8 @@ namespace TMAPI.Net.UnitTests.Core
             Assert.Contains(topicToBeRemoved, topicMap.Topics);
             reifiableConstruct.Reifier = topicToBeRemoved;
             Assert.ThrowsDelegate d = () => topicToBeRemoved.Remove();
-            Assert.Throws<TopicInUseException>("Removing a topic used as reifier is not allowed.", d);
+            var e = Assert.Throws<TopicInUseException>("Removing a topic used as reifier is not allowed.", d);
+            Assert.Equal(topicToBeRemoved, e.Reporter);
             Assert.Contains(topicToBeRemoved, topicMap.Topics);
 
             reifiableConstruct.Reifier = null;
@@ -981,7 +997,8 @@ namespace TMAPI.Net.UnitTests.Core
             Assert.Contains(topicToBeRemoved, topicMap.Topics);
             scopedConstruct.AddTheme(topicToBeRemoved);
             Assert.ThrowsDelegate d = () => topicToBeRemoved.Remove();
-            Assert.Throws<TopicInUseException>("Removing a topic used as theme is not allowed.", d);
+            var e = Assert.Throws<TopicInUseException>("Removing a topic used as theme is not allowed.", d);
+            Assert.Equal(topicToBeRemoved, e.Reporter);
             Assert.Contains(topicToBeRemoved, topicMap.Topics);
 
             scopedConstruct.RemoveTheme(topicToBeRemoved);

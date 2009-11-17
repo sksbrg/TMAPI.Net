@@ -56,7 +56,8 @@ namespace TMAPI.Net.UnitTests.Core
 
             Assert.Equal(topic1, association1.Reifier);
             Assert.Equal(topic2, association2.Reifier);
-            Assert.Throws<ModelConstraintException>("Topics reifiing diffrent Topic Maps constructs cannot be merged.", () => topic1.MergeIn(topic2));
+            var e = Assert.Throws<ModelConstraintException>("Topics reifiing diffrent Topic Maps constructs cannot be merged.", () => topic1.MergeIn(topic2));
+            Assert.Equal(topic1, e.Reporter);
         }
 
         [Fact]

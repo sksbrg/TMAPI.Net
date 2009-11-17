@@ -47,20 +47,22 @@ namespace TMAPI.Net.UnitTests.Core
         public void CreateAssociation_IllegalType()
         {
             // action
-            Assert.ThrowsDelegate e = () => TopicMap.CreateAssociation(_tm2.CreateTopic());
+            Assert.ThrowsDelegate ex = () => TopicMap.CreateAssociation(_tm2.CreateTopic());
 
             // assert
-            Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", e);
+            var e = Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", ex);
+            Assert.Equal(TopicMap, e.Reporter);
         }
 
         [Fact]
         public void CreateAssociation_IllegalScopeArray()
         {
             // action
-            Assert.ThrowsDelegate e = () => TopicMap.CreateAssociation(CreateTopic(), CreateTopic(), _tm2.CreateTopic());
+            Assert.ThrowsDelegate ex = () => TopicMap.CreateAssociation(CreateTopic(), CreateTopic(), _tm2.CreateTopic());
 
             // assert
-            Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", e);
+            var e = Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", ex);
+            Assert.Equal(TopicMap, e.Reporter);
         }
 
         [Fact]
@@ -74,113 +76,145 @@ namespace TMAPI.Net.UnitTests.Core
                              };
 
             // action
-            Assert.ThrowsDelegate e = () => TopicMap.CreateAssociation(CreateTopic(), scope);
+            Assert.ThrowsDelegate ex = () => TopicMap.CreateAssociation(CreateTopic(), scope);
 
             // assert
-            Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", e);
+            var e = Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", ex);
+            Assert.Equal(TopicMap, e.Reporter);
         }
 
         [Fact]
         public void CreateName_IllegalType()
         {
+            // arrange
+            var topic = CreateTopic();
+
             // action
-            Assert.ThrowsDelegate e = () => CreateTopic().CreateName(_tm2.CreateTopic(), "value");
+            Assert.ThrowsDelegate ex = () => topic.CreateName(_tm2.CreateTopic(), "value");
 
             // assert
-            Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", e);
+            var e = Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", ex);
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
         public void CreateName_IllegalScopeArray()
         {
+            // arrange
+            var topic = CreateTopic();
+
             // action
-            Assert.ThrowsDelegate e = () => CreateTopic().CreateName(CreateTopic(), "value", CreateTopic(), _tm2.CreateTopic());
+            Assert.ThrowsDelegate ex = () => topic.CreateName(CreateTopic(), "value", CreateTopic(), _tm2.CreateTopic());
 
             // assert
-            Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", e);
+            var e = Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", ex);
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
         public void CreateName_IllegalScopeCollection()
         {
-            // setup
+            // arrange
             var scope = new List<ITopic>
                              {
                                  CreateTopic(),
                                  _tm2.CreateTopic()
                              };
 
+            var topic = CreateTopic();
+
             // action
-            Assert.ThrowsDelegate e = () => CreateTopic().CreateName(CreateTopic(), "value", scope);
+            Assert.ThrowsDelegate ex = () => topic.CreateName(CreateTopic(), "value", scope);
 
             // assert
-            Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", e);
+            var e = Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", ex);
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
         public void CreateOccurrence_IllegalType()
         {
+            // arrange
+            var topic = CreateTopic();
+
             // action
-            Assert.ThrowsDelegate e = () => CreateTopic().CreateOccurrence(_tm2.CreateTopic(), "value");
+            Assert.ThrowsDelegate ex = () => topic.CreateOccurrence(_tm2.CreateTopic(), "value");
 
             // assert
-            Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", e);
+            var e = Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", ex);
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
         public void CreateOccurrence_IllegalScopeArray()
         {
+            // arrange
+            var topic = CreateTopic();
+
             // action
-            Assert.ThrowsDelegate e = () => CreateTopic().CreateOccurrence(CreateTopic(), "value", CreateTopic(), _tm2.CreateTopic());
+            Assert.ThrowsDelegate ex = () => topic.CreateOccurrence(CreateTopic(), "value", CreateTopic(), _tm2.CreateTopic());
 
             // assert
-            Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", e);
+            var e = Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", ex);
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
         public void CreateOccurrence_IllegalScopeCollection()
         {
-            // setup
+            // arrange
             var scope = new List<ITopic>
                              {
                                  CreateTopic(),
                                  _tm2.CreateTopic()
                              };
 
+            var topic = CreateTopic();
+
             // action
-            Assert.ThrowsDelegate e = () => CreateTopic().CreateOccurrence(CreateTopic(), "value", scope);
+            Assert.ThrowsDelegate ex = () => topic.CreateOccurrence(CreateTopic(), "value", scope);
 
             // assert
-            Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", e);
+            var e = Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", ex);
+            Assert.Equal(topic, e.Reporter);
         }
 
         [Fact]
         public void CreateRole_IllegalType()
         {
+            // arrange
+            var association = CreateAssociation();
+
             // action
-            Assert.ThrowsDelegate e = () => CreateAssociation().CreateRole(_tm2.CreateTopic(), CreateTopic());
+            Assert.ThrowsDelegate ex = () => association.CreateRole(_tm2.CreateTopic(), CreateTopic());
 
             // assert
-            Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", e);
+            var e = Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", ex);
+            Assert.Equal(association, e.Reporter);
         }
 
         [Fact]
         public void CreateRole_IllegalPlayer()
         {
+            // arrange
+            var association = CreateAssociation();
+
             // action
-            Assert.ThrowsDelegate e = () => CreateAssociation().CreateRole(CreateTopic(), _tm2.CreateTopic());
+            Assert.ThrowsDelegate ex = () => association.CreateRole(CreateTopic(), _tm2.CreateTopic());
 
             // assert
-            Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", e);
+            var e = Assert.Throws<ModelConstraintException>("Expected a model constraint violation.", ex);
+            Assert.Equal(association, e.Reporter);
         }
 
         private void AddIllegalTheme(IScoped scoped)
         {
             // action
-            Assert.ThrowsDelegate e = () => scoped.AddTheme(_tm2.CreateTopic());
+            Assert.ThrowsDelegate ex = () => scoped.AddTheme(_tm2.CreateTopic());
 
             // assert
-            Assert.Throws<ModelConstraintException>("Adding a theme from another topic map shouldn't be allowed.", e);
+            var e = Assert.Throws<ModelConstraintException>("Adding a theme from another topic map shouldn't be allowed.", ex);
+            Assert.Equal(scoped, e.Reporter);
         }
 
         [Fact]
@@ -210,10 +244,11 @@ namespace TMAPI.Net.UnitTests.Core
         private void SetIllegalType(ITyped typed)
         {
             // action
-            Assert.ThrowsDelegate e = () => typed.Type = _tm2.CreateTopic();
+            Assert.ThrowsDelegate ex = () => typed.Type = _tm2.CreateTopic();
 
             // assert
-            Assert.Throws<ModelConstraintException>("Setting the type to a topic from another topic map shouldn't be allowed.", e);
+            var e = Assert.Throws<ModelConstraintException>("Setting the type to a topic from another topic map shouldn't be allowed.", ex);
+            Assert.Equal(typed, e.Reporter);
         }
 
         [Fact]
@@ -243,20 +278,25 @@ namespace TMAPI.Net.UnitTests.Core
         [Fact]
         public void Role_SetIllegalPlayer()
         {
+            // arrange
+            var role = CreateRole();
+
             // action
-            Assert.ThrowsDelegate e = () => CreateRole().Player = _tm2.CreateTopic();
+            Assert.ThrowsDelegate ex = () => role.Player = _tm2.CreateTopic();
 
             // assert
-            Assert.Throws<ModelConstraintException>("Setting the player to a topic of another topic map shouldn't be allowed.", e);
+            var e = Assert.Throws<ModelConstraintException>("Setting the player to a topic of another topic map shouldn't be allowed.", ex);
+            Assert.Equal(role, e.Reporter);
         }
 
         private void SetIllegalReifier(IReifiable reifiable)
         {
             // action
-            Assert.ThrowsDelegate e = () => reifiable.Reifier = _tm2.CreateTopic();
+            Assert.ThrowsDelegate ex = () => reifiable.Reifier = _tm2.CreateTopic();
 
             // assert
-            Assert.Throws<ModelConstraintException>("Setting the reifier to a topic of another topic map shouldn't be allowed.", e);
+            var e = Assert.Throws<ModelConstraintException>("Setting the reifier to a topic of another topic map shouldn't be allowed.", ex);
+            Assert.Equal(reifiable, e.Reporter);
         }
 
         [Fact]
@@ -298,11 +338,15 @@ namespace TMAPI.Net.UnitTests.Core
         [Fact]
         public void Topic_AddIllegalType()
         {
+            // arrange
+            var topic = CreateTopic();
+
             // action
-            Assert.ThrowsDelegate e = () => CreateTopic().AddType(_tm2.CreateTopic());
+            Assert.ThrowsDelegate ex = () => topic.AddType(_tm2.CreateTopic());
 
             // assert
-            Assert.Throws<ModelConstraintException>("The type is not from the same topic map. Disallowed.", e);
+            var e = Assert.Throws<ModelConstraintException>("The type is not from the same topic map. Disallowed.", ex);
+            Assert.Equal(topic, e.Reporter);
         }
 
         #endregion
