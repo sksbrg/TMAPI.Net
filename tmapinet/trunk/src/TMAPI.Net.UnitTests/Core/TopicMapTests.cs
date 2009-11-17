@@ -567,9 +567,6 @@ namespace TMAPI.Net.UnitTests.Core
         {
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
 
-            //  TODO:   hier noch einen spezielleren exception-typ verwenden?
-            //          IndexNotSupportedException
-            //          alles andere wirkt so nach "ein fehler ist aufgetreten bitte melden sie sich beim katasteramt"...
             Assert.Throws<TMAPIException>("", () => topicMap.GetIndex<UnknownIndex>());
         }
 
