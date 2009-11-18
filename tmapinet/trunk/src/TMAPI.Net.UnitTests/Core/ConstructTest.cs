@@ -53,7 +53,7 @@ namespace TMAPI.Net.UnitTests.Core
                 Assert.Equal(construct, identityConstraintException.Existing);
                 Assert.Equal(itemIdentifier, identityConstraintException.Locator);
 
-                var topic = CreateTopic();
+                var topic = topicMap.CreateTopic();
 
                 identityConstraintException = Assert.Throws<IdentityConstraintException>(() => topic.AddItemIdentifier(itemIdentifier));
                 Assert.Equal(topic, identityConstraintException.Reporter);
@@ -75,7 +75,7 @@ namespace TMAPI.Net.UnitTests.Core
         [Fact]
         public void TestTopicMap()
         {
-            var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
+        	var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
             ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifierEmpty(topicMap);
 
             Assert.Null(topicMap.Parent);
