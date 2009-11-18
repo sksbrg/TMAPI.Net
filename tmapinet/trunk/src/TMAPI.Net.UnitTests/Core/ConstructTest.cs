@@ -37,17 +37,6 @@ namespace TMAPI.Net.UnitTests.Core
             Assert.Empty(construct.ItemIdentifiers);
         }
 
-        private void ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifierNotEmpty(IConstruct construct, ILocator initialItemIdentifier)
-        {
-            Assert.NotEmpty(construct.ItemIdentifiers);
-            Assert.Contains(TopicMapSystem.CreateLocator(TestTM1), construct.ItemIdentifiers);
-
-            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(construct);
-		
-            Assert.NotEmpty(construct.ItemIdentifiers);
-            Assert.Contains(TopicMapSystem.CreateLocator(TestTM1), construct.ItemIdentifiers);
-        }
-
         private void ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifier(IConstruct construct)
         {
             var topicMap = construct.TopicMap;
@@ -87,9 +76,7 @@ namespace TMAPI.Net.UnitTests.Core
         public void TestTopicMap()
         {
             var topicMap = TopicMapSystem.CreateTopicMap(TestTM1);
-            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifierNotEmpty(
-                topicMap, 
-                TopicMapSystem.CreateLocator(TestTM1));
+            ItemIdentifiers_AddRemoveAndRetrieveByItemIdentifierEmpty(topicMap);
 
             Assert.Null(topicMap.Parent);
             Assert.Equal(topicMap, topicMap.TopicMap);
