@@ -56,6 +56,7 @@
     <Compile Include="Core\AssociationTest.cs" />
     <Compile Include="Core\ConstructTest.cs" />
     <Compile Include="Core\DatatypeAwareTest.cs" />
+    <Compile Include="Core\FeatureStringTest.cs" />
     <Compile Include="Core\LocatorTest.cs" />
     <Compile Include="Core\NameTest.cs" />
     <Compile Include="Core\OccurrenceTest.cs" />
