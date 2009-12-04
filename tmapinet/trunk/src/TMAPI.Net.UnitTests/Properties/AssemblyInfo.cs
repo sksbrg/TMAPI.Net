@@ -1,16 +1,17 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System;
+using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TMAPI.Net.UnitTests")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("TMAPI.NET")]
+[assembly: AssemblyDescription(".NET version of TMAPI")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Nexxor GmbH")]
-[assembly: AssemblyProduct("TMAPI.Net.UnitTests")]
-[assembly: AssemblyCopyright("Copyright © Nexxor GmbH 2009")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("TMAPI.NET")]
+[assembly: AssemblyCopyright("Copyright © Stefan Kesberg, Ralf Eilbracht, Marcel Hoyer 2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +33,15 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]
+
+[assembly: NeutralResourcesLanguage("en")]
+[assembly: CLSCompliant(true)]
+
+// Some global suppressions that does not fit the TMAPI naming conventions.
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "TMAPI")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "TMAPI", Scope = "namespace", Target = "TMAPI.Net.Core")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "TMAPI", Scope = "namespace", Target = "TMAPI.Net.Index")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "TMAPI", Scope = "type", Target = "TMAPI.Net.Core.TMAPIException")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "TMAPI", Scope = "type", Target = "TMAPI.Net.Core.TMAPIRuntimeException")]
