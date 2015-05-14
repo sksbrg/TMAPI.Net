@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -14,6 +14,11 @@
     <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>TMAPI.Net.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -81,13 +86,13 @@
     <Compile Include="TMAPITestCase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TMAPI.Net\TMAPI.Net.csproj">
-      <Project>{B18A8E37-2D5F-4C6B-967D-B723E478E8A5}</Project>
-      <Name>TMAPI.Net</Name>
-    </ProjectReference>
+    <None Include="TMAPI.Net.snk" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="TMAPI.Net.snk" />
+    <ProjectReference Include="..\TMAPI.Net\TMAPI.Net.csproj">
+      <Project>{b18a8e37-2d5f-4c6b-967d-b723e478e8a5}</Project>
+      <Name>TMAPI.Net</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
