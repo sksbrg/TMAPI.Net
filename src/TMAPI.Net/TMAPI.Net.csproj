@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B18A8E37-2D5F-4C6B-967D-B723E478E8A5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TMAPI.Net</RootNamespace>
+    <AssemblyName>TMAPI.Net</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>TMAPI.Net.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\TMAPI.Net.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\FactoryConfigurationException.cs" />
+    <Compile Include="Core\FeatureNotRecognizedException.cs" />
+    <Compile Include="Core\FeatureNotSupportedException.cs" />
+    <Compile Include="Core\IAssociation.cs" />
+    <Compile Include="Core\IConstruct.cs" />
+    <Compile Include="Core\IDatatypeAware.cs" />
+    <Compile Include="Core\IdentityConstraintException.cs" />
+    <Compile Include="Core\ILocator.cs" />
+    <Compile Include="Core\IName.cs" />
+    <Compile Include="Core\IOccurrence.cs" />
+    <Compile Include="Core\IReifiable.cs" />
+    <Compile Include="Core\IRole.cs" />
+    <Compile Include="Core\IScoped.cs" />
+    <Compile Include="Core\ITopic.cs" />
+    <Compile Include="Core\ITopicMap.cs" />
+    <Compile Include="Core\ITopicMapSystem.cs" />
+    <Compile Include="Core\ITyped.cs" />
+    <Compile Include="Core\IVariant.cs" />
+    <Compile Include="Core\MalformedIRIException.cs" />
+    <Compile Include="Core\ModelConstraintException.cs" />
+    <Compile Include="Core\TMAPIException.cs" />
+    <Compile Include="Core\TMAPIRuntimeException.cs" />
+    <Compile Include="Core\TopicInUseException.cs" />
+    <Compile Include="Core\TopicMapExistsException.cs" />
+    <Compile Include="Core\TopicMapSystemFactory.cs" />
+    <Compile Include="Index\IIndex.cs" />
+    <Compile Include="Index\ILiteralIndex.cs" />
+    <Compile Include="Index\IScopedIndex.cs" />
+    <Compile Include="Index\ITypeInstanceIndex.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Exceptions.cd" />
+    <None Include="Index.cd" />
+    <None Include="Core.cd" />
+    <None Include="TMAPI.Net.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
